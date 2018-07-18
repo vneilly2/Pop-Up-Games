@@ -23,6 +23,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('lastName', 30);
       user.number('rating').defaultTo(5);
       user.boolean('isAdmin').defaultTo(false);
+      user.string('email');
       user.string('address'); //Change to long and lat if google api is working
       user.timestamps();
     }).then(function (table) {
@@ -57,7 +58,6 @@ db.knex.schema.hasTable('events').then(function(exists) {
       event.number('minPlayer');
       event.number('maxPlayer');
       event.foreign('userId').references('users.id');
-      event.foreign('eventId').references('events.id');
       event.foreign('fieldId').references('fields.id');
       event.timestamps();
     }).then(function (table) {
