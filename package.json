@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "axios": "0.18.0",
-    "bcrypt": "3.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.18.3",
     "bookshelf": "0.13.3",
@@ -40,9 +39,13 @@
     "react": "16.4.1",
     "react-dom": "16.4.1"
   },
+  "engines": {
+    "node": "8.11.3"
+  },
   "babel": {
     "presets": [
-      "env"
+      "env",
+      "react"
     ]
   }
 }
