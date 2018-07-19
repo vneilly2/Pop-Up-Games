@@ -1,3 +1,9 @@
 node_modules/
 config/
 client/dist/
+
+# Floobits
+.floo
+.floobit
+.floo
+.flooignore
