@@ -6,8 +6,8 @@ var GuestList = (props) => (
   <ul>
     Here is a list of guests
     {
-      props.GuestList.forEach((guest, index) => {
-        <Guest guest={guest} key={index} />
+      props.GuestList.map((guest, index) => {
+        return(<Guest guest={guest} key={index} />)
       })
     }
   </ul>

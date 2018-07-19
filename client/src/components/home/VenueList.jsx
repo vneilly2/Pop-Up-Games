@@ -6,8 +6,8 @@ var VenueEntryList = (props) => (
   <h3>Venue Entry List</h3>
   <ul>
     {
-      props.entries.forEach((entry, index) => {
-        <VenueEntry entry={entry} key={index} />
+      props.entries.map((entry, index) => {
+        return (<VenueEntry entry={entry} key={index} />)
       })
     }
   </ul>

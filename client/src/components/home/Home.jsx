@@ -9,7 +9,7 @@ var Home = (props) => (
   <LoginStatus />
     <h1>Homepage</h1>
   <NavBar />
-  <Gmap />
+  <GMap />
   <VenueList />
   </div>
   )

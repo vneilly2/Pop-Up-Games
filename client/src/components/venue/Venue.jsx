@@ -8,7 +8,7 @@ var Venue = (props) => (
     <LoginStatus />
     <h1>Venue Page</h1>
     <NavBar />
-    <Body />
+    <VenueBody />
   </div>
   )
 

@@ -5,8 +5,8 @@ var FieldList = (props) => (
     <div>
       <ul>
       {
-        props.fields.forEach((field, index) => {
-          <FieldListEntry />
+        props.fields.map((field, index) => {
+         return ( <FieldListEntry /> )
         })
       }
       </ul>

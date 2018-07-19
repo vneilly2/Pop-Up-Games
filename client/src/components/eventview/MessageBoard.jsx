@@ -5,8 +5,8 @@ var MessageBoard = (props) => (
   <ul>
     These are the messages for this MessageBoard
     {
-      props.messages.forEach((message, index) => {
-        <Message message={message} key={index} />
+      props.messages.map((message, index) => {
+        return (<Message message={message} key={index} />)
       })
     }
   </ul>
