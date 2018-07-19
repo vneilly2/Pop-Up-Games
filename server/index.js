@@ -1,7 +1,9 @@
 const bodyParser = require('body-parser');
-const utils = require('./utils');
+const util = require('./utils');
 const db = require('../database/helpers.js');
-const app = require('express')();
+const express = require('express');
+
+const app = express();
 app.use(require('express-session')({
   secret: process.env.SECRET || require('../config/config.js').SECRET,
   resave: false,
@@ -25,7 +27,7 @@ app.post('/signup', (req, res) => util.postRes(() =>
 
 app.post('/login', (req, res) =>
   //request the hashed password from the database
-  db.getPass(req.body)
+  db.getPassword(req.body)
     //check that the password and the hashed password are the same
     .then(hash => util.checkPass(req.body.password, hash))
     //either create the session or return a lack of a match
@@ -33,7 +35,7 @@ app.post('/login', (req, res) =>
       ? req.session.regenerate(() => res.status(200).send(req.session.user = req.body.username))
       : res.status(422).send(matches))
     //if there was an issue, assume that the username was not found in the database
-    .catch(err => app.status(404).send('username not found'))
+    .catch(err => res.status(404).send('username not found'))
 );
 
 app.get('/logout', (req, res) => req.session.destroy(() => res.sendStatus(200)));

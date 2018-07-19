@@ -10,14 +10,14 @@ var Event = require("./models/event");
 var Venues = require("./collections/venues");
 var Venue = require("./models/venue");
 
-let saveUser = user =>
+exports.saveUser = user =>
   new Promise(function(resolve, reject) {
-    new User(user).fetch().then(found => found ? reject() : Users.create(user).then(resolve))
+    new User({username: user.username}).fetch().then(found => found ? reject() : Users.create(user).then(resolve))
 })
 
 
-let getPassword = user =>
+exports.getPassword = user =>
   new Promise(function(resolve, reject) {
-    new User(user).fetch().then(found => found ? resolve(found[0].password) : reject());
+    new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password) : reject());
 })
 
