@@ -6,45 +6,56 @@ import Field from './components/field/Field.jsx';
 import Home from './components/home/Home.jsx';
 import Search from './components/search/Search.jsx';
 import Venue from './components/venue/Venue.jsx';
+import NavBar from './components/NavBar.jsx'
+import LoginStatus from './components/LoginStatus.jsx'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+
 
 class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = {page: 'basic'};
+    this.state = {
+      page: '/basic',
+      loggedIn: true
+    };
   }
   changeState(event, state) {
     event.stopPropagation()
     this.setState({page: state});
     console.log(this.state.page);
   }
+
   render() {
-    if(this.state.page ==='basic') {
-    return (
-      <div>
+    if (this.state.loggedIn === true) {
+      return (
+      <Router>
         <div>
-          <a>Dev Tools Temp Links</a><br/>
-          <button onClick ={() => this.setState({page:'search'})}>Search</button><br/>
-          <button onClick ={() => this.setState({page:'eventview'})}>Event View</button><br/>
-          <button onClick ={() => this.setState({page:'field'})}>Field</button><br/>
-          <button onClick ={() => this.setState({page:'home'})}>Home</button><br/>
-          <button onClick ={() => this.setState({page:'venue'})}>Venue</button><br/>
-          <button onClick ={() => this.setState({page:'createevent'})}>Create Event</button><br/>
+          <LoginStatus />
+           <NavBar />
         </div>
-      </div>);
-    } else if (this.state.page ==='search') {
-      return (<Search />);
-    } else if (this.state.page ==='eventview') {
-      return (<EventView />);
-    } else if (this.state.page ==='field') {
-      return (<Field />);
-    } else if (this.state.page ==='home') {
-      return (<Home />);
-    } else if (this.state.page ==='venue') {
-      return (<Venue />);
-    } else if (this.state.page ==='createevent') {
-      return (<CreateEvent />);
+      </Router>
+      )
+    } else {
+      <div>
+        <div>Testing </div>
+        <Route path="/login" component={Login} />
+        <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: this.state.page }
+            }}
+        />
+      </div>
     }
+
   }
+
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
