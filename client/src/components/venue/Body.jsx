@@ -5,7 +5,7 @@ import FieldList from './FieldList.jsx';
 var VenueBody = (props) => (
   <div>
     <VenueInfo />
-    <FieldList />
+    <FieldList fields={['listOfFields']}/>
   </div>
   )
 
