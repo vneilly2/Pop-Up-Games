@@ -29,7 +29,7 @@ class CreateFieldForm extends React.Component {
         notes: this.state.notes,
         venueid: this.state.venueid
       }
-      this.createVenue(newVenue);
+      this.createVenue(newField);
     }
   }
 

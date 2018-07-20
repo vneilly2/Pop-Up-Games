@@ -19,7 +19,7 @@ class CreateVenueForm extends React.Component {
     processForm() {
     this.setState({otherErrors: false });
     if (
-      this.state.username === '' ||
+      this.state.name === '' ||
       this.state.address === ''
       ) {
       this.setState({otherErrors: true});

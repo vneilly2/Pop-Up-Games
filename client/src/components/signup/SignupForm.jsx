@@ -57,7 +57,7 @@ class SignupForm extends React.Component {
       params: params
     };
 
-    axios.post( 'https://localhost:3000/', options)
+    axios.post( 'https://localhost:3000/signup', options)
     .catch((error) => {
       utils.errorHandler(error);
     })
