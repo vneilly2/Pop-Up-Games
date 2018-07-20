@@ -7,6 +7,9 @@ import Field from './field/Field.jsx';
 import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
+import Signup from './signup/Signup.jsx';
+
+
 import {
   BrowserRouter as Router,
   HashRouter,
@@ -36,6 +39,7 @@ class NavBar extends React.Component {
               <Link to="/createevent">Create Event</Link>
               <Link to="/createfield">Create Field</Link>
               <Link to="/createvenue">Create Venue</Link>
+              <Link to="/signup">Signup Form</Link>
             </li>
           </ul>
           <Route path="/home" component={Home} />
@@ -46,6 +50,7 @@ class NavBar extends React.Component {
           <Route path="/createevent" component={CreateEvent} />
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />
+          <Route path="/signup" component={Signup} />
         </div>
       </Router>
      );
