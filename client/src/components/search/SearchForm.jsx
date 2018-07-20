@@ -1,5 +1,4 @@
 import React from 'react';
-import TimeRangePicker from 'react-time-range-picker';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import css from 'react-datepicker/dist/react-datepicker.css';
@@ -8,15 +7,16 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      sport: 'select',
-      distance: 'select',
+      sport: 'basketball',
+      distance: 5,
       date: moment(),
-      time: 'select'
     }
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSportChange = this.handleSportChange.bind(this);
+    this.handleDistanceChange = this.handleDistanceChange.bind(this);
   }
 
-  change(event) {
+  handleSportChange(event) {
     this.setState({sport: event.target.value})
   }
 
@@ -26,39 +26,37 @@ class SearchForm extends React.Component {
     });
   }
 
+  handleDistanceChange(event) {
+    this.setState({distance: event.target.value})
+  }
+
   search() {
     this.props.Search(this.state.sport, this.state.distance, this.state.date, this.state.time)
   }
-
-  pickerupdate(start_time, end_time) {
-    // start and end time in 24hour time
-    console.log(`start time: ${start_time}, end time: ${end_time}`)
-  }
-
 
   render() {
     return (
       <div className="search-container">
         <h4>Search Form</h4>
-          <select className="sport-search-form" onChange={(event) => this.change(event)} value={this.state.value}>
+          <select className="sport-search-form" onChange={(event) => this.handleSportChange(event)} value={this.state.value}>
+            <option >Sport</option>
             <option value="basketball">Basketball</option>
             <option value="soccer">Soccer</option>
             <option value="football">Football</option>
             <option value="quidditch">Quidditch</option>
           </select>
-          <select className="distance-search-form">
-            <option value="5-miles">5 Miles</option>
-            <option value="10-miles">10 Miles</option>
-            <option value="20-miles">20 Miles</option>
+          <select className="distance-search-form" onChange={(event) => this.handleDistanceChange(event)} >
+            <option >Distance</option>
+            <option value={5}>5 Miles</option>
+            <option value={10}>10 Miles</option>
+            <option value={20}>20 Miles</option>
           </select>
           <div>
+            Date
             <DatePicker
-              selected = {this.state.startDate}
+              selected = {this.state.date}
               onChange = {this.handleDateChange}
             />
-          </div>
-          <div>
-            <TimeRangePicker hourmarkers hourlines timeupdate={this.pickerupdate}/>
           </div>
         <div className='search-button'>
           <button onClick={this.search.bind(this)}> Search </button>
@@ -72,12 +70,43 @@ class SearchForm extends React.Component {
 export default SearchForm;
 
 /*
-          <select class="date-search-form">
-            <option value="today">Today</option>
-            <option value="tomorrow">Tomorrow</option>
-            <option value="this-week">This Week</option>
+
+          <div>
+            Start Time
+            <DatePicker
+              selected={this.state.startTime}
+              onChange={this.handleStartTimeChange}
+              howTimeSelect
+              showTimeSelectOnly
+              timeIntervals={30}
+              dateFormat="LT"
+              timeCaption="Time"
+              />
+          </div>
+          <div>
+            End Time
+            <DatePicker
+              selected={this.state.startTime}
+              onChange={this.handleStartTimeChange}
+              howTimeSelect
+              showTimeSelectOnly
+              timeIntervals={30}
+              dateFormat="LT"
+              timeCaption="Time"
+              />
+          </div>
 
 
-          </select>
+
+
+                    <div>
+            Time
+            <TimeRange
+              startMoment={this.state.startTime}
+              endMoment={this.state.endTime}
+              onStartTimeChange={this.handleStartTimeChange(event)}
+              onEndTimeChange={this.handleEndTimeChange(event)}
+            />
+          </div>
 
 */
