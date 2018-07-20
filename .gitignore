@@ -7,3 +7,4 @@ client/dist/
 .floobit
 .floo
 .flooignore
+package-lock.json
