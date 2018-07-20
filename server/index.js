@@ -63,7 +63,7 @@ app.get('/event', util.checkUser, (req, res) => util.getRes(() =>
 
 app.get('/events', util.checkUser, (req, res) => util.getRes(() =>
   //get all of the events the current user has signed up for
-  db.getMyEvents({username: req.session.user})
+  db.getUserEvents({username: req.session.user})
 , res));
 
 app.get('/field', util.checkUser, (req, res) => util.getRes(() =>

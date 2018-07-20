@@ -20,21 +20,17 @@ exports.getPassword = user =>
     new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password) : reject());
 })
 
-exports.saveEvent = event => {
-  new User({username: event.username}).fetch({withRelated: ['event']}).then( () =>
-    new Promise(function(resolve, reject) {
-      Events.create(event).then(resolve).catch(reject);
-    })
-  )
-}
+exports.saveEvent = event =>
+  new User({username: event.username}).fetch()
+    .then(user => console.log(user) && Events.create((delete event.username) && (event.ownerId = user.id) && event))
 
 
 exports.getEvent = event => {
   new Event({id: event.id}).fetch().then(found => found ? resolve(found.attributes): reject());
 }
 
-exports.getUserEvents = event => {
-  new User({id: user.id}).fetch({withRelated: ['events']}).then(found => console.log(found) && found ? resolve(found.attributes): reject());
+exports.getUserEvents = user => {
+  new User({username: user.username}).fetch({withRelated: ['events']}).then(found => console.log(found) && found ? resolve(found.attributes): reject());
 }
 
 exports.getField = field => {
@@ -62,9 +58,7 @@ exports.getFields = venue => {
 }
 
 exports.saveVenue = venue =>
-  new Promise(function(resolve, reject) {
-    Venues.create(venue).then(resolve).catch(reject);
-})
+  Venues.create(venue)
 
 // exports.saveField = field =>
 //   new Promise(function(resolve, reject) {

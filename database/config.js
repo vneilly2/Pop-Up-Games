@@ -24,7 +24,9 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.float('rating').defaultTo(5);
       user.boolean('isAdmin').defaultTo(false);
       user.string('email');
-      user.string('address'); //Change to long and lat if google api is working
+      user.string('address');
+      user.float('lat');
+      user.float('long');
       user.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -52,8 +54,9 @@ db.knex.schema.hasTable('events').then(function(exists) {
       event.float('startBlock');
       event.float('endBlock');
       event.string('Notes');
-      event.float('minPlayer');
-      event.float('maxPlayer');
+      event.float('minPlayer').defaultTo(0);
+      event.float('maxPlayer').defaultTo(null);
+      event.integer('ownerId');
       event.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -94,6 +97,8 @@ db.knex.schema.hasTable('venues').then(function(exists) {
       venue.string('name', 30);
       venue.string('address');
       venue.boolean('isVerified').defaultTo(false);
+      venue.float('lat');
+      venue.float('long');
     }).then(function (table) {
       console.log('Created Table', table);
     });
