@@ -6,7 +6,7 @@ var Home = (props) => (
   <div>
   <h1>Homepage</h1>
   <GMap />
-  <VenueList entries={['exampleEntry']}/>
+  <VenueList entries={['exampleEntry1']}/>
   </div>
   )
 

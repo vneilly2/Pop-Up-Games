@@ -30,7 +30,7 @@
     "enzyme-adapter-react-16": "1.1.1",
     "jest": "23.4.1",
     "webpack": "4.16.1",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "3.1.0"
   },
   "dependencies": {
     "axios": "0.18.0",
@@ -50,7 +50,11 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-time-range-picker": "^1.4.0",
-    "style-loader": "^0.21.0"
+    "style-loader": "^0.21.0",
+    "react-google-maps": "9.4.5",
+    "react-google-maps-loader": "^4.2.3",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1"
   },
   "engines": {
     "node": "8.11.3"

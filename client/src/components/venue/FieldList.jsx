@@ -6,7 +6,7 @@ var FieldList = (props) => (
       <ul>
       {
         props.fields.map((field, index) => {
-         return ( <FieldListEntry /> )
+         return ( <FieldListEntry key={index}/> )
         })
       }
       </ul>

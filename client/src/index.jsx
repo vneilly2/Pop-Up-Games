@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CreateEvent from './components/createevent/CreateEvent.jsx';
+import CreateField from './components/createfield/CreateField.jsx';
+import CreateVenue from './components/createvenue/CreateVenue.jsx';
 import EventView from './components/eventview/EventView.jsx';
 import Field from './components/field/Field.jsx';
 import Home from './components/home/Home.jsx';
@@ -21,7 +23,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      page: '/basic',
+      page: '/home',
       loggedIn: true
     };
   }
