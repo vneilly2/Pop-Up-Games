@@ -11,36 +11,10 @@ class Signup extends React.Component {
     };
   }
 
-  onSubmit() {
-    this.createUser();
-  }
-
-  createUser(params) {
-    let options = {
-      headers: {
-      },
-      params: {
-        username: params.username,
-        firstname: params.fname,
-        lastname: params.lname,
-        password: params.password
-      }
-    };
-
-    axios.post( 'https://localhost:3000/', options)
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
-    .then((response) => {
-      this.setState = {
-      };
-    });
-  }
-
   render() {
     return(<div>
       <h1>Signup Page</h1>
-      <SignupForm onSubmit={this.onSubmit.bind(this)} />
+      <SignupForm />
     </div>)
   }
 }
