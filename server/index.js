@@ -48,9 +48,14 @@ app.post('/event/guest', util.checkUser, (req, res) => util.postRes(() =>
   })
 , res));
 
-app.post('/event', util.checkUser, (req, res) => util.postRes(() =>
-  db.saveEvent((req.body.username = req.session.user) && req.body)
+// app.post('/event', util.checkUser, (req, res) => util.postRes(() =>
+//   db.saveEvent((req.body.username = req.session.user) && req.body)
+// , res));
+
+app.post('/event', (req, res) => util.postRes(() =>
+  db.saveEvent(req.body)
 , res));
+
 
 app.get('/event', util.checkUser, (req, res) => util.getRes(() =>
   db.getEvent({
