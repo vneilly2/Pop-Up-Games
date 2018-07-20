@@ -19,12 +19,22 @@ exports.checkPass = (pass, hash) =>
     bcrypt.compare(pass, hash, (err, matches) =>
       err ? reject(err) : resolve(matches)));
 
+exports.getVenuesNearMe = (loc, db) => {
+
+}
+
+//a way to build a response object across multiple promises
+exports.buildRes = (types, ...ps) => new Promise((resolve, reject) =>
+  Promise.all(ps)
+    .then(datas => resolve(datas.reduce((ouput, data, i) => (output[types[i]] = data) && output, {})))
+    .catch(reject))
+
 //a basic get resovle
-exports.getRes = (p, res, errMessage) => p()
-  .then(data => res.status(200).send(data))
-  .catch(err => res.status(400).send(errMessage || err));
+exports.getRes = (p, res, errMessage, successStatus = 200, errStatus = 400) => p()
+  .then(data => res.status(successStatus).send(data))
+  .catch(err => res.status(errStatus).send(errMessage || err));
 
 //a basic post resovle
-exports.postRes = (p, res, errMessage) => p()
-  .then(() => res.sendStatus(201))
-  .catch(err => res.status(400).send(errMessage || err));
+exports.postRes = (p, res, errMessage, successStatus = 201, errStatus = 400) => p()
+  .then(() => res.sendStatus(successStatus))
+  .catch(err => res.status(errStatus).send(errMessage || err));
