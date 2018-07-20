@@ -9,4 +9,4 @@ const Search = (props) => (
     </div>
 )
 
-export default 'Search';
+export default Search;
