@@ -1,22 +1,11 @@
 import React from 'react';
 import SignupForm from './SignupForm.jsx';
 
-class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      createdUser: false,
-      badPassword: false,
-      duplicateUser: false
-    };
-  }
-
-  render() {
-    return(<div>
+var Signup = (props) => (
+    <div>
       <h1>Signup Page</h1>
       <SignupForm />
-    </div>)
-  }
-}
+    </div>
+  )
 
 export default Signup;

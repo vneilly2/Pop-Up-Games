@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import utils from '../../../utils';
+import Login from '../login/Login.jsx';
+
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -40,8 +42,8 @@ class SignupForm extends React.Component {
     } else {
       let newUser = {
         username: this.state.username,
-        fname: this.state.fname,
-        lname: this.state.lname,
+        firstname: this.state.fname,
+        lastname: this.state.lname,
         address: this.state.address,
         password: this.state.password,
         email: this.state.email,
@@ -51,18 +53,15 @@ class SignupForm extends React.Component {
   }
 
   createUser(params) {
-    let options = {
+    axios.post( '/signup', params, {
       headers: {
-      },
-      params: params
-    };
-
-    axios.post( 'https://localhost:3000/signup', options)
+      }
+    })
     .catch((error) => {
       utils.errorHandler(error);
     })
     .then((response) => {
-      console.log('Successful post fired', response);
+      this.setState({createdNewUser: true});
     });
   }
 
@@ -74,8 +73,8 @@ class SignupForm extends React.Component {
     if(this.state.otherErrors) {
       pendingMistakes.push('*There are other unspecified errors');
     }
-    if(this.createdNewUser) {
-      return (<div>Success, we should reroute here</div>)
+    if(this.state.createdNewUser) {
+      return (<Redirect to='/login'  />)
     } else {
       return(
         <div>

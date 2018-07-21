@@ -23,9 +23,16 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      page: '/home',
-      loggedIn: true
+      loggedIn: false
     };
+  }
+
+  updateLogin(login) {
+    if(login === true ){
+      this.setState({loggedIn: true});
+    } else {
+      this.setState({loggedIn: true});
+    }
   }
 
   render() {
@@ -33,14 +40,14 @@ class App extends React.Component {
       return (
       <Router>
         <div>
-          <LoginStatus />
+          <LoginStatus loggedIn={this.state.loggedIn} />
           <NavBar />
         </div>
       </Router>
       )
     } else {
       return (
-            <div>You can't do anything you aren't logged in</div>
+            <LoginStatus loggedIn={this.state.loggedIn} onUpdate={this.updateLogin.bind(this)} />
         )
     }
 

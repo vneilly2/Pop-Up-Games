@@ -8,6 +8,7 @@ import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
 import Signup from './signup/Signup.jsx';
+import Login from './login/Login.jsx';
 
 
 
@@ -28,9 +29,8 @@ class NavBar extends React.Component {
 
   render () {
     return (
-
-      <Router>
-        <div className="top">
+      <HashRouter>
+        <div>
           <ul>
             <li>
               <Link to="/home">Home</Link>
@@ -42,6 +42,7 @@ class NavBar extends React.Component {
               <Link to="/createfield">Create Field</Link>
               <Link to="/createvenue">Create Venue</Link>
               <Link to="/signup">Signup Form</Link>
+              <Link to="/login">Login</Link>
             </li>
           </ul>
           <Route path="/home" component={Home} />
@@ -53,9 +54,9 @@ class NavBar extends React.Component {
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />
           <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
         </div>
-      </Router>
-
+      </HashRouter>
      );
   }
 }

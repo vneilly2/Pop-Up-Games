@@ -33,27 +33,9 @@ class Home extends React.Component {
       }
       ]
     };
-    this.makeAxiosCall();
   }
 
-  makeAxiosCall() {
-    let options = {
-      headers: {
-      },
-      params: {
-      }
-    };
 
-    axios.get( 'https://localhost:3000/', options)
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
-    .then((response) => {
-      this.setState = {
-
-      };
-    });
-  }
 
   render() {
     if(this.state.position === undefined) {
