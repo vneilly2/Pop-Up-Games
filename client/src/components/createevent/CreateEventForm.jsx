@@ -9,33 +9,33 @@ class CreateEventForm extends React.Component {
     super(props)
     this.state = {
       sport: 'basketball',
-      distance: 5,
+      distance: '5', //value always string, needs to be converted
       date: moment(),
       startTime: moment(),
       endTime: moment(),
     }
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleSportChange = this.handleSportChange.bind(this);
-    this.handleDistanceChange = this.handleDistanceChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-  handleSportChange(event) {
-    this.setState({sport: event.target.value})
+  updateState(event) {
+    this.setState({[event.target.name]: event.target.value });
   }
 
-  handleDateChange(date) {
-    this.setState({
-      date: date
-    });
+  handleDateChange(date){
+    this.setState({date: date })
   }
 
-  handleDistanceChange(event) {
-    this.setState({distance: event.target.value})
-  }
-
-  search() {
-    this.props.Search(this.state.sport, this.state.distance, this.state.date, this.state.time)
-  }
+  createEvent(params) {
+    axios.post( '/event', params, {
+      headers: {
+      }
+    })
+    .catch((error) => {
+      utils.errorHandler(error);
+    })
+    .then((response) => {
+      console.log('Event has been created')});
+  };
 
   pickerUpdate(start_time, end_time) {
     // start and end time in 24hour time
@@ -47,14 +47,14 @@ class CreateEventForm extends React.Component {
     return (
       <div className="search-container">
         <h4>Search Form</h4>
-          <select className="sport-search-form" onChange={(event) => this.handleSportChange(event)} value={this.state.value}>
+          <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sport'>
             <option >Sport</option>
             <option value="basketball">Basketball</option>
             <option value="soccer">Soccer</option>
             <option value="football">Football</option>
             <option value="quidditch">Quidditch</option>
           </select>
-          <select className="distance-search-form" onChange={(event) => this.handleDistanceChange(event)} >
+          <select className="distance-search-form" onChange={(event) => this.updateState(event)} name='distance'>
             <option >Distance</option>
             <option value={5}>5 Miles</option>
             <option value={10}>10 Miles</option>
@@ -72,7 +72,7 @@ class CreateEventForm extends React.Component {
           </div>
 
         <div className='search-button'>
-          <button onClick={this.search.bind(this)}> Search </button>
+          <button onClick={this.createEvent.bind(this)}> Create </button>
         </div>
       </div>
     )

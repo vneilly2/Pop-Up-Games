@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import CreateEvent from './createevent/CreateEvent.jsx';
 import CreateField from './createfield/CreateField.jsx';
 import CreateVenue from './createvenue/CreateVenue.jsx';
@@ -8,6 +8,7 @@ import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
 import Signup from './signup/Signup.jsx';
+
 
 
 import {
@@ -27,8 +28,9 @@ class NavBar extends React.Component {
 
   render () {
     return (
+
       <Router>
-        <div>
+        <div className="top">
           <ul>
             <li>
               <Link to="/home">Home</Link>
@@ -53,6 +55,7 @@ class NavBar extends React.Component {
           <Route path="/signup" component={Signup} />
         </div>
       </Router>
+
      );
   }
 }

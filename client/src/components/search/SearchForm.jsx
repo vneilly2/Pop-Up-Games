@@ -11,41 +11,41 @@ class SearchForm extends React.Component {
       distance: 5,
       date: moment(),
     }
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleSportChange = this.handleSportChange.bind(this);
-    this.handleDistanceChange = this.handleDistanceChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-  handleSportChange(event) {
-    this.setState({sport: event.target.value})
+  updateState(event) {
+    this.setState({[event.target.name]: event.target.value });
   }
 
   handleDateChange(date) {
-    this.setState({
-      date: date
-    });
+    this.setState({date: date});
   }
 
-  handleDistanceChange(event) {
-    this.setState({distance: event.target.value})
-  }
-
-  search() {
-    this.props.Search(this.state.sport, this.state.distance, this.state.date, this.state.time)
-  }
+  searchEvents(params) {
+    axios.get( '/signup', params, {
+      headers: {
+      }
+    })
+    .catch((error) => {
+      utils.errorHandler(error);
+    })
+    .then((response) => {
+      console.log('Here are you search results')});
+  };
 
   render() {
     return (
       <div className="search-container">
         <h4>Search Form</h4>
-          <select className="sport-search-form" onChange={(event) => this.handleSportChange(event)} value={this.state.value}>
+          <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name="sport">
             <option >Sport</option>
             <option value="basketball">Basketball</option>
             <option value="soccer">Soccer</option>
             <option value="football">Football</option>
             <option value="quidditch">Quidditch</option>
           </select>
-          <select className="distance-search-form" onChange={(event) => this.handleDistanceChange(event)} >
+          <select className="distance-search-form" onChange={(event) => this.updateState(event)} name="distance" >
             <option >Distance</option>
             <option value={5}>5 Miles</option>
             <option value={10}>10 Miles</option>
@@ -59,7 +59,7 @@ class SearchForm extends React.Component {
             />
           </div>
         <div className='search-button'>
-          <button onClick={this.search.bind(this)}> Search </button>
+          <button onClick={this.searchEvents.bind(this)}> Search </button>
         </div>
       </div>
     )
@@ -69,44 +69,3 @@ class SearchForm extends React.Component {
 
 export default SearchForm;
 
-/*
-
-          <div>
-            Start Time
-            <DatePicker
-              selected={this.state.startTime}
-              onChange={this.handleStartTimeChange}
-              howTimeSelect
-              showTimeSelectOnly
-              timeIntervals={30}
-              dateFormat="LT"
-              timeCaption="Time"
-              />
-          </div>
-          <div>
-            End Time
-            <DatePicker
-              selected={this.state.startTime}
-              onChange={this.handleStartTimeChange}
-              howTimeSelect
-              showTimeSelectOnly
-              timeIntervals={30}
-              dateFormat="LT"
-              timeCaption="Time"
-              />
-          </div>
-
-
-
-
-                    <div>
-            Time
-            <TimeRange
-              startMoment={this.state.startTime}
-              endMoment={this.state.endTime}
-              onStartTimeChange={this.handleStartTimeChange(event)}
-              onEndTimeChange={this.handleEndTimeChange(event)}
-            />
-          </div>
-
-*/
