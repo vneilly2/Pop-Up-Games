@@ -6,10 +6,10 @@ var Sport = db.Model.extend({
   tableName: 'sports',
   hasTimestamps: true,
   events: function() {
-    this.hasMany(Event);
+    return this.hasMany(Event, 'eventId');
   },
   fields: function() {
-    this.hasMany(Field);
+    return this.hasMany(Field, 'fieldId');
   }
 });
 

@@ -20,18 +20,46 @@ exports.getPassword = user =>
     new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password) : reject());
 })
 
+// exports.saveEvent = event =>
+//   new User({username: event.username}).fetch()
+//     .then(user => console.log(user) && Events.create((delete event.username) && (event.ownerId = user.id) && event))
+
 exports.saveEvent = event =>
-  new User({username: event.username}).fetch()
-    .then(user => console.log(user) && Events.create((delete event.username) && (event.ownerId = user.id) && event))
+  new Promise(function(resolve, reject) {
+    new User({username: event.username}).fetch().then(found => {
+      event.ownerId = found.id;
+      return found ? Events.create(delete event.username && event).then(resolve) : reject();
+    })
+})
+
+// exports.saveEvent = event =>
+//   new User({username: event.username}).fetch().then(found => {
+//     event.ownerId = found.id;
+//     return Events.create(event.username && event);
+// })
 
 
-exports.getEvent = event => {
-  new Event({id: event.id}).fetch().then(found => found ? resolve(found.attributes): reject());
-}
 
-exports.getUserEvents = user => {
-  new User({username: user.username}).fetch({withRelated: ['events']}).then(found => console.log(found) && found ? resolve(found.attributes): reject());
-}
+exports.getEvent = event =>
+  new Promise(function(resolve, reject) {
+    new Event({id: event.id}).fetch().then(found => found ? console.log(JSON.stringify(found)) && resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
+
+exports.getMessages = event =>
+  new Promise(function(resolve, reject) {
+    new Event({id: event.id}).fetch({withRelated: ['messages']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("messages")))) : reject());
+})
+
+exports.getGuests = event =>
+  new Promise(function(resolve, reject) {
+    new Event({id: event.id}).fetch({withRelated: ['guests']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("guests")))) : reject());
+})
+
+exports.getUserEvents = user =>
+  new Promise(function(resolve, reject) {
+    new User({username: user.username}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
+})
+
 
 exports.getField = field => {
   new Field({id: field.id}).fetch().then(found => found ? resolve(found.attributes): reject());

@@ -5,7 +5,7 @@ var Venue = db.Model.extend({
   tableName: 'venues',
   hasTimestamps: true,
   fields: function() {
-    this.hasMany(Field);
+    return this.hasMany(Field, 'fieldId');
   }
 });
 

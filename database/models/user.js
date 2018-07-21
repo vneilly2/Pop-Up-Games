@@ -7,7 +7,7 @@ var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   events: function() {
-    this.hasMany(Event);
+    return this.hasMany(Event, 'ownerId');
   },
   messages: function() {
     this.hasMany(Message);

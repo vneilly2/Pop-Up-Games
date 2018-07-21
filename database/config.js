@@ -39,6 +39,8 @@ db.knex.schema.hasTable('messages').then(function(exists) {
     db.knex.schema.createTable('messages', function (message) {
       message.increments('id').primary();
       message.string('body');
+      message.integer('userId');
+      message.integer('eventId');
       message.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -57,6 +59,8 @@ db.knex.schema.hasTable('events').then(function(exists) {
       event.float('minPlayer').defaultTo(0);
       event.float('maxPlayer').defaultTo(null);
       event.integer('ownerId');
+      event.integer('sportId');
+      event.integer('fieldId');
       event.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -84,6 +88,7 @@ db.knex.schema.hasTable('fields').then(function(exists) {
       field.string('Notes');
       field.string('type');
       field.boolean('isVerified').defaultTo(false);
+      field.integer('venueId');
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -105,21 +110,24 @@ db.knex.schema.hasTable('venues').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('sport_field').then(function(exists) {
+db.knex.schema.hasTable('fields_sports').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('sport_field', function (pair) {
+    db.knex.schema.createTable('fields_sports', function (pair) {
       pair.increments('id').primary();
+      pair.integer('fieldId');
+      pair.integer('sportId');
     }).then(function (table) {
       console.log('Created Table', table);
     });
   }
-
 });
 
-db.knex.schema.hasTable('user_event').then(function(exists) {
+db.knex.schema.hasTable('events_users').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('user_event', function (pair) {
+    db.knex.schema.createTable('events_users', function (pair) {
       pair.increments('id').primary();
+      pair.integer('eventId');
+      pair.integer('userId');
     }).then(function (table) {
       console.log('Created Table', table);
     });
