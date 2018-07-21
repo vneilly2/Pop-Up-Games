@@ -102,7 +102,7 @@ app.post('/venue', util.checkUser, (req, res) => util.postRes(() =>
 
 app.get('/venues', util.checkUser, (req, res) => util.getRes(() =>
   //get all the venues within 20 miles of the user's location
-  db.getVenuesNearUser(req.session.user, util.convertMilesToLatLongDistanceRough(20))
+  db.getVenuesNearUser(req.session.user, 20)
 , res));
 
 

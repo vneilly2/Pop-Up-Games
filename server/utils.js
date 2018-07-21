@@ -26,8 +26,6 @@ exports.getGeoLocation = ({address}) =>
     key: process.env.GMAPS_API || require('../config/config.js').GMAPS_API
   }})
 
-exports.convertMilesToLatLongDistanceRough = miles => miles / 60;
-
 //a way to build a response object across multiple promises
 exports.buildRes = (types, ...ps) => new Promise((resolve, reject) =>
   Promise.all(ps)
