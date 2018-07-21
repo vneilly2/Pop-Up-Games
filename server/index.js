@@ -21,7 +21,8 @@ app.post('/signup', (req, res) => util.postRes(() =>
   //hash the password
   util.hashPass(req.body.password)
     //send the user data to the database
-    .then(pass => db.saveUser((req.body.password = pass) && req.body))
+    .then(pass => util.getGeoLocation((req.body.password = pass) && req.body))
+    .then(loc => db.saveUser((req.body.lat = loc.data.results[0].geometry.location.lat) && (req.body.long = loc.data.results[0].geometry.location.lng) && (req.body.address = loc.data.results[0].formatted_address) && req.body))
 //send an error message to the basic post response
 , res, 'username is taken'));
 
@@ -100,9 +101,8 @@ app.post('/venue', util.checkUser, (req, res) => util.postRes(() =>
 , res));
 
 app.get('/venues', util.checkUser, (req, res) => util.getRes(() =>
-  db.getLocation(req.session.user)
-    //get the venues near the user using googlemaps api
-    .then(loc => util.getVenuesNearMe(loc, db))
+  //get all the venues within 20 miles of the user's location
+  db.getVenuesNearUser(req.session.user, util.convertMilesToLatLongDistanceRough(20))
 , res));
 
 

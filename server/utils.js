@@ -19,9 +19,14 @@ exports.checkPass = (pass, hash) =>
     bcrypt.compare(pass, hash, (err, matches) =>
       err ? reject(err) : resolve(matches)));
 
-exports.getVenuesNearMe = (loc, db) => {
+//use googlemaps api (limited to 2500 uses per day so you dont get charged) to get the lat and lng for the address
+exports.getGeoLocation = ({address}) =>
+  axios.get('https://maps.googleapis.com/maps/api/geocode/json', {params: {
+    address: address,
+    key: process.env.GMAPS_API || require('../config/config.js').GMAPS_API
+  }})
 
-}
+exports.convertMilesToLatLongDistanceRough = miles => miles / 60;
 
 //a way to build a response object across multiple promises
 exports.buildRes = (types, ...ps) => new Promise((resolve, reject) =>
