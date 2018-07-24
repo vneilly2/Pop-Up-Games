@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt-nodejs');
 const axios = require('axios');
 
 //check to see if there is a session or not before continuing
-exports.checkUser = (req, res, next) => req.session.user ? next() : res.status(401).send('login');
+exports.checkUser = (req, res, next) =>
+req.session.user ? next() : res.status(401).send('login');
 
 //check to see if the user is an admin before continuing
 exports.checkAdmin = (req, res, next) => {};

@@ -10,3 +10,14 @@ exports.errorHandler = (error) => {
   }
   console.log(error.config);
 };
+
+exports.updateState = (event) => {
+  console.log(this);
+    this.setState({[event.target.name]: event.target.value });
+};
+
+exports.handleEnter = (event) => {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+};

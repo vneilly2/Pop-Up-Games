@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import utils from '../../../utils';
 import Signup from '../signup/Signup.jsx';
+import FormError from '../FormError.jsx';
+import FormField from '../FormField.jsx';
 
 import {
   BrowserRouter as Router,
@@ -26,13 +28,13 @@ class LoginForm extends React.Component {
 
   updateState(event) {
     this.setState({[event.target.name]: event.target.value });
-  }
+  };
 
-  handleEnter (event) {
+  handleEnter(event) {
     if(event.key === 'Enter') {
       this.processForm();
     }
-  }
+  };
 
   processForm() {
     this.state.blankSubmit = false;
@@ -49,14 +51,10 @@ class LoginForm extends React.Component {
   }
 
   processLogin(params) {
-    axios.post( '/login', params, {
-      headers: {
-      }
-    })
+    axios.post( '/login', params, { headers: {} })
     .then((response) => {
       this.toggleAuth(true);
       this.props.history.push("/home");
-
     })
     .catch((error) => {
       if(error) {
@@ -72,28 +70,19 @@ class LoginForm extends React.Component {
   render() {
       return (
         <div>
-          <div style={this.state.blankSubmit ? {color: 'red'} : {display:'none'}}>
-            <a>
-              *Your username and password cannot be blank
-            </a><br/>
-          </div>
-          <div style={this.state.failedLogin ? {color: 'red'} : {display:'none'}}>
-            <a>
-              *There was a problem with your login
-            </a><br/>
-          </div>
-          <a>Username:</a><input
-          type="text"
-          name="username"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}
-          /><br/>
-          <a>Password:</a><input
-          type="password"
-          name="password"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}
-          /><br/>
+          <FormError check={this.state.blankSubmit} message={'*Your username and password cannot be blank'} />
+          <FormError check={this.state.failedLogin} message={'*There was a problem with your login'} />
+          <FormField
+            txtId={'Username'}
+            fieldName={'username'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} />
+          <FormField
+            txtId={'Password'}
+            fieldName={'password'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)}
+            isPassword={true} />
           <button type="button" onClick={() => this.processForm() } >Submit</button>
 
           <HashRouter>

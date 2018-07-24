@@ -36,21 +36,18 @@ export class GMap extends React.Component {
     return (
       <Map google={this.props.google}
           onClick={this.onMapClicked.bind(this)}
-          style={{width: '50%', height: '50%', position: 'relative'}}
+          style={{width: '70%', height: '70%', position: 'relative'}}
           initialCenter={{
             lat: this.state.position.lat,
             lng: this.state.position.lng
         }}>
         <Marker onClick={this.onMarkerClick.bind(this)}
-                name={'User Home'} />
-
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
+                name={'User Home'}
+                icon={{
+                  url: 'img/home.png',
+                  scaledSize: new google.maps.Size(20, 30)
+                  }}
+                />
         {
           this.state.nearbyVenues.map((venue, index) => {
             return (
@@ -59,10 +56,22 @@ export class GMap extends React.Component {
                   onClick={this.onMarkerClick.bind(this)}
                   name={venue.notes}
                   key={index}
+                  icon={{
+                    url: 'img/pin.png',
+                    scaledSize: new google.maps.Size(30, 30)
+                  }}
                   />
               )
           })
+
         }
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <p>{this.state.selectedPlace.name}</p>
+            </div>
+        </InfoWindow>
       </Map>
     )
   }

@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import utils from '../../../utils';
 import Login from '../login/Login.jsx';
+import FormError from '../FormError.jsx';
+import FormField from '../FormField.jsx';
 
 import {
   BrowserRouter as Router,
@@ -21,9 +23,9 @@ class SignupForm extends React.Component {
       lname: '',
       address: '',
       password: '',
-      passwordretype: '',
+      passwordRetype: '',
       email: '',
-      attemptedpw: false,
+      attemptedPw: false,
       blankInputs: false,
       createdNewUser: false,
       userExists: false
@@ -31,28 +33,29 @@ class SignupForm extends React.Component {
   }
 
   updateState(event) {
+  console.log(this);
     this.setState({[event.target.name]: event.target.value });
-  }
+  };
 
-  handleEnter (event) {
+  handleEnter(event) {
     if(event.key === 'Enter') {
       this.processForm();
     }
-  }
+  };
 
   processForm() {
-    this.state.attemptedpw = false;
+    this.state.attemptedPw = false;
     this.state.blankInputs = false;
     this.state.userExists = false;
-    if(this.state.password !== this.state.passwordretype) {
-      this.setState({ attemptedpw: true });
+    if(this.state.password !== this.state.passwordRetype) {
+      this.setState({ attemptedPw: true });
     } else if (
       this.state.username === '' ||
       this.state.fname === '' ||
       this.state.lname === '' ||
       this.state.address === '' ||
       this.state.password === '' ||
-      this.state.passwordretype === '' ||
+      this.state.passwordRetype === '' ||
       this.state.email === ''
       ) {
       this.setState({blankInputs: true});
@@ -64,89 +67,73 @@ class SignupForm extends React.Component {
         address: this.state.address,
         password: this.state.password,
         email: this.state.email,
-      }
+      };
       this.createUser(newUser);
     }
   }
 
   createUser(params) {
-    axios.post( '/signup', params, {
-      headers: {
-      }
-    })
-    .then((response) => {
+    axios.post( '/signup', params, { headers: {}})
+    .then((success) => {
       this.props.history.push("/login");
     })
     .catch((error) => {
       if(error.response.status === 400) {
         this.setState({userExists:true});
       } else {
-        utils.errorHandler(error);
+        this.errorHandler(error);
       }
-    })
-    ;
+    });
   }
 
   render() {
       return(
         <div>
-          <div style={this.state.blankInputs ? {color: 'red'} : {display:'none'}}>
-            <a>
-              *All fields are required
-            </a><br/>
-          </div>
-          <div style={this.state.userExists ? {color: 'red'} : {display:'none'}}>
-            <a>
-              *Username is already taken
-            </a><br/>
-          </div>
-          <a>Username:</a><input
-          type="text"
-          name="username"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}
-          /><br/>
-          <a>First Name:</a><input
-          type="text"
-          name="fname"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}
-          /><br/>
-          <a>Last Name:</a><input
-          type="text" name="lname"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}/><br/>
-          <div style={this.state.invalidAddress ? {color: 'red'} : {display:'none'}}>
-            <a>
-            *Your address was invalid
-            </a><br/>
-          </div>
-          <a>Address:</a><input
-          type="text" name="address"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}/><br/>
-          <a>Email:</a><input
-          type="text" name="email"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}/><br/>
-          <div style={this.state.attemptedpw ? {color: 'red'} : {display:'none'}}>
-            <a>
-            *Your passwords don't match</a><br/>
-            </div>
-          <a>Password:</a><input
-          type="password"
-          name="password"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}/><br/>
-          <a>Retype-Password:</a><input
-          type="password"
-          name="passwordretype"
-          onChange={(event) => this.updateState(event)}
-          onKeyPress={(event) => this.handleEnter(event)}/><br/>
+          <FormError check={this.state.blankInputs} message={'*All fields are required'} />
+          <FormError check={this.state.userExists} message={'*Username is already taken'} />
+          <FormField
+          txtId={'Username'}
+          fieldName={'username'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+          <FormField
+          txtId={'First Name'}
+          fieldName={'fname'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+          <FormField
+          txtId={'Last Name'}
+          fieldName={'lname'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+          <FormError check={this.state.invalidAddress} message={'*Your address was invalid'} />
+          <FormField
+          txtId={'Address'}
+          fieldName={'address'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+          <FormField
+          txtId={'Email'}
+          fieldName={'email'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+          <FormError check={this.state.attemptedPw} message={'*Your passwords don\'t match'} />
+          <FormField
+          txtId={'Password'}
+          fieldName={'password'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)}
+          isPassword={true} />
+          <FormField
+          txtId={'Retype Password'}
+          fieldName={'passwordRetype'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)}
+          isPassword={true} />
           <button type="button" onClick={() => this.processForm() } >Submit</button>
         </div>
         )
   }
 }
-(event) => this.handleEnter(event)
+
 export default withRouter(SignupForm);

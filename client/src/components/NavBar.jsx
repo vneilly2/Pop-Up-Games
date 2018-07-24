@@ -32,21 +32,17 @@ class NavBar extends React.Component {
     return (
       <HashRouter>
         <div>
-          <ul>
-            <li>
               <Link to="/home">Home</Link>
-              <Link to="/field">Field</Link>
               <Link to="/search">Search</Link>
+              <Link to="/createvenue">Create Venue</Link>
+              <Link to="/field">Field</Link>
               <Link to="/event">Event</Link>
               <Link to="/venue">Venue</Link>
               <Link to="/createevent">Create Event</Link>
               <Link to="/createfield">Create Field</Link>
-              <Link to="/createvenue">Create Venue</Link>
-            </li>
-          </ul>
           <Route path="/home" component={Home} />
-          <Route path="/field" component={Field} />
           <Route path="/search" component={Search} />
+          <Route path="/field" component={Field} />
           <Route path="/event" component={EventView} />
           <Route path="/venue" component={Venue} />
           <Route path="/createevent" component={CreateEvent} />

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import utils from '../../../utils';
+import utils from '../../../utils.js';
+import FormError from '../FormError.jsx';
+import FormField from '../FormField.jsx';
 
 class CreateFieldForm extends React.Component {
   constructor(props) {
@@ -9,14 +11,22 @@ class CreateFieldForm extends React.Component {
       type: '',
       notes:'',
       venueid:'',
+      blankFields:false
     };
   }
 
   updateState(event) {
+  console.log(this);
     this.setState({[event.target.name]: event.target.value });
-  }
+  };
 
-    processForm() {
+  handleEnter(event) {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+  };
+
+  processForm() {
     this.setState({otherErrors: false });
     if (
       this.state.type === '' ||
@@ -28,21 +38,15 @@ class CreateFieldForm extends React.Component {
         type: this.state.type,
         notes: this.state.notes,
         venueid: this.state.venueid
-      }
+      };
       this.createVenue(newField);
     }
   }
 
   createVenue(params) {
-    let options = {
-      headers: {
-      },
-      params: params
-    };
-
-    axios.post( 'https://localhost:3000/', options)
+    axios.post( '/field', params, { headers: {}})
     .catch((error) => {
-      utils.errorHandler(error);
+      this.errorHandler(error);
     })
     .then((response) => {
       console.log('Successful post fired', response);
@@ -51,21 +55,19 @@ class CreateFieldForm extends React.Component {
 
 
   render() {
-    let pendingMistakes =[];
-    if(this.state.otherErrors) {
-      pendingMistakes.push('*There are other unspecified errors');
-    }
     return (
       <div>
-      {
-          pendingMistakes.map((mistake, index) => {
-            return (
-              <a style={ {'color':'red'} }key={index} >{mistake}</a>
-              )
-          })
-        }
-        <br/><a>Field Type:</a><input type="text" name="type" onChange={(event) => this.updateState(event)} /><br/>
-        <a>Notes:</a><input type="text" name="notes" onChange={(event) => this.updateState(event)} /><br/>
+        <FormError check={this.state.blankFields} message={'*Your username and password cannot be blank'} />
+        <FormField
+          txtId={'Field Type'}
+          fieldName={'type'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+        <FormField
+          txtId={'Notes'}
+          fieldName={'notes'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
         <button type="button" onClick={() => this.processForm() } >Submit</button>
       </div>)
   }

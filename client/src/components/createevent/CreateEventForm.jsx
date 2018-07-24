@@ -3,6 +3,7 @@ import TimeRangePicker from 'react-time-range-picker';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import css from 'react-datepicker/dist/react-datepicker.css';
+import FormError from '../FormError.jsx';
 
 class CreateEventForm extends React.Component {
   constructor(props) {

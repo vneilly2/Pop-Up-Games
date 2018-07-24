@@ -1,72 +1,80 @@
 import React from 'react';
 import axios from 'axios';
 import utils from '../../../utils';
+import FormError from '../FormError.jsx';
+import FormField from '../FormField.jsx';
 
 class CreateVenueForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: '',
       address:'',
       phone:'',
+      blankFields:false,
+      badAddress: false
     };
   }
 
   updateState(event) {
+  console.log(this);
     this.setState({[event.target.name]: event.target.value });
-  }
+  };
 
-    processForm() {
-    this.setState({otherErrors: false });
+  handleEnter(event) {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+  };
+
+  processForm() {
+    this.state.blankFields = false;
     if (
       this.state.name === '' ||
       this.state.address === ''
       ) {
-      this.setState({otherErrors: true});
+      this.setState({blankFields: true});
     } else {
       let newVenue = {
         name: this.state.name,
         address: this.state.address,
         phone: this.state.phone
-      }
+      };
       this.createVenue(newVenue);
     }
   }
 
   createVenue(params) {
-    let options = {
-      headers: {
-      },
-      params: params
-    };
-
-    axios.post( 'https://localhost:3000/', options)
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
+    axios.post( '/venue', params, { headers: {}})
     .then((response) => {
       console.log('Successful post fired', response);
+    })
+    .catch((error) => {
+      utils.errorHandler(error);
     });
   }
 
 
   render() {
-    let pendingMistakes =[];
-    if(this.state.otherErrors) {
-      pendingMistakes.push('*There are other unspecified errors');
-    }
     return (
       <div>
-      {
-          pendingMistakes.map((mistake, index) => {
-            return (
-              <a style={ {'color':'red'} }key={index} >{mistake}</a>
-              )
-          })
-        }
-        <br/><a>Venue Name:</a><input type="text" name="name" onChange={(event) => this.updateState(event)} /><br/>
-        <a>Address:</a><input type="text" name="address" onChange={(event) => this.updateState(event)} /><br/>
-        <a>Phone Number:</a><input type="text" name="phone" onChange={(event) => this.updateState(event)} /><br/>
+        <FormError check={this.state.blankFields} message={'*Fields with a * are required'} />
+        <FormField
+          txtId={'*Venue Name'}
+          fieldName={'name'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+        <FormError check={this.state.badAddress} message={'*Address was invalid'} />
+        <FormField
+          txtId={'*Address'}
+          fieldName={'this'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
+        <FormField
+          txtId={'Phone number'}
+          fieldName={'phone'}
+          updateState={this.updateState.bind(this)}
+          handleEnter={this.handleEnter.bind(this)} />
         <button type="button" onClick={() => this.processForm() } >Submit</button>
       </div>)
   }
