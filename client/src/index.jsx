@@ -37,15 +37,14 @@ class App extends React.Component {
               <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }>Signup Form</Link>
               <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} }>Login Form</Link>
               <Link to="/logout" style={this.state.loggedIn ? {} : {display:'none'} }>Logout</Link>
-              <Route path="/signup"
-              render={props => <Signup />} />
-              <Route path="/logout"
-              render={props => <Logout
-                toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
-              <Route path="/login"
-              render={props => <Login
-                loggedIn={this.state.loggedIn}
-                toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
+              <Route path="/signup" render={props =>
+                <Signup />}
+              />
+              <Route path="/logout" render={props =>
+                <Logout toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
+              <Route path="/login" render={props =>
+                <Login loggedIn={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this)} {...props} />}
+              />
             </div>
           </HashRouter>
           <div style={this.state.loggedIn ? {} : {display:'none'} } >
