@@ -25,6 +25,7 @@ class NavBar extends React.Component {
   constructor(props){
     super(props);
     this.state = {};
+    this.loginStatus = props.loggedIn
   }
 
   render () {
@@ -41,8 +42,6 @@ class NavBar extends React.Component {
               <Link to="/createevent">Create Event</Link>
               <Link to="/createfield">Create Field</Link>
               <Link to="/createvenue">Create Venue</Link>
-              <Link to="/signup">Signup Form</Link>
-              <Link to="/login">Login</Link>
             </li>
           </ul>
           <Route path="/home" component={Home} />
@@ -53,8 +52,6 @@ class NavBar extends React.Component {
           <Route path="/createevent" component={CreateEvent} />
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
         </div>
       </HashRouter>
      );

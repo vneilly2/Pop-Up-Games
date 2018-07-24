@@ -1,6 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import utils from '../../../utils'
+import utils from '../../../utils';
+import Signup from '../signup/Signup.jsx';
+
+import {
+  BrowserRouter as Router,
+  HashRouter,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -8,21 +18,34 @@ class LoginForm extends React.Component {
     this.state ={
       username: '',
       password: '',
-      failedLogin: []
+      failedLogin: false,
+      blankSubmit: false
     };
-    this.onUpdate = props.onUpdate;
+    this.toggleAuth = props.toggleAuth;
   }
 
   updateState(event) {
     this.setState({[event.target.name]: event.target.value });
   }
 
+  handleEnter (event) {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+  }
+
   processForm() {
-    let loginCreds = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    this.processLogin(loginCreds);
+    this.state.blankSubmit = false;
+    this.state.failedLogin = false;
+    if(this.state.username === '' || this.state.password === '') {
+      this.setState({blankSubmit: true, password: ''});
+    } else {
+      let loginCreds = {
+        username: this.state.username,
+        password: this.state.password
+      };
+      this.processLogin(loginCreds);
+    }
   }
 
   processLogin(params) {
@@ -31,31 +54,57 @@ class LoginForm extends React.Component {
       }
     })
     .then((response) => {
-      this.onUpdate(true);
+      this.toggleAuth(true);
+      this.props.history.push("/home");
+
     })
     .catch((error) => {
       if(error) {
-
+        if(error.response.status === 422 || error.response.status === 404) {
+          this.setState({failedLogin:true});
+        } else {
+          console.log(error.response);
+        }
       }
-      utils.errorHandler(error);
     });
   }
 
   render() {
-    let failedLoginReasons = [];
-    return (
-      <div>
-      {
-        this.state.failedLogin.map((reason, index) => {
-          return (<div><a style={ {'color':'red'} }>{reason}</a><br/></div>)
-        })
-      }
-        <a>Username:</a><input type="text" name="username" onChange={(event) => this.updateState(event)} /><br/>
-        <a>Password:</a><input type="text" name="password" onChange={(event) => this.updateState(event)} /><br/>
-        <button type="button" onClick={() => this.processForm() } >Submit</button>
-      </div>
-      )
+      return (
+        <div>
+          <div style={this.state.blankSubmit ? {color: 'red'} : {display:'none'}}>
+            <a>
+              *Your username and password cannot be blank
+            </a><br/>
+          </div>
+          <div style={this.state.failedLogin ? {color: 'red'} : {display:'none'}}>
+            <a>
+              *There was a problem with your login
+            </a><br/>
+          </div>
+          <a>Username:</a><input
+          type="text"
+          name="username"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}
+          /><br/>
+          <a>Password:</a><input
+          type="password"
+          name="password"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}
+          /><br/>
+          <button type="button" onClick={() => this.processForm() } >Submit</button>
+
+          <HashRouter>
+            <div>
+              <Link to="/signup">Signup Form</Link>
+              <Route path="/signup" component={Signup} />
+            </div>
+          </HashRouter>
+        </div>
+        )
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

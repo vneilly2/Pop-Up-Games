@@ -35,6 +35,16 @@ class Home extends React.Component {
     };
   }
 
+  componentWillMount() {
+    axios.get('/venues')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
 
 
   render() {

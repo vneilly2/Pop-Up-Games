@@ -9,22 +9,37 @@ import {
   withRouter
 } from "react-router-dom";
 
-var LoginStatus = (props) => {
-  if(props.loggedIn) {
-    return (<div>Logged In</div>)
-  } else {
-    return (
-        <HashRouter>
-          <div>
-            <Link to="/login">Login</Link>
-            <Route
-              path='/login'
-              render={(props) =>
-              <Link {...props} onUpdate={props.onUpdate} />}
-            />
-          </div>
-        </HashRouter>
-      )
+class LoginStatus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.loggedIn = props.loggedIn;
+    this.toggleAuth = props.toggleAuth;
+  }
+
+  signout(cb) {
+    this.toggleAuth(false);
+  }
+
+  render() {
+    if(this.loggedIn) {
+      return (<span
+            onClick={() => {
+              this.signout(() => history.push("/"));
+            }}
+          >
+            Sign out
+          </span>)
+    } else {
+      return (
+          <HashRouter>
+            <div>
+              <Link to="/login">Login</Link>
+              <Route path="/login" component={Login} />
+            </div>
+          </HashRouter>
+        )
+    }
   }
 }
 export default LoginStatus;

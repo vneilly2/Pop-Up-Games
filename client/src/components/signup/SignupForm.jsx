@@ -3,6 +3,14 @@ import axios from 'axios';
 import utils from '../../../utils';
 import Login from '../login/Login.jsx';
 
+import {
+  BrowserRouter as Router,
+  HashRouter,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -16,8 +24,9 @@ class SignupForm extends React.Component {
       passwordretype: '',
       email: '',
       attemptedpw: false,
-      otherErrors: false,
-      createdNewUser: false
+      blankInputs: false,
+      createdNewUser: false,
+      userExists: false
     };
   }
 
@@ -25,8 +34,16 @@ class SignupForm extends React.Component {
     this.setState({[event.target.name]: event.target.value });
   }
 
+  handleEnter (event) {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+  }
+
   processForm() {
-    this.setState({ attemptedpw: false, otherErrors: false });
+    this.state.attemptedpw = false;
+    this.state.blankInputs = false;
+    this.state.userExists = false;
     if(this.state.password !== this.state.passwordretype) {
       this.setState({ attemptedpw: true });
     } else if (
@@ -38,7 +55,7 @@ class SignupForm extends React.Component {
       this.state.passwordretype === '' ||
       this.state.email === ''
       ) {
-      this.setState({otherErrors: true});
+      this.setState({blankInputs: true});
     } else {
       let newUser = {
         username: this.state.username,
@@ -57,46 +74,79 @@ class SignupForm extends React.Component {
       headers: {
       }
     })
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
     .then((response) => {
-      this.setState({createdNewUser: true});
-    });
+      this.props.history.push("/login");
+    })
+    .catch((error) => {
+      if(error.response.status === 400) {
+        this.setState({userExists:true});
+      } else {
+        utils.errorHandler(error);
+      }
+    })
+    ;
   }
 
   render() {
-    let pendingMistakes = [];
-    if(this.state.attemptedpw) {
-      pendingMistakes.push('*Your passwords do not match');
-    }
-    if(this.state.otherErrors) {
-      pendingMistakes.push('*There are other unspecified errors');
-    }
-    if(this.state.createdNewUser) {
-      return (<Redirect to='/login'  />)
-    } else {
       return(
         <div>
-        {
-          pendingMistakes.map((mistake, index) => {
-            return (
-              <a style={ {'color':'red'} }key={index} >{mistake}</a>
-              )
-          })
-        }
-          <br/><a>Username:</a><input type="text" name="username" onChange={(event) => this.updateState(event)} /><br/>
-          <a>First Name:</a><input type="text" name="fname" onChange={(event) => this.updateState(event)} /><br/>
-          <a>Last Name:</a><input type="text" name="lname" onChange={(event) => this.updateState(event)} /><br/>
-          <a>Address:</a><input type="text" name="address" onChange={(event) => this.updateState(event)} /><br/>
-          <a>Email:</a><input type="text" name="email" onChange={(event) => this.updateState(event)} /><br/>
-          <a>Password:</a><input type="text" name="password" onChange={(event) => this.updateState(event)} /><br/>
-          <a>Retype-Password:</a><input type="text" name="passwordretype" onChange={(event) => this.updateState(event)} /><br/>
+          <div style={this.state.blankInputs ? {color: 'red'} : {display:'none'}}>
+            <a>
+              *All fields are required
+            </a><br/>
+          </div>
+          <div style={this.state.userExists ? {color: 'red'} : {display:'none'}}>
+            <a>
+              *Username is already taken
+            </a><br/>
+          </div>
+          <a>Username:</a><input
+          type="text"
+          name="username"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}
+          /><br/>
+          <a>First Name:</a><input
+          type="text"
+          name="fname"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}
+          /><br/>
+          <a>Last Name:</a><input
+          type="text" name="lname"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}/><br/>
+          <div style={this.state.invalidAddress ? {color: 'red'} : {display:'none'}}>
+            <a>
+            *Your address was invalid
+            </a><br/>
+          </div>
+          <a>Address:</a><input
+          type="text" name="address"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}/><br/>
+          <a>Email:</a><input
+          type="text" name="email"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}/><br/>
+          <div style={this.state.attemptedpw ? {color: 'red'} : {display:'none'}}>
+            <a>
+            *Your passwords don't match</a><br/>
+            </div>
+          <a>Password:</a><input
+          type="password"
+          name="password"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}/><br/>
+          <a>Retype-Password:</a><input
+          type="password"
+          name="passwordretype"
+          onChange={(event) => this.updateState(event)}
+          onKeyPress={(event) => this.handleEnter(event)}/><br/>
           <button type="button" onClick={() => this.processForm() } >Submit</button>
         </div>
         )
-    }
   }
 }
-
-export default SignupForm;
+(event) => this.handleEnter(event)
+export default withRouter(SignupForm);
