@@ -26,7 +26,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('email');
       user.string('address');
       user.float('lat');
-      user.float('long');
+      user.float('lng');
       user.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -55,7 +55,7 @@ db.knex.schema.hasTable('events').then(function(exists) {
       event.string('name', 30);
       event.float('startBlock');
       event.float('endBlock');
-      event.string('Notes');
+      event.string('notes');
       event.float('minPlayer').defaultTo(0);
       event.float('maxPlayer').defaultTo(null);
       event.integer('ownerId');
@@ -85,8 +85,7 @@ db.knex.schema.hasTable('fields').then(function(exists) {
     db.knex.schema.createTable('fields', function (field) {
       field.increments('id').primary();
       field.string('name', 30);
-      field.string('Notes');
-      field.string('type');
+      field.string('notes');
       field.boolean('isVerified').defaultTo(false);
       field.integer('venueId');
     }).then(function (table) {
@@ -103,7 +102,7 @@ db.knex.schema.hasTable('venues').then(function(exists) {
       venue.string('address');
       venue.boolean('isVerified').defaultTo(false);
       venue.float('lat');
-      venue.float('long');
+      venue.float('lng');
     }).then(function (table) {
       console.log('Created Table', table);
     });

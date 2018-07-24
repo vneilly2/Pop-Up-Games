@@ -117,3 +117,8 @@ exports.saveVenue = venue =>
 // exports.getEvent
 
 // exports.getMySchedule
+
+// returns all of the user info of the currently logged in user (minus the password)
+exports.getMe = username => new Promise(resolve =>
+  new User({username: username}).fetch()
+    .then(found => resolve((delete found.attributes.password) && found.attributes)));
