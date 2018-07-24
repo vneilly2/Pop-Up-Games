@@ -1,3 +1,9 @@
+
+/**
+ * Error handling utility function that iterates over
+ * an error return from a get or a post request and
+ * then console logs it.
+ */
 exports.errorHandler = (error) => {
   if (error.response) {
     console.log(error.response.data);
@@ -9,15 +15,4 @@ exports.errorHandler = (error) => {
     console.log('Error', error.message);
   }
   console.log(error.config);
-};
-
-exports.updateState = (event) => {
-  console.log(this);
-    this.setState({[event.target.name]: event.target.value });
-};
-
-exports.handleEnter = (event) => {
-    if(event.key === 'Enter') {
-      this.processForm();
-    }
 };

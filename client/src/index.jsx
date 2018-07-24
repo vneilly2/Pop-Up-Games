@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Logout from './components/logout/Logout.jsx';
 import Login from './components/login/Login.jsx';
 import Signup from './components/signup/Signup.jsx';
-import LoginStatus from './components/LoginStatus.jsx';
 import NavBar from './components/NavBar.jsx';
+
 import {
-  BrowserRouter as Router,
   HashRouter,
   Route,
-  Link,
-  Redirect,
-  withRouter
+  Link
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -22,13 +18,28 @@ class App extends React.Component {
       loggedIn: false
     };
   }
-  logOut() {
-    this.setState({loggedIn: false});
-  }
+  /**
+   * toggles the state of loggedIn to the
+   * value of the boolean it is passed
+   * should be bound to App before being passed on
+   *
+   * input: true || false
+   * output: none
+   */
   toggleLogin(state) {
     this.setState({loggedIn: state});
   }
 
+  /**
+   * renders the body of the App
+   * contains conditionally rendered components when not logged in:
+   * Sign up && Login
+   * As well as a navigation bar as a hash router for all
+   * feature supporting components
+   *
+   * and when logged in:
+   * Logout
+   */
   render() {
       return (
         <div>

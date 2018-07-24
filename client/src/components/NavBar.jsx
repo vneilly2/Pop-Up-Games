@@ -10,25 +10,20 @@ import Venue from './venue/Venue.jsx';
 import Signup from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
 
-
-
 import {
-  BrowserRouter as Router,
   HashRouter,
   Route,
   Link,
-  Redirect,
   withRouter
 } from "react-router-dom";
 
-class NavBar extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {};
-    this.loginStatus = props.loggedIn
-  }
-
-  render () {
+var NavBar = (props) => {
+/**
+ * Renders all the  React HashRouter Navigation Links
+ * Not intended to render if the user is not logged in
+ *
+ * expects no props passed in
+ */
     return (
       <HashRouter>
         <div>
@@ -52,6 +47,5 @@ class NavBar extends React.Component {
       </HashRouter>
      );
   }
-}
 
 export default NavBar;

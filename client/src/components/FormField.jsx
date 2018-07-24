@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Component used solely for making cleaner forms
+ * Each Component starts it's own line and has change and
+ * key press methods that should have been pass to it already bound
+ */
 var FormField = (props) => (
   <div>
     <a>{props.txtId + ':'}</a>

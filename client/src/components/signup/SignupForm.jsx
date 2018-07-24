@@ -4,16 +4,14 @@ import utils from '../../../utils';
 import Login from '../login/Login.jsx';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
+import { withRouter } from "react-router-dom";
 
-import {
-  BrowserRouter as Router,
-  HashRouter,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
 
+/**
+ * Sign up form that allows new users to add them
+ * accounts for the App
+ * expects no props to be passed in
+ */
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -32,17 +30,42 @@ class SignupForm extends React.Component {
     };
   }
 
+/**
+ * helper function that updates states of component
+ * uses name of input field as state name and value of
+ * input field as desired state
+ *
+ * example :
+ * <input type={text} name={name} onChange={this.updateState}
+ * would update the state `name` to value of text in input an any changes
+ * to the field
+ */
   updateState(event) {
-  console.log(this);
     this.setState({[event.target.name]: event.target.value });
   };
 
+/**
+ * helper function that updates states of component
+ * uses name of input field as state name and value of
+ * input field as desired state
+ */
   handleEnter(event) {
     if(event.key === 'Enter') {
       this.processForm();
     }
   };
 
+/**
+ * function that evalutes all the current input states
+ * to see whether or not all fields needed for axios
+ * call are filled.  Is they are it calls createUser.
+ * If they are not all supplied it turn booleans for
+ * first failed requirement to true so the DOM can
+ * render messages to user accordingly
+ *
+ * input: none
+ * output: none
+ */
   processForm() {
     this.state.attemptedPw = false;
     this.state.blankInputs = false;
@@ -72,6 +95,26 @@ class SignupForm extends React.Component {
     }
   }
 
+/**
+ * Takes a set of parameters as values in an object
+ * and executes a post request to the signup endpoint on the server
+ * If successful it will redirect the user to the login page
+ * If it failes it will evaluate the error message to indicate
+ * to the state of the component which aspect of the post failed
+ * so the reason for the failed request can be rendered to the DOM
+ * inputs: params in the following structure:
+ *
+ * input:
+ * {username:   string,
+ *  firstname:  string,
+ *  lastname:   string,
+ *  address:    string,
+ *  password:   string,
+ *  email:      string, };
+ *
+ * error.response.status indications:
+ * 400 = indicates username taken
+ */
   createUser(params) {
     axios.post( '/signup', params, { headers: {}})
     .then((success) => {
@@ -86,6 +129,12 @@ class SignupForm extends React.Component {
     });
   }
 
+/**
+ * Renders a form to the DOM to gather the required inputs used
+ * to create a new user.  All inputs update Component state on change.
+ * Pressing the form submit button or the enter key in any input will
+ * trigger the process form function
+ */
   render() {
       return(
         <div>

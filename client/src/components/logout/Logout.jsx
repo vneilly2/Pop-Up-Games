@@ -2,45 +2,31 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
-class Logout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedOut: false
-    };
-    this.toggleAuth = props.toggleAuth;
-  }
+/**
+ * Logs the user out
+ *
+ * input: props value of toggleAuth. Which should be a function
+ * bound to the parent App Component that takes an input of a boolean
+ * which it will set the value of the state of loggedIn on the
+ * parent Components state to
+ */
+var Logout = (props) => {
 
-    componentDidMount() {
-      this.logout();
-    }
-    logout() {
-      axios.get('/logout')
-      .catch((error) => {
-        console.log(error);
-      })
-      .then((response) => {
-        if(response.status === 200) {
-          this.toggleAuth(false);
-          this.setState({loggedOut:true});
-        } else {
-          console.log(results);
-        }
-      });
-    }
+    axios.get('/logout')
+    .catch((error) => {
+      console.log(error);
+    })
+    .then((response) => {
+      if(response.status === 200) {
+        props.toggleAuth(false);
+      } else {
+        console.log(results);
+      }
+    });
 
-  render() {
-    if(this.state.loggedOut !== true) {
-      return(
-        <div>
-          Logging Out
-        </div>)
-    } else {
     return(
     <Redirect to={'/login'} />
     )
-    }
-  }
 }
 
 export default Logout;
