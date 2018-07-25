@@ -179,7 +179,7 @@ class SignupForm extends React.Component {
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)}
           isPassword={true} />
-          <button type="button" onClick={() => this.processForm() } >Submit</button>
+          <button type="button" onClick={() => this.processForm() } >Sign Up</button>
         </div>
         )
   }

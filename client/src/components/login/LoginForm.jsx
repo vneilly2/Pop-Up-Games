@@ -130,14 +130,7 @@ class LoginForm extends React.Component {
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)}
             isPassword={true} />
-          <button type="button" onClick={() => this.processForm() } >Submit</button>
-
-          <HashRouter>
-            <div>
-              <Link to="/signup">Signup Form</Link>
-              <Route path="/signup" component={Signup} />
-            </div>
-          </HashRouter>
+          <button type="button" onClick={() => this.processForm() } >Login</button>
         </div>
         )
   }

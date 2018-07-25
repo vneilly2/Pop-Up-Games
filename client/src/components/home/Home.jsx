@@ -1,5 +1,5 @@
 import React from 'react';
-import GMap from './Map.jsx';
+import GMap from './GMap.jsx';
 import VenueList from './VenueList.jsx';
 import { GMAPS_API } from '../../../../config/config.js';
 import axios from 'axios';
@@ -57,10 +57,11 @@ class Home extends React.Component {
       )
     } else {
       return (
-      <div>
-        <h1>Homepage</h1>
-        <div className="venuecolumn tonetwo"><VenueList venues={this.state.nearbyVenues}/></div>
-        <div className="venuemap tonethree" ><GMap  position={this.state.position} venues={this.state.nearbyVenues} /></div>
+      <div className="row tonethree">
+        <div className="venuemap" style={{height: '400px', width: '80%'}} >
+          <GMap position={this.state.position} venues={this.state.nearbyVenues} />
+        </div>
+        <div><div className="venuecolumn"><VenueList venues={this.state.nearbyVenues}/></div></div>
       </div>
       )
     }

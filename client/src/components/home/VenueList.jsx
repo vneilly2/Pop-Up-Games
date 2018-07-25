@@ -2,7 +2,7 @@ import React from 'react';
 import VenueEntry from './VenueEntry.jsx';
 
 var VenueEntryList = (props) => (
-  <div>
+  <div className="tonetwo venuelist">
   <h3>Venue Entry List</h3>
   <ul>
     {
