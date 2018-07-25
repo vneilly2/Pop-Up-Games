@@ -40,4 +40,4 @@ exports.getRes = (p, res, errMessage, successStatus = 200, errStatus = 400) => p
 //a basic post resovle
 exports.postRes = (p, res, errMessage, successStatus = 201, errStatus = 400) => p()
   .then(data => data && res.status(successStatus).send(process.env.NODE_ENV === 'test' ? data : null))
-  .catch(err => console.log('err') || res.status(errStatus).send(errMessage || err));
+  .catch(err => res.status(errStatus).send(errMessage || err));
