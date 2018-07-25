@@ -52,10 +52,11 @@ db.knex.schema.hasTable('events').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('events', function (event) {
       event.increments('id').primary();
-      event.string('name', 30);
+      event.string('eventName', 30);
       event.float('startBlock');
       event.float('endBlock');
       event.string('notes');
+      event.string('date');
       event.float('minPlayer').defaultTo(0);
       event.float('maxPlayer').defaultTo(null);
       event.integer('ownerId');
@@ -72,7 +73,7 @@ db.knex.schema.hasTable('sports').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('sports', function (sport) {
       sport.increments('id').primary();
-      sport.string('name', 30).unique();
+      sport.string('sportName', 30).unique();
       sport.boolean('isVerified').defaultTo(false);
     }).then(function (table) {
       console.log('Created Table', table);
@@ -84,7 +85,7 @@ db.knex.schema.hasTable('fields').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('fields', function (field) {
       field.increments('id').primary();
-      field.string('name', 30);
+      field.string('fieldName', 30);
       field.string('notes');
       field.boolean('isVerified').defaultTo(false);
       field.integer('venueId');
@@ -98,7 +99,7 @@ db.knex.schema.hasTable('venues').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('venues', function (venue) {
       venue.increments('id').primary();
-      venue.string('name', 30);
+      venue.string('venueName', 30);
       venue.string('address');
       venue.boolean('isVerified').defaultTo(false);
       venue.float('lat');

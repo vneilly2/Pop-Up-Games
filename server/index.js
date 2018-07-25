@@ -1,6 +1,6 @@
+const db = process.env.NODE_ENV === 'test' ? require('./__tests__/mockDb.js') : require('../database/helpers.js');
 const bodyParser = require('body-parser');
 const util = require('./utils');
-const db = require('../database/helpers.js');
 const express = require('express');
 
 const app = express();
@@ -23,14 +23,16 @@ app.use(express.static(__dirname + '/../client/dist'));
  *  adds geolocation using the address and returns an error is the address is improper
  *  ===
  */
-app.post('/signup', (req, res) => util.postRes((errMessage = 'improper address') =>
+app.post('/signup', (req, res) => util.postRes(() =>
   //hash the password
   util.hashPass(req.body.password)
     //send the user data to the database
     .then(pass => util.getGeoLocation((req.body.password = pass) && req.body))
-    .then(loc => (errMessage = 'username is taken') && db.saveUser((req.body.lat = loc.data.results[0].geometry.location.lat) && (req.body.lng = loc.data.results[0].geometry.location.lng) && (req.body.address = loc.data.results[0].formatted_address) && req.body))
+    .then(loc => loc.data.results.length
+      ? db.saveUser((req.body.lat = loc.data.results[0].geometry.location.lat) && (req.body.lng = loc.data.results[0].geometry.location.lng) && (req.body.address = loc.data.results[0].formatted_address) && req.body)
+      : res.status(400).send('improper address') && null)
 //send an error message to the basic post response
-, res, errMessage));
+, res, 'username in use'));
 
 /* === Takes body {username, password} and creates a session or returns an error === */
 app.post('/login', (req, res) =>
@@ -58,7 +60,7 @@ app.post('/event/guest', util.checkUser, (req, res) => util.postRes(() =>
 
 /**
  *  ===
- *  Takes in body {name, startBlock, endBlock, notes, sportName, fieldName}
+ *  Takes in body {eventName, startBlock, endBlock, notes, sportName, fieldName}
  *  (optional: minPlayer, maxPlayer)
  *  ===
  */
@@ -115,7 +117,7 @@ app.get('/field', util.checkUser, (req, res) => util.getRes(() =>
     db.getFieldEvents(req.query))
 , res));
 
-/* === Takes in body {name, notes, venueId, sports: []} === */
+/* === Takes in body {fieldName, notes, venueId, sports: []} === */
 app.post('/field', util.checkUser, (req, res) => util.postRes(() =>
   //save a field's details to be accepted by an admin later
   db.saveField((req.body.username = req.session.user) && req.body)
@@ -146,11 +148,13 @@ app.get('/venue', util.checkUser, (req, res) => util.getRes((data) =>
       resolve(fieldsEvents.forEach((events, i) => data.fields[i].todaysEvents = events) && data)))
 , res));
 
-/* === Takes in body {name, address} and adds geolocation using the address === */
+/* === Takes in body {venueName, address} and adds geolocation using the address === */
 app.post('/venue', util.checkUser, (req, res) => util.postRes(() =>
   //save a venue's details to be accepted by an admin later
   util.getGeoLocation((req.body.username = req.session.user) && req.body)
-    .then(loc => db.saveVenue((req.body.lat = loc.data.results[0].geometry.location.lat) && (req.body.lng = loc.data.results[0].geometry.location.lng) && (req.body.address = loc.data.results[0].formatted_address) && req.body))
+    .then(loc => loc.data.results.length
+      ? db.saveVenue((req.body.lat = loc.data.results[0].geometry.location.lat) && (req.body.lng = loc.data.results[0].geometry.location.lng) && (req.body.address = loc.data.results[0].formatted_address) && req.body)
+      : res.status(400).send('improper address') && null)
 , res));
 
 /* === Gets the info of venues within 20 miles of the user currently logged in === */
