@@ -26,15 +26,22 @@ var NavBar = (props) => {
  */
     return (
       <HashRouter>
-        <div>
-              <Link to="/home">Home</Link>
-              <Link to="/search">Search</Link>
-              <Link to="/createvenue">Create Venue</Link>
-              <Link to="/field">Field</Link>
-              <Link to="/event">Event</Link>
-              <Link to="/venue">Venue</Link>
-              <Link to="/createevent">Create Event</Link>
-              <Link to="/createfield">Create Field</Link>
+        <div className="top">
+          <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
+            <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</Link>
+            <Link to="/search" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Search</Link>
+            <Link to="/create" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create</Link>
+            <Link to="/logout" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</Link>
+          </div>
+          <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
+            <Link to="/field" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Field</Link>
+            <Link to="/event" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Event</Link>
+            <Link to="/venue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venue</Link>
+            <Link to="/createvenue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Venue</Link>
+            <Link to="/createevent" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Event</Link>
+            <Link to="/createfield" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Field</Link>
+          </div>
+
           <Route path="/home" component={Home} />
           <Route path="/search" component={Search} />
           <Route path="/field" component={Field} />

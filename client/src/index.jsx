@@ -8,7 +8,13 @@ import NavBar from './components/NavBar.jsx';
 import {
   HashRouter,
   Route,
+<<<<<<< HEAD
   Link
+=======
+  Link,
+  blueirect,
+  withRouter
+>>>>>>> style navbar
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -44,18 +50,45 @@ class App extends React.Component {
       return (
         <div>
           <HashRouter>
-            <div>
-              <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }>Signup Form</Link>
-              <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} }>Login Form</Link>
-              <Link to="/logout" style={this.state.loggedIn ? {} : {display:'none'} }>Logout</Link>
-              <Route path="/signup" render={props =>
-                <Signup />}
-              />
-              <Route path="/logout" render={props =>
-                <Logout toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
-              <Route path="/login" render={props =>
-                <Login loggedIn={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this)} {...props} />}
-              />
+            {/* Top Bar */}
+            <div className="top">
+              <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
+                <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white">Login</Link>
+              </div>
+
+
+            {/* First Grid */}
+            <header class="w3-container w3-blue w3-center" id="homeheader" style={this.state.loggedIn ? {display:'none'} : {} }>
+              <h1 class="w3-margin w3-jumbo">Pop-Up-Games</h1>
+              <p class="w3-xlarge">Play Games! Have Fun!</p>
+              <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }  class="w3-button w3-white w3-padding-large w3-large w3-margin-top">Sign Up</Link>
+            </header>
+            <Route path="/login"
+              render={props => <Login
+                loggedIn={this.state.loggedIn}
+                toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
+            <Route path="/signup"
+              render={props => <Signup />} />
+
+            {/* Second Grid */}
+
+            <div class="w3-row-padding w3-padding-64 w3-container" style={this.state.loggedIn ? {display:'none'} : {} }>
+              <div class="w3-content">
+                <div class="w3-twothird">
+                  <h1>What We Do</h1>
+                  <h5 class="w3-padding-32 w3-text-grey" >We here love sports and we want make it fun and easy to find sport games in your local area. Find and join a game or go on and create your own. Go out and have fun!</h5>
+
+                </div>
+
+                <div class="w3-third w3-center">
+                  <img src='./bluebasketballicon.png' height="300" />
+                </div>
+              </div>
+            </div>
+
+              <Route path="/logout"
+              render={props => <Logout
+                toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
             </div>
           </HashRouter>
           <div style={this.state.loggedIn ? {} : {display:'none'} } >
@@ -68,3 +101,9 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+//moved logOut to navbar
+// <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+//   <Link to="/logout" style={this.state.loggedIn ? {} : {display:'none'} } className="w3-button w3-padding-large w3-white">Logout</Link>
+// </div>
