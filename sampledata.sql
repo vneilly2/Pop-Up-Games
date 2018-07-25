@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS popupgames;
+
+CREATE DATABASE popupgames;
+
+
 INSERT INTO users (username, firstName, lastName, password, address, email)
 VALUES ("yuqizhu", "yuqi", "zhu", "admin", "100 5th ave", "123@qq.com");
 

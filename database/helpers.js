@@ -60,33 +60,45 @@ exports.getUserEvents = user =>
     new User({username: user.username}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
 })
 
+exports.getField = event =>
+  new Promise(function(resolve, reject) {
+    new Field({id: field.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
 
-exports.getField = field => {
-  new Field({id: field.id}).fetch().then(found => found ? resolve(found.attributes): reject());
-}
+exports.getSports = field =>
+  new Promise(function(resolve, reject) {
+    new Field({id: field.id}).fetch(withRelated: ['sports']).then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
 
-exports.getSports = field => {
-  new Field({id: field.id}).fetch({withRelated: ['sports']}).then(found => found ? resolve(found.attributes): reject());
-}
+exports.getVenue = venue =>
+  new Promise(function(resolve, reject) {
+    new Venue({id: venue.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
 
-exports.getMessages = event => {
-  new Event({id: event.id}).fetch({withRelated: ['messages']}).then(found => found ? resolve(found.attributes): reject());
-}
+exports.getFieldEvents = field =>
+  new Promise(function(resolve, reject) {
+    new Field({id: field.id}).fetch({withRelated: ['event']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
+})
 
-exports.getfieldEvents = field => {
-  new Field({id: field.id}).fetch({withRelated: ['event']}).then(found => found ? resolve(found.attributes): reject());
-}
-
-exports.getVenue = venue => {
-  new Venue({id: venue.id}).fetch().then(found => found ? resolve(found.attributes): reject());
-}
-
-exports.getFields = venue => {
-  new Venue({id: venue.id}).fetch({withRelated: ['fields']}).then(found => found ? resolve(found.attributes): reject());
-}
+exports.getVenueFields = venue => {
+  new Promise(function(resolve, reject) {
+    new Venue({id: venue.id}).fetch({withRelated: ['fields']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
 
 exports.saveVenue = venue =>
-  Venues.create(venue)
+  new Promise(function(resolve, reject) {
+      venues.create(venue).then(resolve) : reject();
+    })
+
+exports.getGuests = event =>
+  new Promise(function(resolve, reject) {
+    new Events({id: field.id}).fetch({withRelated: ['']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
+})
+
+exports.saveGuest = guest =>
+  new Promise(function(resolve, reject) {
+    new ({id: event.id}).fetch().then(found => found ? console.log(JSON.stringify(found)) && resolve(JSON.parse(JSON.stringify(found))): reject());
+  })
 
 // exports.saveField = field =>
 //   new Promise(function(resolve, reject) {
