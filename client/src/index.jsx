@@ -8,13 +8,7 @@ import NavBar from './components/NavBar.jsx';
 import {
   HashRouter,
   Route,
-<<<<<<< HEAD
-  Link
-=======
   Link,
-  blueirect,
-  withRouter
->>>>>>> style navbar
 } from "react-router-dom";
 
 class App extends React.Component {
