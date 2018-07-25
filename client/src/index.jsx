@@ -34,11 +34,11 @@ class App extends React.Component {
    * renders the body of the App
    * contains conditionally rendered components when not logged in:
    * Sign up && Login
-   * As well as a navigation bar as a hash router for all
-   * feature supporting components
    *
    * and when logged in:
    * Logout
+   * As well as a navigation bar as a hash router for all
+   * feature supporting components
    */
   render() {
       return (

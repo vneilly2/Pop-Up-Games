@@ -173,3 +173,35 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   background-color:#fff!important
 }
 
+.row:after {
+/*    content: "";
+    display: table;
+    clear: both;*/
+    display: flex;
+}
+
+.venuemap > div > div {
+    width: 73vw !important;
+/*    overflow: none !important;*/
+    /*height:100%;*/
+}
+
+.venuecolumn {
+    float: right;
+    width: 29%;
+    height: 850;
+}
+
+.venuelist {
+  padding: 5px 5px;
+  margin: 5px 5px;
+}
+
+.venuelistentry {
+  padding: 5px 5px;
+  margin: 5px 5px;
+}
+
+.venuelistentry:hover {
+  background-color: #3498DB;
+}

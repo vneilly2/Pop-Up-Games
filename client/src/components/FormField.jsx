@@ -7,8 +7,8 @@ import React from 'react';
  */
 var FormField = (props) => (
   <div>
-    <a>{props.txtId + ':'}</a>
       <input
+        placeholder={props.txtId}
         type={props.isPassword ? 'password' : 'text'}
         name={props.fieldName}
         onChange={(event) => props.updateState(event)}

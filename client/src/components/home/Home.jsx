@@ -59,11 +59,12 @@ class Home extends React.Component {
       return (
       <div>
         <h1>Homepage</h1>
-        <VenueList venues={this.state.nearbyVenues}/>
-        <GMap position={this.state.position} venues={this.state.nearbyVenues} />
+        <div className="venuecolumn tonetwo"><VenueList venues={this.state.nearbyVenues}/></div>
+        <div className="venuemap tonethree" ><GMap  position={this.state.position} venues={this.state.nearbyVenues} /></div>
       </div>
       )
     }
   }
 }
 export default Home;
+

@@ -41,7 +41,6 @@ var NavBar = (props) => {
             <Link to="/createevent" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Event</Link>
             <Link to="/createfield" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Field</Link>
           </div>
-
           <Route path="/home" component={Home} />
           <Route path="/search" component={Search} />
           <Route path="/field" component={Field} />

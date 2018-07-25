@@ -36,7 +36,7 @@ export class GMap extends React.Component {
     return (
       <Map google={this.props.google}
           onClick={this.onMapClicked.bind(this)}
-          style={{width: '70%', height: '70%', position: 'relative'}}
+          style={{width: '70%', height: '85%', position: 'relative'}}
           initialCenter={{
             lat: this.state.position.lat,
             lng: this.state.position.lng

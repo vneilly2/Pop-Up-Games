@@ -31,7 +31,6 @@ class CreateVenueForm extends React.Component {
  * to the field
  */
   updateState(event) {
-  console.log(this);
     this.setState({[event.target.name]: event.target.value });
   };
 
@@ -68,7 +67,6 @@ class CreateVenueForm extends React.Component {
       let newVenue = {
         name: this.state.name,
         address: this.state.address,
-        phone: this.state.phone
       };
       this.createVenue(newVenue);
     }
@@ -119,12 +117,7 @@ class CreateVenueForm extends React.Component {
         <FormError check={this.state.badAddress} message={'*Address was invalid'} />
         <FormField
           txtId={'*Address'}
-          fieldName={'this'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
-        <FormField
-          txtId={'Phone number'}
-          fieldName={'phone'}
+          fieldName={'address'}
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)} />
         <button type="button" onClick={() => this.processForm() } >Submit</button>
