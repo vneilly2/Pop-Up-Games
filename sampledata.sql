@@ -1,22 +1,25 @@
-DROP DATABASE IF EXISTS popupgames;
+-- INSERT INTO users (username, firstName, lastName, password, address, email, lat, lng)
+-- VALUES ("yuqizhu", "yuqi", "zhu", "admin", "100 5th ave", "123@qq.com", 40.00, 30.00);
 
-CREATE DATABASE popupgames;
+-- INSERT INTO messages (body, userId, eventId)
+-- VALUES ("I can bring the rackets", 1, 1);
 
+-- INSERT INTO events (eventName, startBlock, endBlock, Notes, date, minPlayer, maxPlayer, ownerId, sportId, fieldId)
+-- VALUES ("badminton club", 30, 32,  "This is a badminton event", "2018-07-20 17:29:15", 0, 4, 1, 1, 1);
 
-INSERT INTO users (username, firstName, lastName, password, address, email)
-VALUES ("yuqizhu", "yuqi", "zhu", "admin", "100 5th ave", "123@qq.com");
-
-INSERT INTO events (name, startBlock, endBlock, Notes, minPlayer, maxPlayer, ownerId)
-VALUES ("badminton club", 30, 32, "This is a badminton event", 0, 4, 1);
-
-INSERT INTO venues (name, address)
-VALUES ("Brandon Gym", "200 5th Ave");
-
-INSERT INTO sports (name)
+INSERT INTO sports (sportName)
 VALUES ("badminton");
 
-INSERT INTO fields (name, Notes, type)
-VALUES ("badminton racket", "Free", "It's a type.");
+INSERT INTO fields (fieldName, notes, venueId)
+VALUES ("badminton racket", "Free", 1);
 
-INSERT INTO messages (body)
-VALUES ("I can bring the rackets");
+INSERT INTO venues (venueName, address, lat, lng)
+VALUES ("Brandon Gym", "200 5th Ave", 40.00, 30.00);
+
+INSERT INTO fields_sports (fieldId, sportId)
+VALUES (1, 1);
+
+INSERT INTO events_users (eventId, userId)
+VALUES (1, 1);
+
+

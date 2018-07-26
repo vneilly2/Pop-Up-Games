@@ -13,7 +13,7 @@ var Event = db.Model.extend({
   guests: function() {
     return this.hasMany(User, 'userId');
   },
-  message: function() {
+  messages: function() {
     return this.hasMany(Message, 'eventId');
   },
   field: function() {
