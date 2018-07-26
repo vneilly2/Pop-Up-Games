@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import css from 'react-datepicker/dist/react-datepicker.css';
+import SearchResults from './SearchResults.jsx'
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class SearchForm extends React.Component {
       sport: 'basketball',
       distance: 5,
       date: moment(),
+      searchResults: [] 
     }
     this.handleDateChange = this.handleDateChange.bind(this)
   }
@@ -32,6 +34,7 @@ class SearchForm extends React.Component {
     })
     .then((response) => {
       console.log('Here are you search results')});
+      this.setState({events:[]})
   };
 
   render() {
@@ -61,6 +64,9 @@ class SearchForm extends React.Component {
         <div className='search-button'>
           <button onClick={this.searchEvents.bind(this)}> Search </button>
         </div>
+        <div>
+          <SearchResults searchResults={['exampleSearchResult']}/>
+        </div> 
       </div>
     )
   }

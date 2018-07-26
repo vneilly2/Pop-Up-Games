@@ -28,10 +28,10 @@ var NavBar = (props) => {
       <HashRouter>
         <div className="top">
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
-            <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</Link>
-            <Link to="/search" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Search</Link>
-            <Link to="/create" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create</Link>
-            <Link to="/logout" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</Link>
+            <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Home</Link>
+            <Link to="/search" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Search</Link>
+            <Link to="/createvenue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Create</Link>
+            <Link to="/logout" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Logout</Link>
           </div>
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
             <Link to="/field" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Field</Link>

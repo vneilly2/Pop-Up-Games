@@ -46,7 +46,7 @@ class App extends React.Component {
           <HashRouter>
             {/* Top Bar */}
             <div className="top">
-              <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
+              <div className="w3-bar w3-blue w3-left-align w3-large">
                 <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white">Login</Link>
               </div>
 
@@ -70,12 +70,12 @@ class App extends React.Component {
               <div className="w3-content">
                 <div className="w3-twothird">
                   <h1>What We Do</h1>
-                  <h5 className="w3-padding-32 w3-text-grey" >We here love sports and we want make it fun and easy to find sport games in your local area. Find and join a game or go on and create your own. Go out and have fun!</h5>
+                  <h5 className="w3-padding-32 w3-text-grey" >We here love sports and we want to make it fun and easy to find sport games in your local area. Use our site to find and join games near. Or go on and create your own! Go out and have fun!</h5>
 
                 </div>
 
                 <div className="w3-third w3-center">
-                  <img src='./img/bluebasketballicon.png' height="300" />
+                  <img src='./img/basketballcartoon.png' height="200" />
                 </div>
               </div>
             </div>
@@ -95,9 +95,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
-//moved logOut to navbar
-// <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
-//   <Link to="/logout" style={this.state.loggedIn ? {} : {display:'none'} } classNameName="w3-button w3-padding-large w3-white">Logout</Link>
-// </div>
