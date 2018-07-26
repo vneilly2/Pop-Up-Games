@@ -52,11 +52,6 @@ describe('Utils', () => {
     expect(doesNotMatch).toBeFalsy();
   });
 
-  test('should get geolocation from the googlemaps api', () => {
-    // ! Add This Test In
-    expect(true).toBeTruthy();
-  });
-
   test('should build a response from multiple promises', async () => {
     let promiseA = data => new Promise(resolve => resolve({ dataA: data }));
     let promiseB = data => new Promise(resolve => resolve([{ dataB: [data] }]));
