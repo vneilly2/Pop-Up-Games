@@ -110,12 +110,12 @@ class CreateFieldForm extends React.Component {
       <div className='form-style'>
         <h1>Create Field</h1>
         <FormError check={this.state.blankFields} message={'*Your username and password cannot be blank'} />
-        <FormField input
+        <FormField className="input"
           txtId={'Field Type'}
           fieldName={'type'}
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)} />
-        <FormField
+        <FormField className="input"
           txtId={'Notes'}
           fieldName={'notes'}
           updateState={this.updateState.bind(this)}

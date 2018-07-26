@@ -110,13 +110,13 @@ class CreateVenueForm extends React.Component {
       <div className='form-style'>
         <h1>Create Venue</h1>
         <FormError check={this.state.blankFields} message={'*Fields with a * are required'} />
-        <FormField input
+        <FormField className="input"
           txtId={'*Venue Name'}
           fieldName={'name'}
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)} />
         <FormError check={this.state.badAddress} message={'*Address was invalid'} />
-        <FormField 
+        <FormField className="input"
           txtId={'*Address'}
           fieldName={'address'}
           updateState={this.updateState.bind(this)}

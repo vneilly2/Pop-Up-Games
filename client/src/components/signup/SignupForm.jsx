@@ -139,46 +139,46 @@ class SignupForm extends React.Component {
           <h1>Sign Up</h1>
           <FormError check={this.state.blankInputs} message={'*All fields are required'} />
           <FormError check={this.state.userExists} message={'*Username is already taken'} />
-          <FormField input
+          <FormField className="input"
             txtId={'Username'}
             fieldName={'username'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} 
           />
-          <FormField
+          <FormField className="input"
             txtId={'First Name'}
             fieldName={'fname'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} 
           />
-          <FormField
+          <FormField className="input"
             txtId={'Last Name'}
             fieldName={'lname'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} 
           />
           <FormError check={this.state.invalidAddress} message={'*Your address was invalid'} />
-          <FormField
+          <FormField className="input"
             txtId={'Address'}
             fieldName={'address'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} 
           />
-          <FormField
+          <FormField className="input"
             txtId={'Email'}
             fieldName={'email'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} 
           />
           <FormError check={this.state.attemptedPw} message={'*Your passwords don\'t match'} />
-          <FormField
+          <FormField className="input"
             txtId={'Password'}
             fieldName={'password'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)}
             isPassword={true} 
           />
-          <FormField
+          <FormField className="input"
             txtId={'Retype Password'}
             fieldName={'passwordRetype'}
             updateState={this.updateState.bind(this)}

@@ -119,12 +119,12 @@ class LoginForm extends React.Component {
           <form>
           <FormError check={this.state.blankSubmit} message={'*Your username and password cannot be blank'} />
           <FormError check={this.state.failedLogin} message={'*There was a problem with your login'} />
-          <FormField input
+          <FormField className="input"
             txtId={'Username'}
             fieldName={'username'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} />
-          <FormField 
+          <FormField className="input"
             txtId={'Password'}
             fieldName={'password'}
             updateState={this.updateState.bind(this)}
