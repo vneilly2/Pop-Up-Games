@@ -116,21 +116,24 @@ class LoginForm extends React.Component {
  */
   render() {
       return (
-        <div>
+        <div className='form-style'>
+          <h1>Log In</h1>
+          <form>
           <FormError check={this.state.blankSubmit} message={'*Your username and password cannot be blank'} />
           <FormError check={this.state.failedLogin} message={'*There was a problem with your login'} />
-          <FormField
+          <FormField input
             txtId={'Username'}
             fieldName={'username'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)} />
-          <FormField
+          <FormField 
             txtId={'Password'}
             fieldName={'password'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)}
             isPassword={true} />
-          <button type="button" onClick={() => this.processForm() } >Login</button>
+          <button type="button" onClick={() => this.processForm() } >Submit</button>
+          </form>
         </div>
         )
   }

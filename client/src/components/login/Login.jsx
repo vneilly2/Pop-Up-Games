@@ -6,7 +6,7 @@ import LoginForm from './LoginForm.jsx';
  */
 var Login = (props) => (
   <div className="main">
-    <div> Enter your login information below. 
+    <div>
       <LoginForm toggleAuth={props.toggleAuth} loggedIn={props.loggedIn} />
     </div>
   </div>

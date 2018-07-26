@@ -6,7 +6,7 @@ html{
 *,*:before,*:after{
   box-sizing:inherit
 }
-/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+
 html{
   -ms-text-size-adjust:100%;
   -webkit-text-size-adjust:100%
@@ -17,52 +17,44 @@ body{
   background-color: #ECF0F1;
 }
 
-footer,header,main,menu,nav,section,summary{display:block}
-a{background-color:transparent;-webkit-text-decoration-skip:objects}
-a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
-
-small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
-
-img{border-style:none}
-
-textarea{overflow:auto}
-::-webkit-input-placeholder{color:inherit;opacity:0.54}
-::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
-/* End extract */
+.main {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 3%;
+}
 
 
+/*Font Styling */
 html,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}html{overflow-x:hidden}
 h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
-h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin:10px 0}
-hr{border:0;border-top:1px solid #eee;margin:20px 0}
-.w3-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
-
-.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
-.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 
 
-.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
-.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
-.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+/*Button */
+.w3-button{
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap
+}
+
+
+/* Nav Bar */
+.w3-bar{width:100%;overflow:hidden}
 .w3-bar .w3-button{white-space:normal}
-.w3-bar-block.w3-center .w3-bar-item{text-align:center}
+
 
 /* Columns */
 .w3-col,.w3-third,.w3-twothird{float:left;width:100%}
 .w3-third{width:33.33333%}
 .w3-twothird{width:66.66666%}
-
-
 .w3-content{max-width:980px;margin:auto}
-.w3-top,.w3-bottom{position:fixed;width:100%;z-index:1}.w3-top{top:0}.w3-bottom{bottom:0}
-
-/* Padding */
-/* .w3-row-padding,.w3-row-padding>,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-row-padding>.w3-row-padding>.w3-col{padding:0 8px} */
-.w3-container,.w3-panel{padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}
-.w3-padding-64 {
-  padding-top: 64px!important;
-  padding-bottom: 64px!important;
-}
 
 /* Font Size */
 .w3-large{font-size:18px!important}
@@ -75,7 +67,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-right-float{text-align:right!important}
 .w3-center{text-align:center!important}
 
-.w3-section,.w3-code{margin-top:16px!important;margin-bottom:16px!important}
 
 /* Margin */
 .w3-margin{margin:16px!important}
@@ -85,8 +76,8 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-left{float:left!important}
 .w3-right{float:right!important}
 
-
 /* Padding */
+.w3-container{padding:0.01em 16px}
 .w3-padding{padding:8px 16px!important}
 .w3-padding-large{padding:12px 24px!important}
 .w3-padding-32{padding-top:32px!important;padding-bottom:32px!important}
@@ -103,7 +94,20 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   background-color:#fff!important
 }
 
-.w3-button:hover{color:#000!important;background-color:#ccc!important}
+
+.w3-gray{
+  color:#fff!important;
+  background-color: #767a82!important
+}
+
+.w3-button:hover{
+  color:#000!important;
+  background-color:#ccc!important
+}
+
+.w3-opacity,.w3-hover-opacity:hover{
+  opacity:0.6
+}
 
 
 /* Venue Map Page */
@@ -158,8 +162,61 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   font-size: 1.0em
 }
 
-.main {
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 3%;
+
+.center-quote {
+  text-align: center;
+  padding-top: 200px
+}
+
+
+/* Forms */
+.form-style{
+  font: 95% Arial, Helvetica, sans-serif;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  background: #F7F7F7;
+}
+
+.form-style h1{
+  background: #3498DB;
+  padding: 20px 0;
+  font-size: 140%;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  margin: -16px -16px 16px -16px;
+}
+
+.form-style input{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+
+
+.form-style-6 submit{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #3498DB;
+    border-bottom: 2px solid #3498DB;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;    
+    color: #fff;
 }

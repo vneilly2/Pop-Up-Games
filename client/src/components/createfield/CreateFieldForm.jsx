@@ -108,9 +108,10 @@ class CreateFieldForm extends React.Component {
  */
   render() {
     return (
-      <div>
+      <div className='form-style'>
+        <h1>Create Field</h1>
         <FormError check={this.state.blankFields} message={'*Your username and password cannot be blank'} />
-        <FormField
+        <FormField input
           txtId={'Field Type'}
           fieldName={'type'}
           updateState={this.updateState.bind(this)}

@@ -7,7 +7,6 @@ import CreateFieldForm from './CreateFieldForm.jsx';
  */
 var CreateField = (props) => (
   <div className="main">
-    <h1>This is the create field page</h1>
     <CreateFieldForm />
   </div>
   )

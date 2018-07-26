@@ -137,11 +137,11 @@ class SignupForm extends React.Component {
  */
   render() {
       return(
-        <div>
+        <div className="form-style">
+          <h1>Sign Up</h1>
           <FormError check={this.state.blankInputs} message={'*All fields are required'} />
           <FormError check={this.state.userExists} message={'*Username is already taken'} />
-          <div>Please fill out the information below to sign up! </div>
-          <FormField
+          <FormField input
           txtId={'Username'}
           fieldName={'username'}
           updateState={this.updateState.bind(this)}
@@ -180,7 +180,7 @@ class SignupForm extends React.Component {
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)}
           isPassword={true} />
-          <button type="button" onClick={() => this.processForm() } >Sign Up</button>
+          <button type="button" onClick={() => this.processForm() } >Submit</button>
         </div>
         )
   }

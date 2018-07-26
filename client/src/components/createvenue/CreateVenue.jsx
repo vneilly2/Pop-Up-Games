@@ -7,7 +7,6 @@ import CreateVenueForm from './CreateVenueForm.jsx';
  */
 var CreateVenue = (props) => (
   <div className="main">
-    <h1>This is the create venue page</h1>
     <CreateVenueForm />
   </div>
   )
