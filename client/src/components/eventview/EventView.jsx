@@ -4,7 +4,7 @@ import MessageBoard from './MessageBoard.jsx';
 import GuestList from './GuestList.jsx';
 
 var EventView = (props) => (
-    <div>
+    <div className="main">
       <h1>Event View</h1>
       <EventDetails />
       <MessageBoard messages={['exampleMessage']}/>

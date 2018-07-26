@@ -6,7 +6,7 @@ import CreateFieldForm from './CreateFieldForm.jsx';
  * expects no props to be passed in
  */
 var CreateField = (props) => (
-  <div>
+  <div className="main">
     <h1>This is the create field page</h1>
     <CreateFieldForm />
   </div>

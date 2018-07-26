@@ -15,7 +15,9 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      signupStep: false,
+      loginStep: false
     };
   }
   /**
@@ -29,6 +31,15 @@ class App extends React.Component {
   toggleLogin(state) {
     this.setState({loggedIn: state});
   }
+
+  toggleSignupStep(){
+    this.setState({signupStep: !this.state.signupStep})
+  }
+
+  toggleLoginStep(){
+    this.setState({loginStep: !this.state.loginStep})
+  }
+
 
   /**
    * renders the body of the App
@@ -47,15 +58,15 @@ class App extends React.Component {
             {/* Top Bar */}
             <div className="top">
               <div className="w3-bar w3-blue w3-left-align w3-large">
-                <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white">Login</Link>
+                <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white" onClick={this.toggleLoginStep.bind(this)}>Login</Link>
               </div>
 
 
             {/* First Grid */}
-            <header className="w3-container w3-blue w3-center" id="homeheader" style={this.state.loggedIn ? {display:'none'} : {} }>
+            <header className="w3-container w3-blue w3-center" id="homeheader" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
               <h1 className="w3-margin w3-jumbo">Pop-Up-Games</h1>
               <p className="w3-xlarge">Play Games! Have Fun!</p>
-              <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }  className="w3-button w3-white w3-padding-large w3-large w3-margin-top">Sign Up</Link>
+              <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }  className="w3-button w3-white w3-padding-large w3-large w3-margin-top" onClick={this.toggleSignupStep.bind(this)}>Sign Up</Link>
             </header>
             <Route path="/login"
               render={props => <Login
@@ -65,13 +76,11 @@ class App extends React.Component {
               render={props => <Signup />} />
 
             {/* Second Grid */}
-
-            <div className="w3-row-padding w3-padding-64 w3-container" style={this.state.loggedIn ? {display:'none'} : {} }>
+            <div className="w3-row-padding w3-padding-64 w3-container" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
               <div className="w3-content">
                 <div className="w3-twothird">
                   <h1>What We Do</h1>
                   <h5 className="w3-padding-32 w3-text-grey" >We here love sports and we want to make it fun and easy to find sport games in your local area. Use our site to find and join games near. Or go on and create your own! Go out and have fun!</h5>
-
                 </div>
 
                 <div className="w3-third w3-center">

@@ -33,14 +33,13 @@ class SearchForm extends React.Component {
       utils.errorHandler(error);
     })
     .then((response) => {
-      console.log('Here are you search results')});
+      console.log('Here are your search results')});
       this.setState({events:[]})
   };
 
   render() {
     return (
       <div className="search-container">
-        <h4>Search Form</h4>
           <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name="sport">
             <option >Sport</option>
             <option value="basketball">Basketball</option>

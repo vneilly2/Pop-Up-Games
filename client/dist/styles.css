@@ -139,3 +139,27 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .venuelistentry:hover {
   background-color: #3498DB;
 }
+
+/* Search Results Page */
+.search-results-entry {
+  list-style: none;
+  border: 1px solid #2196F3;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 75%;
+}
+
+.search-results-entry-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.search-results-entry-date-time {
+  font-size: 1.0em
+}
+
+.main {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 3%;
+}

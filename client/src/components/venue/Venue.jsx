@@ -2,7 +2,7 @@ import React from 'react';
 import VenueBody from './Body.jsx';
 
 var Venue = (props) => (
-  <div>
+  <div className="main">
     <h1>Venue Page</h1>
     <VenueBody />
   </div>

@@ -140,6 +140,7 @@ class SignupForm extends React.Component {
         <div>
           <FormError check={this.state.blankInputs} message={'*All fields are required'} />
           <FormError check={this.state.userExists} message={'*Username is already taken'} />
+          <div>Please fill out the information below to sign up! </div>
           <FormField
           txtId={'Username'}
           fieldName={'username'}
