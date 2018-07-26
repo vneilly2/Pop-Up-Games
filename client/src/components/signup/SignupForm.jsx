@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import utils from '../../../utils';
-import Login from '../login/Login.jsx';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import { withRouter } from "react-router-dom";
@@ -142,44 +140,51 @@ class SignupForm extends React.Component {
           <FormError check={this.state.blankInputs} message={'*All fields are required'} />
           <FormError check={this.state.userExists} message={'*Username is already taken'} />
           <FormField input
-          txtId={'Username'}
-          fieldName={'username'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+            txtId={'Username'}
+            fieldName={'username'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} 
+          />
           <FormField
-          txtId={'First Name'}
-          fieldName={'fname'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+            txtId={'First Name'}
+            fieldName={'fname'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} 
+          />
           <FormField
-          txtId={'Last Name'}
-          fieldName={'lname'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+            txtId={'Last Name'}
+            fieldName={'lname'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} 
+          />
           <FormError check={this.state.invalidAddress} message={'*Your address was invalid'} />
           <FormField
-          txtId={'Address'}
-          fieldName={'address'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+            txtId={'Address'}
+            fieldName={'address'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} 
+          />
           <FormField
-          txtId={'Email'}
-          fieldName={'email'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+            txtId={'Email'}
+            fieldName={'email'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)} 
+          />
           <FormError check={this.state.attemptedPw} message={'*Your passwords don\'t match'} />
           <FormField
-          txtId={'Password'}
-          fieldName={'password'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)}
-          isPassword={true} />
+            txtId={'Password'}
+            fieldName={'password'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)}
+            isPassword={true} 
+          />
           <FormField
-          txtId={'Retype Password'}
-          fieldName={'passwordRetype'}
-          updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)}
-          isPassword={true} />
+            txtId={'Retype Password'}
+            fieldName={'passwordRetype'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)}
+            isPassword={true} 
+          />
           <button type="button" onClick={() => this.processForm() } >Submit</button>
         </div>
         )

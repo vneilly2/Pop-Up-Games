@@ -6,7 +6,7 @@ import Signup from './components/signup/Signup.jsx';
 import NavBar from './components/NavBar.jsx';
 
 import {
-  HashRouter,
+  HashRouter as Router,
   Route,
   Link,
 } from "react-router-dom";
@@ -21,15 +21,13 @@ class App extends React.Component {
     };
   }
   /**
-   * toggles the state of loggedIn to the
-   * value of the boolean it is passed
-   * should be bound to App before being passed on
-   *
-   * input: true || false
-   * output: none
+   * @description changes the value of App.state.loggedIn
+   * should be bound before passing to another component
+   * @param { boolean } state the desired state of loggedIn
+   * @return { null } nothing
    */
   toggleLogin(state) {
-    this.setState({loggedIn: state});
+    this.setState({ loggedIn: state });
   }
 
   toggleSignupStep(){
@@ -42,9 +40,9 @@ class App extends React.Component {
 
 
   /**
-   * renders the body of the App
+   * @description renders the body of the App
    * contains conditionally rendered components when not logged in:
-   * Sign up && Login
+   * Sign up & Login
    *
    * and when logged in:
    * Logout
@@ -54,7 +52,7 @@ class App extends React.Component {
   render() {
       return (
         <div>
-          <HashRouter>
+          <Router>
             <div>
             {/* Top Bar */}
             <div className="top">
@@ -62,7 +60,6 @@ class App extends React.Component {
                 <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white" onClick={this.toggleLoginStep.bind(this)}>Login</Link>
               </div>
             </div>
-
 
             {/* First Grid */}
             <header className="w3-container w3-blue w3-center w3-padding-32" id="homeheader" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
@@ -108,7 +105,7 @@ class App extends React.Component {
               render={props => <Logout
                 toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
             </div>
-          </HashRouter>
+          </Router>
           <div style={this.state.loggedIn ? {} : {display:'none'} } >
             <NavBar/>
           </div>

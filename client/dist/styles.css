@@ -112,22 +112,17 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
 
 /* Venue Map Page */
 .row:after {
-/*    content: "";
-    display: table;
-    clear: both;*/
     display: flex;
 }
 
 .venuemap > div > div {
-    width: 73vw !important;
-/*    overflow: none !important;*/
-    /*height:100%;*/
+    width: 75% !important;
+    height: 80% !important;
 }
 
 .venuecolumn {
     float: right;
-    width: 29%;
-    height: 850;
+    width: 25%;
 }
 
 .venuelist {

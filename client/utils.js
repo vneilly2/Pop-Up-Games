@@ -1,18 +1,18 @@
 
 /**
- * Error handling utility function that iterates over
- * an error return from a get or a post request and
- * then console logs it.
+ * @description console.errors all elements in the 
+ * array passed into it.
+ * @param { Array.<String> } errors - an array of strings containing error messages
  */
-exports.errorHandler = (error) => {
-  if (error.response) {
-    console.log(error.response.data);
-    console.log(error.response.status);
-    console.log(error.response.headers);
+exports.errorHandler = (errors) => {
+  if (errors.response) {
+    console.error('Data:',errors.response.data);
+    console.error('Status:',errors.response.status);
+    console.error('Header:',errors.response.headers);
   } else if (error.request) {
-    console.log(error.request);
+    console.error('Request:',errors.request);
   } else {
-    console.log('Error', error.message);
+    console.error('Error', errors.message);
   }
-  console.log(error.config);
+  console.error('Config:',errors.config);
 };

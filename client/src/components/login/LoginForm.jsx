@@ -1,10 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import utils from '../../../utils';
-import Signup from '../signup/Signup.jsx';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
-import { HashRouter, Route, Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 /**
  * Log in form that allows new users log into the App
  *

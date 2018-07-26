@@ -7,25 +7,19 @@ import Field from './field/Field.jsx';
 import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
-import Signup from './signup/Signup.jsx';
-import Login from './login/Login.jsx';
 
 import {
-  HashRouter,
+  HashRouter as Router,
   Route,
   Link,
-  withRouter
 } from "react-router-dom";
-
-var NavBar = (props) => {
 /**
- * Renders all the  React HashRouter Navigation Links
+ * @description Renders all the  React HashRouter Navigation Links
  * Not intended to render if the user is not logged in
- *
- * expects no props passed in
  */
+var NavBar = () => {
     return (
-      <HashRouter>
+      <Router>
         <div className="top">
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
             <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Home</Link>
@@ -50,7 +44,7 @@ var NavBar = (props) => {
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />
         </div>
-      </HashRouter>
+      </Router>
      );
   }
 

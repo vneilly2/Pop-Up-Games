@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import utils from '../../../utils.js';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 
