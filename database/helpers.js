@@ -15,9 +15,9 @@ exports.saveUser = user =>
     new User({username: user.username}).fetch().then(found => found ? reject() : Users.create(user).then(resolve))
 })
 
-exports.getPassword = user =>
+exports.getPasswordAndRole = user =>
   new Promise(function(resolve, reject) {
-    new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password) : reject());
+    new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password, found.attributes.isAdmin) : reject());
 })
 
 // exports.saveEvent = event =>
