@@ -16,7 +16,7 @@ describe('Event Related Middleware', () => {
     await event.addMeToEvent(req, res);
   });
 
-  test('should use the session yser to add an event with me as the owner', async () => {
+  test('should use the session user to add an event with me as the owner', async () => {
     db.saveEvent = data =>
       new Promise(resolve => {
         expect(data).toEqual({ username: 'user', otherData: 'other data' });

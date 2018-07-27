@@ -17,7 +17,7 @@ const get = (req, res, next, data) =>
       .then(
         fieldsEvents =>
           new Promise(resolve =>
-            resolve(fieldsEvents.forEach((events, i) => (data.fields[i].todaysEvents = events)) && data)
+            resolve(fieldsEvents.forEach((events, i) => (data.fields[i].todaysEvents = events)) || data)
           )
       ),
     res
@@ -26,7 +26,7 @@ const get = (req, res, next, data) =>
 const create = (req, res) =>
   util.postRes(
     gm
-      .getGeoLocation((req.body.username = req.session.user) && req.body)
+      .getGeoLocation(req.body)
       .then(
         loc =>
           loc.data.results.length
