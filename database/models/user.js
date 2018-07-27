@@ -7,11 +7,14 @@ var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   events: function() {
-    return this.hasMany(Event, 'ownerId');
+    return this.hasMany('Event', 'ownerId');
   },
   messages: function() {
     this.hasMany(Message);
+  },
+  guestEvents: function() {
+    return this.belongsToMany('Event', 'events_users', 'userId', 'eventId');
   }
 });
 
-module.exports = User;
+module.exports = db.model('User', User);

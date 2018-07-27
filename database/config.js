@@ -12,6 +12,7 @@ var knex = require('knex')({
 });
 
 var db = require('bookshelf')(knex);
+db.plugin('registry');
 
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
@@ -25,8 +26,8 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.boolean('isAdmin').defaultTo(false);
       user.string('email');
       user.string('address');
-      user.float('lat');
-      user.float('lng');
+      user.float('lat', 18, 10);
+      user.float('lng', 18, 10);
       user.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
@@ -102,8 +103,8 @@ db.knex.schema.hasTable('venues').then(function(exists) {
       venue.string('venueName', 30);
       venue.string('address');
       venue.boolean('isVerified').defaultTo(false);
-      venue.float('lat');
-      venue.float('lng');
+      venue.float('lat', 18, 10);
+      venue.float('lng', 18, 10);
     }).then(function (table) {
       console.log('Created Table', table);
     });

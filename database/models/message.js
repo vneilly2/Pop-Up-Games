@@ -9,7 +9,7 @@ var Message = db.Model.extend({
     return this.belongsTo(User);
   },
   event: function() {
-    return this.belongsTo(Event, 'eventId');
+    return this.belongsTo('Event', 'eventId');
   }
 });
 

@@ -11,7 +11,7 @@ var Event = db.Model.extend({
     return this.belongsTo(User, 'ownerId');
   },
   guests: function() {
-    return this.hasMany(User, 'userId');
+    return this.belongsToMany('User', 'events_users', 'eventId', 'userId');
   },
   messages: function() {
     return this.hasMany(Message, 'eventId');
@@ -24,4 +24,4 @@ var Event = db.Model.extend({
   }
 });
 
-module.exports = Event;
+module.exports = db.model('Event', Event);

@@ -5,16 +5,16 @@ var Event = require('./event');
 
 var Field = db.Model.extend({
   tableName: 'fields',
-  hasTimestamps: true,
   venue: function() {
     return this.belongsTo(Venue, 'venueId');
   },
-  sport: function() {
-    return this.hasMany(Sport, 'sportId');
+  sports: function() {
+    return this.belongsToMany('Sport', 'fields_sports', 'fieldId', 'sportId');
   },
   events: function() {
-    return this.hasMany(Event, 'eventId');
+    return this.hasMany('Event', 'fieldId');
   }
+
 });
 
-module.exports = Field;
+module.exports = db.model('Field', Field);

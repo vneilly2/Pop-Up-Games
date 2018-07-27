@@ -6,12 +6,12 @@ var Sport = db.Model.extend({
   tableName: 'sports',
   hasTimestamps: true,
   events: function() {
-    return this.hasMany(Event, 'eventId');
+    return this.hasMany('Event', 'sportId');
   },
   fields: function() {
-    return this.hasMany(Field, 'fieldId');
+    return this.belongsToMany(field, 'fields_sports', 'sportId', 'fieldId');
   }
 });
 
 
-module.exports = Sport;
+module.exports = db.model('Sport', Sport);
