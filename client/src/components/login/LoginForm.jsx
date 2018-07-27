@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
-import { Redirect, withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 /**
  * @description Log in form that allows new users log into the App
  * @param toggleAuth - function bound to App that changed state of loggedIn to arg[0]

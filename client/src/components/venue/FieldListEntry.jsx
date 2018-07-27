@@ -7,7 +7,7 @@ class FieldListEntry extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      fieldData:{} //field id, field details, fieldtodaysevents
+      fieldData:[{fieldId: 1}] //field id, field details, fieldtodaysevents
     }
     this.changeTarget = props.changeTarget
   }
@@ -19,7 +19,7 @@ class FieldListEntry extends React.Component {
         this.props.history.push('/field')} } 
       >
         <FieldBasicDetails className="field-basic-details"/>
-        <FieldDayCalendar className="field-todays-events" todaysEvents={this.fieldData.todaysEvents}/>
+        <FieldDayCalendar className="field-todays-events" todaysEvents={this.state.fieldData}/>
       </div>
     )
   }
@@ -27,3 +27,4 @@ class FieldListEntry extends React.Component {
 }
 
 export default withRouter(FieldListEntry);
+

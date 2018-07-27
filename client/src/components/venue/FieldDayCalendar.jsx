@@ -6,7 +6,7 @@ var FieldDayCalendar = (props) => (
     <div>Today's Events:</div>
     {
       props.todaysEvents.map((event, index) => {
-        return ( <FieldDayCalendarEntry key={index}/> )
+        return ( <FieldDayCalendarEntry event={event} key={index}/> )
       })
     }
   </div>

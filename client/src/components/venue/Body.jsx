@@ -8,9 +8,10 @@ class VenueBody extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      venueObj: '',
+      venueObj: undefined,
       venueId: props.target.id
     }
+    this.changeTarget = props.changeTarget
   }
   
   componentWillMount(){
@@ -25,6 +26,7 @@ class VenueBody extends React.Component {
     }) 
     .then((response) => {
       this.setState({venueObj:response.data})
+      console.log(response.data)
     })
     .catch((error) => {
       console.log(error);
@@ -32,23 +34,27 @@ class VenueBody extends React.Component {
   }
 
   render() {
+    if (this.state.venueObj === undefined) {
+      return <div>Loading</div>
+    } else {
     return(
       <div className="venue-body">
 
         <div className="venue-name">
-          {this.state.venueObj.venueName}
+          {this.state.venueObj.venue.venueName}
         </div>
 
         <div className="venueinfo">
-          <VenueInfo target={this.state.venueObj.notes}/>
+          <VenueInfo venueinfo={this.state.venueObj.venue.address}/>
         </div>
 
         <div className="fieldlist">
-          <FieldList changeTarget={props.changeTarget} fields={['field1', 'field2', 'field3']}/>
+          <FieldList changeTarget={this.changeTarget} fields={this.state.venueObj.fields}/>
         </div>
 
       </div>
     )
+    }
   }
 
 }
