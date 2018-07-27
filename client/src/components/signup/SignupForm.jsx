@@ -35,10 +35,10 @@ class SignupForm extends React.Component {
  * input field as desired state
  * @param { <Object> } event typical event from html onChange
  * @example
- * <input type={text} 
- * name={targetName} 
- * value={targetValue} 
- * onChange={this.updateState} 
+ * <input type={text}
+ * name={targetName}
+ * value={targetValue}
+ * onChange={this.updateState}
  * />
  * ...
  * this.setState({targetName: targetValue})
@@ -92,8 +92,8 @@ handleEnter(event) {
     } else {
       let newUser = {
         username: this.state.username,
-        firstname: this.state.fname,
-        lastname: this.state.lname,
+        firstName: this.state.fname,
+        lastName: this.state.lname,
         address: this.state.address,
         password: this.state.password,
         email: this.state.email,
@@ -110,16 +110,16 @@ handleEnter(event) {
  * to the state of the component which aspect of the post failed
  * so the reason for the failed request can be rendered to the DOM
  * inputs: params in the following structure:
- * @param {{username: String, firstname: String, lastname: string, address: string, password: string, email: string}} params requested unique username
- * 
- * @example 
+ * @param {{username: String, firstName: String, lastName: string, address: string, password: string, email: string}} params requested unique username
+ *
+ * @example
  * if(success) new account created
  * if(error.response.status == 400) {
  * _ if(error.response.message === 'improper address') address invalid
  * _ else username already taken
  * }
- * 
- * @return { undefined } undefined 
+ *
+ * @return { undefined } undefined
  */
   createUser(params) {
     axios.post( '/api/signup', params, { headers: {}})
@@ -155,32 +155,32 @@ handleEnter(event) {
             txtId={'Username'}
             fieldName={'username'}
             updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)} 
+            handleEnter={this.handleEnter.bind(this)}
           />
           <FormField className="input"
             txtId={'First Name'}
             fieldName={'fname'}
             updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)} 
+            handleEnter={this.handleEnter.bind(this)}
           />
           <FormField className="input"
             txtId={'Last Name'}
             fieldName={'lname'}
             updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)} 
+            handleEnter={this.handleEnter.bind(this)}
           />
           <FormError check={this.state.invalidAddress} message={'*Your address was invalid'} />
           <FormField className="input"
             txtId={'Address'}
             fieldName={'address'}
             updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)} 
+            handleEnter={this.handleEnter.bind(this)}
           />
           <FormField className="input"
             txtId={'Email'}
             fieldName={'email'}
             updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)} 
+            handleEnter={this.handleEnter.bind(this)}
           />
           <FormError check={this.state.attemptedPw} message={'*Your passwords don\'t match'} />
           <FormField className="input"
@@ -188,14 +188,14 @@ handleEnter(event) {
             fieldName={'password'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)}
-            isPassword={true} 
+            isPassword={true}
           />
           <FormField className="input"
             txtId={'Retype Password'}
             fieldName={'passwordRetype'}
             updateState={this.updateState.bind(this)}
             handleEnter={this.handleEnter.bind(this)}
-            isPassword={true} 
+            isPassword={true}
           />
           <button type="button" onClick={() => this.processForm() } >Submit</button>
         </div>
