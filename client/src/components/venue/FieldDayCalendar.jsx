@@ -1,8 +1,14 @@
 import React from 'react';
+import FieldDayCalendarEntry from './FieldDayCalendarEntry.jsx';
 
 var FieldDayCalendar = (props) => (
   <div>
-    This is the days calendar
+    <div>Today's Events:</div>
+    {
+      props.todaysEvents.map((event, index) => {
+        return ( <FieldDayCalendarEntry key={index}/> )
+      })
+    }
   </div>
   )
 

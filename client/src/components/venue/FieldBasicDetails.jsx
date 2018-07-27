@@ -2,7 +2,8 @@ import React from 'react';
 
 var FieldBasicDetails = (props) => (
   <div>
-    It has a net.
+    <h3>Field 1</h3>
+    Notes: Permanently has soccer nets set up.
   </div>)
 
 

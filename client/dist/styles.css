@@ -115,6 +115,10 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   opacity:0.6
 }
 
+.hover-lightblue:hover{
+  background-color: rgb(190, 218, 241)
+}
+
 
 /* Venue Map Page */
 .row:after {
@@ -142,7 +146,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
 }
 
 .venuelistentry:hover {
-  background-color: #3498DB;
+  background-color:rgb(190, 218, 241);
 }
 
 /* Search Results Page */
@@ -206,7 +210,6 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
     color: #555;
 }
 
-
 .form-style-6 submit{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -258,7 +261,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   border: 2px solid #2196F3;
   background: #F7F7F7
   height:auto;
-  min-height:100%
+  min-height:100%;
 }
 
 .message{
@@ -290,7 +293,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   grid-template-rows: 90px 45px 1fr; 
   grid-template-areas: "venue venue venue"
                        "info info info " 
-                       "field1 field2 field3" 
+                       "fieldlist fieldlist fieldlist" 
 
 }
 
@@ -314,20 +317,38 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   text-align: center;
 }
 
-.fieldinfo1{
-  grid-area:field1;
+.fieldlist{
+  grid-area:fieldlist;
   border: 2px solid #2196F3;
-  background: #F7F7F7
+  background: #F7F7F7;
+  height:auto;
+  min-height:100%;
+  padding: 5px
 }
 
-.fieldinfo2{
-  grid-area:field2;
-  border: 2px solid #2196F3;
-  background: #F7F7F7
+.indivfield{
+  border: 1px solid #2196F3;
+  background: #F7F7F7;
+  padding:5px;
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: 2.5fr 4fr ;
+  grid-template-rows: 1fr; 
+  grid-column-gap: 15x;
+  grid-template-areas: "field-basic-details field-todays-events"
 }
 
-.fieldinfo3{
-  grid-area:field3;
-  border: 2px solid #2196F3;
-  background: #F7F7F7
+.field-basic-details{
+  grid-area:field-basic-details;
+  height:auto;
+  min-height:100%;
+  padding: 5px;
+  padding-left: 10px; 
+}
+
+.field-todays-events{
+  grid-area:fieldtodaysevents;
+  height:auto;
+  min-height:100%;
+  padding: 5px
 }

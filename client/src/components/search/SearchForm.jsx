@@ -4,6 +4,10 @@ import moment from 'moment';
 import css from 'react-datepicker/dist/react-datepicker.css';
 import SearchResults from './SearchResults.jsx'
 
+/**
+ * A form for searching events that fulfill params entered 
+ */
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
@@ -16,16 +20,40 @@ class SearchForm extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
+/**
+ * helper function that updates states of component
+ * uses name of input field as state name and value of
+ * input field as desired state
+ *
+ * example :
+ * <input type={text} name={name} onChange={this.updateState}
+ * would update the state `name` to value of text in input an any changes
+ * to the field
+ */
+
   updateState(event) {
     this.setState({[event.target.name]: event.target.value });
   }
+
+/**
+ * helper function that updates date state to date selected in calendar
+ * */
 
   handleDateChange(date) {
     this.setState({date: date});
   }
 
+/**
+ * Takes a set of parameters as values in an object
+ * and executes a get request to the /search endpoint on the server
+ * If successful it will render search results
+ * If it fails it will evaluate the error message to indicate
+ * which aspect of the post failed
+ * NOTE: Search endpoint not setup, beyond current scope of MVP
+ */   
+
   searchEvents(params) {
-    axios.get( '/api/signup', params, {
+    axios.get( '/api/search', params, {
       headers: {
       }
     })

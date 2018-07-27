@@ -5,6 +5,10 @@ import moment from 'moment';
 import css from 'react-datepicker/dist/react-datepicker.css';
 import FormError from '../FormError.jsx';
 
+/**
+ * A form for creating new events and saving them to the database
+ */
+
 class CreateEventForm extends React.Component {
   constructor(props) {
     super(props)
@@ -18,13 +22,36 @@ class CreateEventForm extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
+/**
+ * helper function that updates states of component
+ * uses name of input field as state name and value of
+ * input field as desired state
+ *
+ * example :
+ * <input type={text} name={name} onChange={this.updateState}
+ * would update the state `name` to value of text in input an any changes
+ * to the field
+ */
+
   updateState(event) {
     this.setState({[event.target.name]: event.target.value });
   }
 
+/**
+ * helper function that updates date state to date selected in calendar
+ * */
+
   handleDateChange(date){
     this.setState({date: date })
   }
+
+/**
+ * Takes a set of parameters as values in an object
+ * and executes a post request to the /event endpoint on the server
+ * If successful it will redirect the user to the new Event page
+ * If it fails it will evaluate the error message to indicate
+ * which aspect of the post failed
+ */  
 
   createEvent(params) {
     axios.post( '/api/event', params, {
@@ -37,6 +64,10 @@ class CreateEventForm extends React.Component {
     .then((response) => {
       console.log('Event has been created')});
   };
+
+/**
+ * updates start time and end time state to times selected in time picker
+ * */
 
   pickerUpdate(start_time, end_time) {
     // start and end time in 24hour time
