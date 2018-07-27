@@ -36,8 +36,8 @@
 //     id: 2,
 //     username: 'User',
 //     address: '1600 Amphitheatre Pkwy, Mountain View, CA 94043',
-//     lat: 33.8153959,
-//     lng: -117.9263991,
+//     lat: ,
+//     lng: ,
 //     firstName: 'john',
 //     lastName: 'smith',
 //     rating: 10,
@@ -67,8 +67,3 @@
 //   isAdmin: true,
 //   email: 'google@gmail.com',
 // });
-
-// ? test to prevent jest from anger
-test('should pass', () => {
-  expect(true).toBeTruthy();
-});
