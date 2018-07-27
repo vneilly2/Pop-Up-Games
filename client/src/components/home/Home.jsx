@@ -17,26 +17,26 @@ class Home extends React.Component {
     super(props);
     this.state = {
       user: props.userInfo,
-      position : { lat: props.userInfo.lat, lng: props.userInfo.long, address: props.userInfo.address},
+      position : { lat: props.userInfo.lat, lng: props.userInfo.lng, address: props.userInfo.address},
       nearbyVenues : [
       {
-        position : { lat: props.userInfo.lat+0.001, lng: props.userInfo.long+.001 },
+        position : { lat: props.userInfo.lat+0.001, lng: props.userInfo.lng+.001 },
         notes : 'This is a wonderful venue'
       },
       {
-        position : { lat: props.userInfo.lat+0.002, lng: props.userInfo.long+.002 },
+        position : { lat: props.userInfo.lat+0.002, lng: props.userInfo.lng+.002 },
         notes : 'So is this Venue'
       },
       {
-        position : { lat: props.userInfo.lat+0.003, lng: props.userInfo.long+.003 },
+        position : { lat: props.userInfo.lat+0.003, lng: props.userInfo.lng+.003 },
         notes : 'This is also a great place'
       },
       {
-        position : { lat: props.userInfo.lat-0.002, lng: props.userInfo.long-.002 },
+        position : { lat: props.userInfo.lat-0.002, lng: props.userInfo.lng-.002 },
         notes : 'I really want to go here'
       },
       {
-        position : { lat: props.userInfo.lat-0.001, lng: props.userInfo.long-.001 },
+        position : { lat: props.userInfo.lat-0.001, lng: props.userInfo.lng-.001 },
         notes : 'This is the best of all of them'
       }
       ]
@@ -60,6 +60,7 @@ class Home extends React.Component {
    * points plotted around it
    */
   render() {
+    console.log(this.state)
     if(this.state.position === undefined) {
       return (
       <div>
