@@ -25,7 +25,7 @@ class SearchForm extends React.Component {
   }
 
   searchEvents(params) {
-    axios.get( '/signup', params, {
+    axios.get( '/api/signup', params, {
       headers: {
       }
     })

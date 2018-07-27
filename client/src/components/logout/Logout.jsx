@@ -7,7 +7,7 @@ import axios from 'axios';
  * @description Logs the user out
  */
 var Logout = (props) => {
-  axios.get('/logout')
+  axios.get('/api/logout')
   .then((response) => {
     if(response.status === 200) {
       props.toggleAuth(false);

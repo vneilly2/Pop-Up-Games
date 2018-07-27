@@ -27,7 +27,7 @@ class CreateEventForm extends React.Component {
   }
 
   createEvent(params) {
-    axios.post( '/event', params, {
+    axios.post( '/axios/event', params, {
       headers: {
       }
     })

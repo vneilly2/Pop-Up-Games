@@ -98,7 +98,7 @@ handleEnter(event) {
  * @return { undefined } undefined 
  */
   createField(params) {
-    axios.post( '/field', params, { headers: {}})
+    axios.post( '/api/field', params, { headers: {}})
     .catch((error) => {
       this.errorHandler(error);
     })

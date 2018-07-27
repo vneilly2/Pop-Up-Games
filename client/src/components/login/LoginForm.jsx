@@ -101,7 +101,7 @@ handleEnter(event) {
  */
   processLogin(params) {
     
-    axios.post( '/login', params, { headers: {} })
+    axios.post( '/api/login', params, { headers: {} })
     .then((response) => {
       this.loginUser(this.toggleAuth);
   }
@@ -119,7 +119,7 @@ handleEnter(event) {
   }
 
   loginUser(loginFunc) {
-    axios.get('/me')
+    axios.get('/api/me')
     .then((response) => {
       this.toggleAuth(response.data);
       this.setState({loginSuccess: true})

@@ -122,7 +122,7 @@ handleEnter(event) {
  * @return { undefined } undefined 
  */
   createUser(params) {
-    axios.post( '/signup', params, { headers: {}})
+    axios.post( '/api/signup', params, { headers: {}})
     .then((success) => {
       this.props.history.push("/login");
     })

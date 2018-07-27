@@ -90,7 +90,7 @@ class CreateVenueForm extends React.Component {
  *
  */
   createVenue(params) {
-    axios.post( '/venue', params, { headers: {}})
+    axios.post( '/api/venue', params, { headers: {}})
     .then((response) => {
       console.log('Successful post fired', response);
     })

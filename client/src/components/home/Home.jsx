@@ -45,7 +45,7 @@ class Home extends React.Component {
   }
 
   componentWillMount() {
-    // axios.get('/venues')
+    // axios.get('/api/venues')
     // .then((response) => {
     //   console.log(response);
     // })
