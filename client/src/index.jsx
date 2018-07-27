@@ -107,7 +107,7 @@ class App extends React.Component {
             </div>
           </Router>
           <div style={this.state.loggedIn ? {} : {display:'none'} } >
-            <NavBar/>
+            <NavBar userInfo={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this) }/>
           </div>
         </div>
         )

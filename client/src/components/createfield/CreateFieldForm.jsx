@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 
 /**
- * A form for creating new Venues and saving them to the database
+ * @description A form for creating new Venues and saving them to the database
  * expects no input props
+ * @param toggleAuth - function bound to App that changed state of loggedIn to arg[0]
+ * @param venueId the id of the venue you are trying to add a field to
  */
 class CreateFieldForm extends React.Component {
   constructor(props) {
@@ -19,44 +22,49 @@ class CreateFieldForm extends React.Component {
   }
 
 /**
- * helper function that updates states of component
+ * @description helper function that updates states of component
  * uses name of input field as state name and value of
  * input field as desired state
- *
- * example :
- * <input type={text} name={name} onChange={this.updateState}
- * would update the state `name` to value of text in input an any changes
- * to the field
+ * @param { <Object> } event typical event from html onChange
+ * @example
+ * <input type={text} 
+ * name={targetName} 
+ * value={targetValue} 
+ * onChange={this.updateState} 
+ * />
+ * ...
+ * this.setState({targetName: targetValue})
+ * @return { undefined } undefined
  */
-  updateState(event) {
-  console.log(this);
-    this.setState({[event.target.name]: event.target.value });
-  };
+
+updateState(event) {
+  this.setState({[event.target.name]: event.target.value });
+};
 
 /**
- * helper function that updates states of component
- * uses name of input field as state name and value of
- * input field as desired state
- */
-  handleEnter(event) {
-    if(event.key === 'Enter') {
-      this.processForm();
-    }
-  };
+* @description helper function that updates states of component
+* uses name of input field as state name and value of
+* input field as desired state
+* @param { <Object> } event typical event from html onKeyPress
+* @return { undefined } undefined
+*/
+handleEnter(event) {
+  if(event.key === 'Enter') {
+    this.processForm();
+  }
+};
 
 /**
- * function that evalutes all the current input states
+ * @description function that evalutes all the current input states
  * to see whether or not all fields needed for axios
  * call are filled.  If they are, it calls createField.
  * If they are not all supplied it turn booleans for
  * first failed requirement to true so the DOM can
  * render messages to user accordingly
  *
- * input: none
- * output: none
  */
   processForm() {
-    this.setState({otherErrors: false });
+    this.state.otherErrors=false;
     if (
       this.state.type === '' ||
       this.state.notes === ''
@@ -73,21 +81,21 @@ class CreateFieldForm extends React.Component {
   }
 
 /**
- * Takes a set of parameters as values in an object
+ * @description Takes a set of parameters as values in an object
  * and executes a post request to the /field endpoint on the server
  * If successful it will redirect the user to new fields page
  * If it fails it will evaluate the error message to indicate
  * to the state of the component which aspect of the post failed
  * so the reason for the failed request can be rendered to the DOM
  * inputs: params in the following structure:
- *
- * input:
- * {type:       string,
- *  notes:      string,
- *  venueid:    string, };
- *
- * error.response.status indications:
- *
+ * @param {{type: string, notes: string, venueid: string}} params requested unique username
+ * @example 
+ * if(success) newField created
+ * if(error.response.status == ???) {
+ * _ something happens
+ * }
+ * else newUser created
+ * @return { undefined } undefined 
  */
   createField(params) {
     axios.post( '/field', params, { headers: {}})
@@ -100,7 +108,7 @@ class CreateFieldForm extends React.Component {
   }
 
 /**
- * Renders a form to the DOM to gather the required inputs used
+ * @description Renders a form to the DOM to gather the required inputs used
  * to create a new field.  All inputs update Component state on change.
  * Pressing the form submit button or the enter key in any input will
  * trigger the process form function
@@ -123,6 +131,11 @@ class CreateFieldForm extends React.Component {
         <button type="button" onClick={() => this.processForm() } >Submit</button>
       </div>)
   }
+}
+
+CreateFieldForm.protoTypes = {
+  toggleAuth: PropTypes.func.isRequired,
+  venueId: PropTypes.string.isRequired,
 }
 
 export default CreateFieldForm;

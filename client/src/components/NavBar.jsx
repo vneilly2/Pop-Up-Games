@@ -14,8 +14,7 @@ import {
   Link,
 } from "react-router-dom";
 /**
- * @description Renders all the  React HashRouter Navigation Links
- * Not intended to render if the user is not logged in
+ * @description Renders all the  React Router Navigation Links
  */
 var NavBar = () => {
     return (
