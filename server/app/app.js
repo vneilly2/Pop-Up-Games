@@ -38,12 +38,12 @@ app.post('/api/login', user.login);
 /* === Logout === */
 app.get('/api/logout', user.logout);
 
-/* === Takes in body {eventId} and adds the user to that event's guest list === */
+/* === Takes in body {id: Number} (event id) and adds the user to that event's guest list === */
 app.post('/api/event/guest', util.checkLoggedIn, event.addMeToEvent);
 
 /**
  *  ===
- *  Takes in body {eventName, startBlock, endBlock, notes, sportName, fieldName}
+ *  Takes in body {eventName, startBlock, endBlock, notes, sportName, fieldId, date}
  *  (optional: minPlayer, maxPlayer)
  *  ===
  */
@@ -78,7 +78,7 @@ app.get('/api/events', util.checkLoggedIn, event.getMyEvents);
  */
 app.get('/api/field', util.checkLoggedIn, field.get);
 
-/* === Takes in body {fieldName, notes, venueId, sports: []} === */
+/* === Takes in body {fieldName, notes, venueId, sportIds: []} === */
 app.post('/api/field', util.checkLoggedIn, field.create);
 
 /**

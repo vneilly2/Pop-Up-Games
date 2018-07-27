@@ -2,7 +2,7 @@ const util = require('../utils/utils');
 const gm = require('../utils/googleMapsApi');
 const db = require('../../../database/helpers');
 
-const get = (req, res, next, data) =>
+const get = (req, res, data) =>
   util.getRes(
     util
       .buildRes(
