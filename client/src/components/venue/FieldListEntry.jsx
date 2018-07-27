@@ -1,12 +1,29 @@
 import React from 'react';
 import FieldBasicDetails from './FieldBasicDetails.jsx';
 import FieldDayCalendar from './FieldDayCalendar.jsx';
+import {withRouter} from "react-router-dom";
 
-var FieldListEntry = (props) => (
-  <div className="indivfield">
-    <FieldBasicDetails className="field-basic-details"/>
-    <FieldDayCalendar className="field-todays-events" todaysEvents={['Soccer 9AM-11AM','Soccer 3:00PM-5:00PM', 'Quidditch 6:30PM-7:30PM']}/>
-  </div>
-  )
+class FieldListEntry extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      fieldData:{} //field id, field details, fieldtodaysevents
+    }
+    this.changeTarget = props.changeTarget
+  }
 
-export default FieldListEntry;
+  render() {
+    return (
+      <div className="indivfield" onClick={() => {
+        this.changeTarget({ type: 'field', id: this.state.field.id })
+        this.props.history.push('/field')} } 
+      >
+        <FieldBasicDetails className="field-basic-details"/>
+        <FieldDayCalendar className="field-todays-events" todaysEvents={this.fieldData.todaysEvents}/>
+      </div>
+    )
+  }
+  
+}
+
+export default withRouter(FieldListEntry);

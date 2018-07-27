@@ -4,7 +4,7 @@ import VenueBody from './Body.jsx';
 var Venue = (props) => (
   <div className="main">
     <div>
-      <VenueBody />
+      <VenueBody target={props.target} changeTarget={props.changeTarget}/>
     </div>
   </div>
   )

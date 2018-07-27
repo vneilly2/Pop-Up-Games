@@ -20,6 +20,7 @@ var NavBar = (props) => {
   let userInfo = props.userInfo;
   let toggleAuth = props.toggleAuth;
   let changeTarget = props.changeTarget;
+  let target = props.target;
     return (
         <div className="top">
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
@@ -44,9 +45,19 @@ var NavBar = (props) => {
                 changeTarget={changeTarget} {...props} />} 
               />
           <Route path="/search" component={Search} />
-          <Route path="/field" component={Field} />
+          <Route path="/field"
+              render={props => <Field
+              toggleAuth={toggleAuth} 
+              changeTarget={changeTarget} 
+              target={target} {...props} />} 
+          />
           <Route path="/event" component={EventView} />
-          <Route path="/venue" component={Venue} />
+          <Route path="/venue"
+              render={props => <Venue
+              toggleAuth={toggleAuth} 
+              changeTarget={changeTarget} 
+              target={target} {...props} />} 
+           />
           <Route path="/createevent" component={CreateEvent} />
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />

@@ -16,7 +16,6 @@ class LoginForm extends React.Component {
       password: '',
       failedLogin: false,
       blankSubmit: false,
-      loginSuccess: false,
     };
     this.toggleAuth = props.toggleAuth;
   }
@@ -122,7 +121,7 @@ handleEnter(event) {
     axios.get('/api/me')
     .then((response) => {
       this.toggleAuth(response.data);
-      this.setState({loginSuccess: true})
+      this.props.history.push("/home")
     })
     .catch((error) => {
       console.log(error);
@@ -136,9 +135,6 @@ handleEnter(event) {
  * trigger the process form function
  */
   render() {
-    if (this.state.loginSuccess === true) {
-      return <Redirect to={'/home'} />
-    } else {
       return (
         <div className='form-style'>
           <h1>Log In</h1>
@@ -160,7 +156,6 @@ handleEnter(event) {
           </form>
         </div>
         )
-    }
   }
 }
 LoginForm.propTypes = {

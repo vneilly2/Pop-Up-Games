@@ -41,6 +41,7 @@ class App extends React.Component {
 
   changeTarget(target){
     this.setState({target: target})
+
   }
 
 
@@ -64,6 +65,7 @@ class App extends React.Component {
                   userInfo={this.state.loggedIn} 
                   toggleAuth={this.toggleLogin.bind(this) }
                   changeTarget={this.changeTarget.bind(this)}
+                  target={this.state.target}
                 />
               </div>
             {/* Top Bar */}
