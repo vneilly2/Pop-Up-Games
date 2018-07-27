@@ -11,31 +11,32 @@ import { withRouter } from "react-router-dom";
  * @param toggleAuth function that is bound to parent that changes the state of loggedIn to arg[0]
  * @param userInfo object containing data on the user
  */
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // loggedIn: this.props.location.state.userInfo,
-      position : { lat: -34.397, lng: 150.644 },
+      user: props.userInfo,
+      position : { lat: props.userInfo.lat, lng: props.userInfo.long, address: props.userInfo.address},
       nearbyVenues : [
       {
-        position : { lat: -34.197, lng: 150.644 },
+        position : { lat: props.userInfo.lat+0.001, lng: props.userInfo.long+.001 },
         notes : 'This is a wonderful venue'
       },
       {
-        position : { lat: -34.297, lng: 150.744 },
+        position : { lat: props.userInfo.lat+0.002, lng: props.userInfo.long+.002 },
         notes : 'So is this Venue'
       },
       {
-        position : { lat: -34.497, lng: 150.544 },
+        position : { lat: props.userInfo.lat+0.003, lng: props.userInfo.long+.003 },
         notes : 'This is also a great place'
       },
       {
-        position : { lat: -34.197, lng: 150.844 },
+        position : { lat: props.userInfo.lat-0.002, lng: props.userInfo.long-.002 },
         notes : 'I really want to go here'
       },
       {
-        position : { lat: -34.197, lng: 150.444 },
+        position : { lat: props.userInfo.lat-0.001, lng: props.userInfo.long-.001 },
         notes : 'This is the best of all of them'
       }
       ]
@@ -84,9 +85,9 @@ class Home extends React.Component {
   }
 }
 
-// Home.propTypes = {
-//   userInfo: PropTypes.object.isRequired,
-//   toggleAuth: PropTypes.func.isRequired,
-// }
+Home.propTypes = {
+  userInfo: PropTypes.object.isRequired,
+  toggleAuth: PropTypes.func.isRequired,
+}
 export default withRouter(Home);
 

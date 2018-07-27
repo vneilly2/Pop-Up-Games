@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 /**
  * @description Log in form that allows new users log into the App
  * @param toggleAuth - function bound to App that changed state of loggedIn to arg[0]
@@ -15,7 +15,8 @@ class LoginForm extends React.Component {
       username: '',
       password: '',
       failedLogin: false,
-      blankSubmit: false
+      blankSubmit: false,
+      loginSuccess: false,
     };
     this.toggleAuth = props.toggleAuth;
   }
@@ -99,20 +100,10 @@ handleEnter(event) {
  * @return { undefined } undefined 
  */
   processLogin(params) {
+    
     axios.post( '/login', params, { headers: {} })
     .then((response) => {
-      this.toggleAuth(true);
-      this.props.history.push('/home');
-      //     {
-      //       pathname: '/home',
-      //       state: 
-      //         { 
-      //           userInfo: { userId: 'temp' /* Need to get this somehow*/ },
-      //           toggleAuth: this.toggleAuth,
-      //         },
-      //     }
-        
-      // );
+      this.loginUser(this.toggleAuth);
   }
    )
     .catch((error) => {
@@ -127,6 +118,17 @@ handleEnter(event) {
     });
   }
 
+  loginUser(loginFunc) {
+    axios.get('/me')
+    .then((response) => {
+      this.toggleAuth(response.data);
+      this.setState({loginSuccess: true})
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
 /**
  * @description Renders a form to the DOM to gather the required inputs used
  * to log in a user.  All inputs update Component state on change.
@@ -134,6 +136,9 @@ handleEnter(event) {
  * trigger the process form function
  */
   render() {
+    if (this.state.loginSuccess === true) {
+      return <Redirect to={'/home'} />
+    } else {
       return (
         <div className='form-style'>
           <h1>Log In</h1>
@@ -155,6 +160,7 @@ handleEnter(event) {
           </form>
         </div>
         )
+    }
   }
 }
 LoginForm.propTypes = {

@@ -6,7 +6,7 @@ import Signup from './components/signup/Signup.jsx';
 import NavBar from './components/NavBar.jsx';
 
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Link,
 } from "react-router-dom";
@@ -54,6 +54,9 @@ class App extends React.Component {
         <div>
           <Router>
             <div>
+              <div style={this.state.loggedIn ? {} : {display:'none'} } >
+                <NavBar userInfo={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this) }/>
+              </div>
             {/* Top Bar */}
             <div className="top">
               <div className="w3-bar w3-blue w3-left-align w3-large">
@@ -106,9 +109,6 @@ class App extends React.Component {
                 toggleAuth={this.toggleLogin.bind(this)} {...props} />} />
             </div>
           </Router>
-          <div style={this.state.loggedIn ? {} : {display:'none'} } >
-            <NavBar userInfo={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this) }/>
-          </div>
         </div>
         )
   }

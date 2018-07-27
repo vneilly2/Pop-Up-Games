@@ -37,12 +37,13 @@ export class GMap extends React.Component {
       <Map google={this.props.google}
           onClick={this.onMapClicked.bind(this)}
           style={{width: '100%', height: '100%'}}
+          zoom={12}
           initialCenter={{
             lat: this.state.position.lat,
             lng: this.state.position.lng
         }}>
         <Marker onClick={this.onMarkerClick.bind(this)}
-                name={'User Home'}
+                name={this.state.position.address}
                 icon={{
                   url: 'img/home.png',
                   scaledSize: new google.maps.Size(20, 30)
@@ -78,5 +79,5 @@ export class GMap extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: (GMAPS_API)
+  apiKey: (process.env.GMAPS_API || GMAPS_API)
 })(GMap)

@@ -9,16 +9,17 @@ import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
 
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Link,
 } from "react-router-dom";
 /**
  * @description Renders all the  React Router Navigation Links
  */
-var NavBar = () => {
+var NavBar = (props) => {
+  let userInfo = props.userInfo;
+  let toggleAuth = props.toggleAuth;
     return (
-      <Router>
         <div className="top">
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
             <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Home</Link>
@@ -34,7 +35,10 @@ var NavBar = () => {
             <Link to="/createevent" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Event</Link>
             <Link to="/createfield" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Field</Link>
           </div>
-          <Route path="/home" component={Home} />
+          {/* <Route path="/home" component={Home} /> */}
+          <Route path="/home"
+              render={props => <Home
+                toggleAuth={toggleAuth} userInfo={userInfo} {...props} />} />
           <Route path="/search" component={Search} />
           <Route path="/field" component={Field} />
           <Route path="/event" component={EventView} />
@@ -43,7 +47,6 @@ var NavBar = () => {
           <Route path="/createfield" component={CreateField} />
           <Route path="/createvenue" component={CreateVenue} />
         </div>
-      </Router>
      );
   }
 

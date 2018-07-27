@@ -20,7 +20,7 @@ var Logout = (props) => {
   });
 
   return(
-  <Redirect to={'/login'} />
+    <Redirect to={'/login'} />
   )
 }
 Logout.propTypes = {
