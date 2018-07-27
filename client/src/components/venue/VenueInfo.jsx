@@ -2,7 +2,7 @@ import React from 'react';
 
 var VenueInfo = (props) => (
   <div>
-    This is the Info for the Venue
+    Phone Number: (718) 222-9939 
   </div>)
 
 export default VenueInfo;

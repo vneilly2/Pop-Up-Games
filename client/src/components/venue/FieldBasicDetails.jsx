@@ -2,7 +2,7 @@ import React from 'react';
 
 var FieldBasicDetails = (props) => (
   <div>
-    These are the basic details of the Field
+    It has a net.
   </div>)
 
 
