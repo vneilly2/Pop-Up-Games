@@ -5,7 +5,7 @@ const getGeoLocation = ({ address }) =>
   axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
     params: {
       address: address,
-      key: process.env.GMAPS_API || require('../config/config.js').GMAPS_API,
+      key: process.env.GMAPS_API || require('../../../config/config.js').GMAPS_API,
     },
   });
 

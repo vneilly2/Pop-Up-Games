@@ -17,7 +17,6 @@ const checkPass = (pass, hash) =>
     bcrypt.compare(pass, hash, (err, matches) => (err ? reject(err) : resolve(matches)))
   );
 
-
 //a way to build a response object across multiple promises
 const buildRes = (types, ...promises) =>
   new Promise((resolve, reject) =>
@@ -40,7 +39,7 @@ const postRes = (promise, res, errMessage, successStatus = 201, errStatus = 400)
 
 //serves static files upon finding no matching endpoints
 const serveStaticFiles = (req, res) =>
-  res.sendFile(path.join(__dirname, '/../../client/dist'), err => (err ? res.status(500).send(err) : null));
+  res.sendFile(__dirname + '/../../client/dist', err => (err ? res.status(500).send(err) : null));
 
 exports.checkLoggedIn = checkLoggedIn;
 exports.checkAdmin = checkAdmin;
