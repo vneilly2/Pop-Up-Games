@@ -138,4 +138,6 @@ app.put('/api/venuemerge');
 
 app.put('/api/fieldmerge');
 
+//serve static files if no endpoint is found (for refreshing)
+app.get('/*', util.serveStaticFiles);
 module.exports = app;

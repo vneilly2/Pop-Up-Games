@@ -38,6 +38,10 @@ const postRes = (promise, res, errMessage, successStatus = 201, errStatus = 400)
     .then(data => data && res.sendStatus(successStatus))
     .catch(err => res.status(errStatus).send(errMessage || err));
 
+//serves static files upon finding no matching endpoints
+const serveStaticFiles = (req, res) =>
+  res.sendFile(path.join(__dirname, '/../../client/dist'), err => (err ? res.status(500).send(err) : null));
+
 exports.checkLoggedIn = checkLoggedIn;
 exports.checkAdmin = checkAdmin;
 exports.hashPass = hashPass;
@@ -45,3 +49,4 @@ exports.checkPass = checkPass;
 exports.buildRes = buildRes;
 exports.getRes = getRes;
 exports.postRes = postRes;
+exports.serveStaticFiles = serveStaticFiles;
