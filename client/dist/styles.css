@@ -352,3 +352,32 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   min-height:100%;
   padding: 5px
 }
+
+
+/* Field */
+.field-body{
+  display: grid;
+  border: 3px solid #2196F3;
+  min-height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 120px 1fr; 
+  grid-template-areas: "fieldinfo"
+                       "fieldcalendar"
+}
+
+.fieldinfo{
+  grid-area:fieldinfo;
+  background: #3498DB;
+  color: #fff;
+  text-align:center;
+  padding:10px;
+  border: 2px solid #2196F3;
+}
+
+.fieldcalendar{
+  grid-area:fieldcalendar;
+  padding: 10px;
+  background: #F7F7F7
+  height:auto;
+  min-height:100%;
+}

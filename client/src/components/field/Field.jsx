@@ -4,10 +4,13 @@ import FieldInfo from './FieldInfo.jsx';
 
 var Field = (props) => (
 
-  <div className="main">
-    <h1>Field Page</h1>
-    <FieldInfo />
-    <FieldCalendar />
+  <div className="main field-body">
+    <div className='fieldinfo'>
+      <FieldInfo />
+    </div>
+    <div className="fieldcalendar">
+      <FieldCalendar />
+    </div>
   </div>
   )
 
