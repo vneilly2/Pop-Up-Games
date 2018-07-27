@@ -1,23 +1,10 @@
 const util = require('../app/utils/utils');
+const { makeResObj } = require('./testHelpers');
 
 jest.mock('bcrypt-nodejs');
 const bcrypt = require('bcrypt-nodejs');
 
 describe('Utils', () => {
-  const makeResObj = (statusNum, response) => ({
-    status: status => {
-      expect(status).toEqual(statusNum);
-      return {
-        send: data => {
-          expect(data).toEqual(response);
-        },
-      };
-    },
-    sendStatus: status => {
-      expect(status).toEqual(statusNum);
-    },
-  });
-
   test('should check to see if a session is active', () => {
     let res = makeResObj(401, 'user not logged in');
     let reqLoggedIn = { session: { user: 'user' } };

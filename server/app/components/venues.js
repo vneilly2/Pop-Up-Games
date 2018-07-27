@@ -7,7 +7,6 @@ const get = (req, res, next, data) =>
     util
       .buildRes(
         ['venue', 'fields'],
-        //get all the venue data using id
         db.getVenue(req.query),
         //get the fields at that venue
         db.getFields(req.query)
@@ -26,7 +25,6 @@ const get = (req, res, next, data) =>
 
 const create = (req, res) =>
   util.postRes(
-    //save a venue's details to be accepted by an admin later
     gm
       .getGeoLocation((req.body.username = req.session.user) && req.body)
       .then(

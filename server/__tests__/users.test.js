@@ -1,4 +1,5 @@
 const user = require('../app/components/users');
+const { makeResObj } = require('./testHelpers');
 
 jest.mock('../../database/helpers');
 const db = require('../../database/helpers');
@@ -10,20 +11,6 @@ jest.mock('bcrypt-nodejs');
 const bcrypt = require('bcrypt-nodejs');
 
 describe('User Related Middleware', () => {
-  const makeResObj = (statusNum, response) => ({
-    status: status => {
-      expect(status).toEqual(statusNum);
-      return {
-        send: data => {
-          expect(data).toEqual(response);
-        },
-      };
-    },
-    sendStatus: status => {
-      expect(status).toEqual(statusNum);
-    },
-  });
-
   describe('Signup', () => {
     bcrypt.hash = (val, salt, during, cb) => cb(null, val + ' hashed');
     gm.getGeoLocation = ({ address }) =>

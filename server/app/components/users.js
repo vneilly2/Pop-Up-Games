@@ -4,10 +4,8 @@ const db = require('../../../database/helpers');
 
 const signup = (req, res) =>
   util.postRes(
-    //hash the password
     util
       .hashPass(req.body.password)
-      //send the user data to the database
       .then(pass => gm.getGeoLocation((req.body.password = pass) && req.body))
       .then(
         loc =>
@@ -20,13 +18,11 @@ const signup = (req, res) =>
               )
             : res.status(400).send('improper address') && null
       ),
-    //send an error message to the basic post response
     res,
     'username in use'
   );
 
 const login = (req, res) =>
-  //request the hashed password from the database
   db
     .getPasswordAndRole(req.body)
     //check that the password and the hashed password are the same
@@ -48,12 +44,7 @@ const login = (req, res) =>
 
 const logout = (req, res) => req.session.destroy(() => res.sendStatus(200));
 
-const getMe = (req, res) =>
-  util.getRes(
-    //get user info
-    db.getMe(req.session.user),
-    res
-  );
+const getMe = (req, res) => util.getRes(db.getMe(req.session.user), res);
 
 exports.signup = signup;
 exports.login = login;
