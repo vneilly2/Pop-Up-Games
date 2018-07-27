@@ -30,16 +30,16 @@ app.disable('x-powered-by');
  *  adds geolocation using the address and returns an error is the address is improper
  *  ===
  */
-app.post('/signup', user.signup);
+app.post('/api/signup', user.signup);
 
 /* === Takes body {username, password} and creates a session or returns an error === */
-app.post('/login', user.login);
+app.post('/api/login', user.login);
 
 /* === Logout === */
-app.get('/logout', user.logout);
+app.get('/api/logout', user.logout);
 
 /* === Takes in body {eventId} and adds the user to that event's guest list === */
-app.post('/event/guest', util.checkLoggedIn, event.addMeToEvent);
+app.post('/api/event/guest', util.checkLoggedIn, event.addMeToEvent);
 
 /**
  *  ===
@@ -47,7 +47,7 @@ app.post('/event/guest', util.checkLoggedIn, event.addMeToEvent);
  *  (optional: minPlayer, maxPlayer)
  *  ===
  */
-app.post('/event', util.checkLoggedIn, event.create);
+app.post('/api/event', util.checkLoggedIn, event.create);
 
 /**
  *  ===
@@ -60,10 +60,10 @@ app.post('/event', util.checkLoggedIn, event.create);
  *    guests: [{}]
  *  }
  */
-app.get('/event', util.checkLoggedIn, event.get);
+app.get('/api/event', util.checkLoggedIn, event.get);
 
 /* === Gets all of the events the user has made and signed up for === */
-app.get('/events', util.checkLoggedIn, event.getMyEvents);
+app.get('/api/events', util.checkLoggedIn, event.getMyEvents);
 
 /**
  *  ===
@@ -76,10 +76,10 @@ app.get('/events', util.checkLoggedIn, event.getMyEvents);
  *    events: [{}]
  *  }
  */
-app.get('/field', util.checkLoggedIn, field.get);
+app.get('/api/field', util.checkLoggedIn, field.get);
 
 /* === Takes in body {fieldName, notes, venueId, sports: []} === */
-app.post('/field', util.checkLoggedIn, field.create);
+app.post('/api/field', util.checkLoggedIn, field.create);
 
 /**
  *  ===
@@ -93,49 +93,49 @@ app.post('/field', util.checkLoggedIn, field.create);
  *    }]
  *  }
  */
-app.get('/venue', util.checkLoggedIn, venue.get);
+app.get('/api/venue', util.checkLoggedIn, venue.get);
 
 /* === Takes in body {venueName, address} and adds geolocation using the address === */
-app.post('/venue', util.checkLoggedIn, venue.create);
+app.post('/api/venue', util.checkLoggedIn, venue.create);
 
 /* === Gets the info of venues within 20 miles of the user currently logged in === */
-app.get('/venues', util.checkLoggedIn, venue.getVenuesNearMe);
+app.get('/api/venues', util.checkLoggedIn, venue.getVenuesNearMe);
 
 /* === Gets user info of the currently logged in user, minus the password === */
-app.get('/me', util.checkLoggedIn, user.getMe);
+app.get('/api/me', util.checkLoggedIn, user.getMe);
 
 //2
-app.delete('/event/guest');
+app.delete('/api/event/guest');
 
-app.get('/event/guest');
+app.get('/api/event/guest');
 
-app.put('/event');
+app.put('/api/event');
 
-app.put('/field');
+app.put('/api/field');
 
-app.get('/user/events');
+app.get('/api/user/events');
 
-app.get('/user/passreset');
+app.get('/api/user/passreset');
 
-app.get('/user');
+app.get('/api/user');
 
-app.put('/user');
+app.put('/api/user');
 
-app.delete('/user');
+app.delete('/api/user');
 
-app.get('/sport');
+app.get('/api/sport');
 
-app.post('/sport');
+app.post('/api/sport');
 
-app.put('/sport');
+app.put('/api/sport');
 
-app.delete('/sport');
+app.delete('/api/sport');
 
 //3
-app.put('/sportsmerge');
+app.put('/api/sportsmerge');
 
-app.put('/venuemerge');
+app.put('/api/venuemerge');
 
-app.put('/fieldmerge');
+app.put('/api/fieldmerge');
 
 module.exports = app;

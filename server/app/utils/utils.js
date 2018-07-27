@@ -38,9 +38,9 @@ const postRes = (promise, res, errMessage, successStatus = 201, errStatus = 400)
     .catch(err => res.status(errStatus).send(errMessage || err));
 
 exports.checkLoggedIn = checkLoggedIn;
-exports.buildRes = buildRes;
 exports.checkAdmin = checkAdmin;
-exports.checkPass = checkPass;
-exports.getRes = getRes;
 exports.hashPass = hashPass;
+exports.checkPass = checkPass;
+exports.buildRes = buildRes;
+exports.getRes = getRes;
 exports.postRes = postRes;
