@@ -19,6 +19,7 @@ import {
 var NavBar = (props) => {
   let userInfo = props.userInfo;
   let toggleAuth = props.toggleAuth;
+  let changeTarget = props.changeTarget;
     return (
         <div className="top">
           <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
@@ -38,7 +39,10 @@ var NavBar = (props) => {
           {/* <Route path="/home" component={Home} /> */}
           <Route path="/home"
               render={props => <Home
-                toggleAuth={toggleAuth} userInfo={userInfo} {...props} />} />
+                toggleAuth={toggleAuth} 
+                userInfo={userInfo} 
+                changeTarget={changeTarget} {...props} />} 
+              />
           <Route path="/search" component={Search} />
           <Route path="/field" component={Field} />
           <Route path="/event" component={EventView} />

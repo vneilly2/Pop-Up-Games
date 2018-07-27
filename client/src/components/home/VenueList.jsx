@@ -7,7 +7,10 @@ var VenueEntryList = (props) => (
   <ul>
     {
       props.venues.map((venue, index) => {
-        return (<VenueEntry venue={venue} key={index} />)
+        return (<VenueEntry 
+        venue={venue} 
+        changeTarget={props.changeTarget}
+        key={index} />)
       })
     }
   </ul>

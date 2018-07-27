@@ -18,40 +18,19 @@ class Home extends React.Component {
     this.state = {
       user: props.userInfo,
       position : { lat: props.userInfo.lat, lng: props.userInfo.lng, address: props.userInfo.address},
-      nearbyVenues : [
-      {
-        position : { lat: props.userInfo.lat+0.001, lng: props.userInfo.lng+.001 },
-        notes : 'This is a wonderful venue'
-      },
-      {
-        position : { lat: props.userInfo.lat+0.002, lng: props.userInfo.lng+.002 },
-        notes : 'So is this Venue'
-      },
-      {
-        position : { lat: props.userInfo.lat+0.003, lng: props.userInfo.lng+.003 },
-        notes : 'This is also a great place'
-      },
-      {
-        position : { lat: props.userInfo.lat-0.002, lng: props.userInfo.lng-.002 },
-        notes : 'I really want to go here'
-      },
-      {
-        position : { lat: props.userInfo.lat-0.001, lng: props.userInfo.lng-.001 },
-        notes : 'This is the best of all of them'
-      }
-      ]
+      nearbyVenues : []
     };
-    // this.toggleAuth = props.toggleAuth ? props.toggleAuth : this.props.location.state.toggleAuth;
+    this.changeTarget = props.changeTarget;
   }
 
   componentWillMount() {
-    // axios.get('/api/venues')
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    axios.get('/api/venues')
+    .then((response) => {
+      this.setState({nearbyVenues: response.data})
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
 
@@ -79,7 +58,7 @@ class Home extends React.Component {
           */}
           <GMap position={this.state.position} venues={this.state.nearbyVenues} />
         </div>
-        <div><div className="venuecolumn"><VenueList venues={this.state.nearbyVenues}/></div></div>
+        <div><div className="venuecolumn"><VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues}/></div></div>
       </div>
       )
     }

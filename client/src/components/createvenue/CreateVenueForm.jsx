@@ -65,7 +65,7 @@ class CreateVenueForm extends React.Component {
       this.setState({blankFields: true});
     } else {
       let newVenue = {
-        name: this.state.name,
+        venueName: this.state.name,
         address: this.state.address,
       };
       this.createVenue(newVenue);
@@ -82,9 +82,9 @@ class CreateVenueForm extends React.Component {
  * inputs: params in the following structure:
  *
  * input:
- * {name:     string,
+ * {venueName:     string,
  *  address:  string,
- *  phone:    string, };
+ * };
  *
  * error.response.status indications:
  *

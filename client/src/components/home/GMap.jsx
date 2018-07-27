@@ -33,6 +33,7 @@ export class GMap extends React.Component {
   }
 
   render() {
+    console.log(this.state.nearbyVenues);
     return (
       <Map google={this.props.google}
           onClick={this.onMapClicked.bind(this)}
@@ -53,9 +54,9 @@ export class GMap extends React.Component {
           this.state.nearbyVenues.map((venue, index) => {
             return (
                 <Marker
-                  position = {venue.position}
+                  position = { {lat: venue.lat, lng: venue.lng} }
                   onClick={this.onMarkerClick.bind(this)}
-                  name={venue.notes}
+                  name={venue.venueName}
                   key={index}
                   icon={{
                     url: 'img/pin.png',

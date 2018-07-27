@@ -17,7 +17,8 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       signupStep: false,
-      loginStep: false
+      loginStep: false,
+      target: false,
     };
   }
   /**
@@ -38,6 +39,10 @@ class App extends React.Component {
     this.setState({loginStep: !this.state.loginStep})
   }
 
+  changeTarget(target){
+    this.setState({target: target})
+  }
+
 
   /**
    * @description renders the body of the App
@@ -55,7 +60,11 @@ class App extends React.Component {
           <Router>
             <div>
               <div style={this.state.loggedIn ? {} : {display:'none'} } >
-                <NavBar userInfo={this.state.loggedIn} toggleAuth={this.toggleLogin.bind(this) }/>
+                <NavBar 
+                  userInfo={this.state.loggedIn} 
+                  toggleAuth={this.toggleLogin.bind(this) }
+                  changeTarget={this.changeTarget.bind(this)}
+                />
               </div>
             {/* Top Bar */}
             <div className="top">
