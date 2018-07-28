@@ -77,7 +77,8 @@ handleEnter(event) {
       let newField = {
         fieldName: this.state.fieldName,
         notes: this.state.notes,
-        venueId: this.state.venueId
+        venueId: this.state.venueId,
+        sportIds: [],
       };
       this.createField(newField);
     }

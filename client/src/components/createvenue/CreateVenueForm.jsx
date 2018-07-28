@@ -3,6 +3,7 @@ import axios from 'axios';
 import utils from '../../../utils';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
+import { withRouter } from 'react-router-dom';
 
 /**
  * A form for creating new Venues and saving them to the database
@@ -100,10 +101,10 @@ class CreateVenueForm extends React.Component {
         if(error.response.data.serverMessage === 'improper address') {
           this.setState({badAddress: true});
         }
-      } else if (error.response.status == 401 && error.response.data === "user not logged in"){
+      } else if (error.response && error.response.status == 401 && error.response.data === "user not logged in"){
         this.toggleAuth(false);
-      }else {
-        utils.errorHandler(error);
+      } else {
+        console.log(error)
       }
     });
   }
@@ -135,4 +136,4 @@ class CreateVenueForm extends React.Component {
   }
 }
 
-export default CreateVenueForm;
+export default withRouter(CreateVenueForm);
