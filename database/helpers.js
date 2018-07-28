@@ -74,9 +74,9 @@ exports.getUserEvents = user =>
     new User({username: user.username}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
 })
 
-exports.saveField = field =>
+exports.saveField = field => console.log(field) ||
   new Promise(function(resolve, reject) {
-    Fields.create({fieldName: field.fieldName, notes: field.notes, venueId: field.venueId}).then(newField => newField.sports().attach(new Sport({id: field.sportId}))).then(resolve).catch(reject);
+    Fields.create({fieldName: field.fieldName, notes: field.notes, venueId: field.venueId}).then(newField => Promise.all(field.sportIds.map(sportId => newField.sports().attach(new Sport({id: sportId}))))).then(resolve).catch(reject);
     })
 
 exports.getField = field =>
@@ -84,10 +84,13 @@ exports.getField = field =>
     new Field({id: field.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
   })
 
-exports.getSports = field =>
+exports.getFieldSports = field =>
   new Promise(function(resolve, reject) {
     new Field({id: field.id}).fetch({withRelated: ['sports']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("sports")))) : reject());
   })
+
+exports.getAllSports = () =>
+    new Promise((resolve, reject) => Sport.fetchAll().then(found => resolve(JSON.parse(JSON.stringify(found))).catch(reject)));
 
 exports.getFieldEvents = field =>
   new Promise(function(resolve, reject) {
