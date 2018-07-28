@@ -56,7 +56,7 @@ describe('User Related Middleware', () => {
 
     test('should respond an error if the address is not an address', async () => {
       let errorMessage = 'improper address';
-      let res = makeResObj(400, errorMessage);
+      let res = makeResObj(400, { serverMessage: errorMessage });
       let badAddress = { body: { username: 'username', password: 'monkey', address: 'bad address' } };
       await user.signup(badAddress, res);
     });

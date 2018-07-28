@@ -77,7 +77,7 @@ describe('Venue Related Middleware', () => {
 
     test('should should respond an error if the address is not an address', async () => {
       let errorMessage = 'improper address';
-      let res = makeResObj(400, errorMessage);
+      let res = makeResObj(400, { serverMessage: errorMessage });
       let badAddress = { body: { venueName: 'venue name', address: 'bad address' } };
       await venue.create(badAddress, res);
     });

@@ -37,8 +37,8 @@ app.disable('x-powered-by');
  *  address: String -(street address)
  * }
  * ===
- * @event Address not real: 400 / error.serverMessage = 'improper address'
- * @event Username already in database: 400 / error.serverMessage = 'username in use'
+ * @event Address not real: 400 / data.serverMessage = 'improper address'
+ * @event Username already in database: 400 / data.serverMessage = 'username in use'
  * ===
  */
 app.post('/api/signup', user.signup);
@@ -52,8 +52,8 @@ app.post('/api/signup', user.signup);
  * }
  * ===
  * @returns Session object containing the active user's username and their role
- * @event Username doesn't exist: 404 / error.serverMessage = 'username not found'
- * @event Password doesn't match: 422 / error.serverMessage = 'password doesnt match'
+ * @event Username doesn't exist: 404 / data.serverMessage = 'username not found'
+ * @event Password doesn't match: 422 / data.serverMessage = 'password doesnt match'
  * ===
  */
 app.post('/api/login', user.login);

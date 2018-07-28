@@ -36,7 +36,7 @@ const create = (req, res) =>
                   (req.body.address = loc.data.results[0].formatted_address) &&
                   req.body
               )
-            : res.status(400).send('improper address') && null
+            : res.status(400).send({ serverMessage: 'improper address' }) && null
       ),
     res
   );
