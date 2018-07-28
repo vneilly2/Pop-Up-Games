@@ -4,7 +4,6 @@ var Field = require('./field');
 
 var Sport = db.Model.extend({
   tableName: 'sports',
-  hasTimestamps: true,
   events: function() {
     return this.hasMany('Event', 'sportId');
   },

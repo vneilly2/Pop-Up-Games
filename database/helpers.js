@@ -49,6 +49,15 @@ exports.saveEvent = event =>
     )
 })
 
+exports.saveSport = sport =>
+  new Promise((resolve, reject) =>
+    new Sport({sportName: sport.sportName}).fetch().then(found => found ? reject() : Sports.create({sportName: sport.sportName}).then(resolve))
+  )
+
+exports.saveMessage = message =>
+  new Promise((resolve, reject) =>
+    new User({username: message.username}).fetch().then(found => Messages.create({userId: found.id, eventId: message.eventId, body: message.body})).then(resolve).catch(reject))
+
 exports.saveGuest = event =>
   new Promise((resolve, reject) =>
     new User({username: event.username}).fetch().then(found => new User({id: found.id}).guestEvents().attach(new Event({id: event.id}))).then(resolve).catch(reject)
@@ -127,7 +136,7 @@ exports.getTodaysFieldEvents = field =>
 exports.getVenuesNearUser = (user, distance) =>
   new Promise(function(resolve, reject) {
     var result = [];
-    Promise.all([new User({username: user}).fetch(), new Venue({id: 2}).fetchAll()])
+    Promise.all([new User({username: user}).fetch(), Venue.fetchAll()])
     .then(found => {
       found = JSON.parse(JSON.stringify(found));
       found[1].forEach(venue => withinDistance(found[0].lat, found[0].lng, venue.lat, venue.lng, distance) && result.push(venue));
