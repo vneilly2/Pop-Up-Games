@@ -6,7 +6,7 @@ const get = (req, res) =>
     util.buildRes(
       ['field', 'sports', 'events'],
       db.getField(req.query),
-      db.getSports(req.query),
+      db.getFieldSports(req.query),
       db.getFieldEvents(req.query)
     ),
     res

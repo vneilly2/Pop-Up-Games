@@ -25,27 +25,70 @@ app.disable('x-powered-by');
 
 //1
 /**
- *  ===
- *  Takes a body {username, password, firstName, lastName, email, address}, unique username,
- *  adds geolocation using the address and returns an error is the address is improper
- *  ===
+ * ===
+ * @description Unique username, Adds geolocation using the address
+ * @example {
+ *  username: String,
+ *  password: String,
+ *  firstName: String,
+ *  lastName: String,
+ *  email: String,
+ *  address: String -(street address)
+ * }
+ * ===
+ * @event Address not real: 400 'improper address'
+ * @event Username already in database: 400 'username in use'
+ * ===
  */
 app.post('/api/signup', user.signup);
 
-/* === Takes body {username, password} and creates a session or returns an error === */
+/**
+ * ===
+ * @description Creates a session
+ * @example {
+ *  username: String,
+ *  password: String
+ * }
+ * ===
+ * @returns Session object
+ * @event Username doesn't exist: 404 'username not found'
+ * @event Password doesn't match: 422 'password doesnt match'
+ * ===
+ */
 app.post('/api/login', user.login);
 
-/* === Logout === */
+/**
+ * ===
+ * @description Logout
+ * ===
+ */
 app.get('/api/logout', user.logout);
 
-/* === Takes in body {id: Number} (event id) and adds the user to that event's guest list === */
+/**
+ * ===
+ * @description Adds the user to an event's guest list
+ * @example {
+ *  id: Number -(event id)
+ * }
+ * ===
+ */
 app.post('/api/event/guest', util.checkLoggedIn, event.addMeToEvent);
 
 /**
- *  ===
- *  Takes in body {eventName, startBlock, endBlock, notes, sportName, fieldId, date}
- *  (optional: minPlayer, maxPlayer)
- *  ===
+ * ===
+ * @description Posts an event in the user's name
+ * @example {
+ *  eventName: String,
+ *  startBlock: Number, -(1 - 48)
+ *  endBlock: Number, -(1 - 48)
+ *  notes: String,
+ *  sportId: Number,
+ *  fieldId: Number,
+ *  date: Date,
+ *  minPlayer: Number, -(Optional, default 0)
+ *  maxPlayer: Number -(Optional, default null)
+ * }
+ * ===
  */
 app.post('/api/event', util.checkLoggedIn, event.create);
 

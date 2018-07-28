@@ -11,7 +11,7 @@ describe('Field Related Middleware', () => {
         let field = { id: id, fieldData: 'field data' };
         resolve(field);
       });
-    db.getSports = ({ id }) =>
+    db.getFieldSports = ({ id }) =>
       new Promise(resolve => {
         if (!id) resolve([]);
         resolve(['soccer', 'football']);
