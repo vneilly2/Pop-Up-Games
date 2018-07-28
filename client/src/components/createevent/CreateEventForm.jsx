@@ -2,9 +2,10 @@ import React from 'react';
 import TimeRangePicker from 'react-time-range-picker';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import css from 'react-datepicker/dist/react-datepicker.css';
 import FormError from '../FormError.jsx';
-
+import FormField from '../FormField.jsx';
+import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 /**
  * A form for creating new events and saving them to the database
  */
@@ -13,46 +14,109 @@ class CreateEventForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      sport: 'basketball',
-      distance: '5', //value always string, needs to be converted
-      date: moment(),
-      startTime: moment(),
-      endTime: moment(),
+      date: undefined,
+      startBlock: undefined,
+      endBlock: undefined,
+      target:props.target,
+      timeConflict:false,
+      eventName:'',
+      notes:'',
+      sportId:'',
+      fieldId:props.target.id,
+      formError: false,
+      //minPlayer
+      //maxPlayer
+
     }
+    this.toggleAuth=props.toggleAuth;
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-/**
- * helper function that updates states of component
- * uses name of input field as state name and value of
- * input field as desired state
- *
- * example :
- * <input type={text} name={name} onChange={this.updateState}
- * would update the state `name` to value of text in input an any changes
- * to the field
- */
+  /**
+   * @description helper function that updates states of component
+   * uses name of input field as state name and value of
+   * input field as desired state
+   * @param { <Object> } event typical event from html onChange
+   * @example
+   * <input type={text}
+   * name={targetName}
+   * value={targetValue}
+   * onChange={this.updateState}
+   * />
+   * ...
+   * this.setState({targetName: targetValue})
+   * @return { undefined } undefined
+   */
 
   updateState(event) {
     this.setState({[event.target.name]: event.target.value });
-  }
+  };
 
+  /**
+  * @description helper function that updates states of component
+  * uses name of input field as state name and value of
+  * input field as desired state
+  * @param { <Object> } event typical event from html onKeyPress
+  * @return { undefined } undefined
+  */
+  handleEnter(event) {
+    if(event.key === 'Enter') {
+      this.processForm();
+    }
+  };
 /**
  * helper function that updates date state to date selected in calendar
- * */
+ * 
+ * 
+ */
 
   handleDateChange(date){
     this.setState({date: date })
   }
 
-/**
+  componentWillMount () {
+    // could theoretically get a dynamic list of sports
+  }
+
+  processForm() {
+    this.state.formError = false;
+    if(this.state.sportId  === undefined || 
+      this.state.date  === undefined ||
+      this.state.startBlock  === undefined ||
+      this.state.endBlock  === undefined ||
+      this.state.eventName  === undefined ||
+      this.state.notes  === undefined
+    ) {
+
+      this.setState({formError : true});
+    } else {
+
+      let params = {
+        eventName: this.state.eventName,
+        startBlock: this.calcBlock(this.state.startBlock),
+        endBlock: this. calcBlock(this.state.endBlock),
+        notes: this.state.notes,
+        date: this.state.date.format('MM/DD/YYYY'),
+        // minPlayer,
+        // maxPlayer,
+        sportId: this.state.sportId,
+        fieldId: this.state.fieldId,
+      }
+      this.createEvent(params);
+    }
+  }
+  calcBlock(time) {
+    let hour = time.format("k")
+    let minutes = time.format("m")
+    return (hour * 2  + minutes/30)
+  }
+  /**
  * Takes a set of parameters as values in an object
  * and executes a post request to the /event endpoint on the server
  * If successful it will redirect the user to the new Event page
  * If it fails it will evaluate the error message to indicate
  * which aspect of the post failed
  */  
-
   createEvent(params) {
     axios.post( '/api/event', params, {
       headers: {
@@ -62,8 +126,9 @@ class CreateEventForm extends React.Component {
       utils.errorHandler(error);
     })
     .then((response) => {
-      console.log('Event has been created')});
-  };
+      this.props.history.push('/field')
+    })
+  }
 
 /**
  * updates start time and end time state to times selected in time picker
@@ -72,25 +137,33 @@ class CreateEventForm extends React.Component {
   pickerUpdate(start_time, end_time) {
     // start and end time in 24hour time
     console.log(`start time: ${start_time}, end time: ${end_time}`)
-    this.setState({startTime: moment(start_time, "HH:mm").hour(Number)*2, endTime: moment(end_time, "HH:mm").hour(Number)*2})
+    this.setState({startBlock: moment(start_time, "HH:mm"), endBlock: moment(end_time, "HH:mm")})
   }
 
   render() {
     return (
       <div className="search-container">
         <h4>Create Event Form</h4>
-          <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sport'>
+        <FormError check={this.state.formError} message={'*All fields are required'} />
+          <FormField className="input"
+            txtId={'Event Name'}
+            fieldName={'eventName'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)}
+          />
+          <FormField className="input"
+            txtId={'Notes'}
+            fieldName={'notes'}
+            updateState={this.updateState.bind(this)}
+            handleEnter={this.handleEnter.bind(this)}
+          />
+          {/* Check Boxes Here */}
+          <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sportId'>
             <option >Sport</option>
-            <option value="basketball">Basketball</option>
-            <option value="soccer">Soccer</option>
-            <option value="football">Football</option>
-            <option value="quidditch">Quidditch</option>
-          </select>
-          <select className="distance-search-form" onChange={(event) => this.updateState(event)} name='distance'>
-            <option >Distance</option>
-            <option value={5}>5 Miles</option>
-            <option value={10}>10 Miles</option>
-            <option value={20}>20 Miles</option>
+            <option value="1">Basketball</option>
+            <option value="2">Soccer</option>
+            <option value="3">Football</option>
+            <option value="4">Quidditch</option>
           </select>
           <div>
             Date
@@ -104,7 +177,7 @@ class CreateEventForm extends React.Component {
           </div>
 
         <div className='search-button'>
-          <button onClick={this.createEvent.bind(this)}> Create </button>
+          <button type="button" onClick={() => this.processForm()}> Create </button>
         </div>
       </div>
     )
@@ -112,5 +185,4 @@ class CreateEventForm extends React.Component {
 
 }
 
-
-export default CreateEventForm;
+export default withRouter(CreateEventForm);

@@ -3,6 +3,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
+import utils from '../../../utils.js'
+import { withRouter } from 'react-router-dom'
 
 /**
  * @description A form for creating new Venues and saving them to the database
@@ -14,13 +16,14 @@ class CreateFieldForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: '',
+      fieldName: '',
       notes:'',
-      venueid:'',
+      venueId: props.target.id,
       blankFields:false
     };
+    this.toggleAuth = props.toggleAuth;
+    this.changeTarget = props.changeTarget;
   }
-
 /**
  * @description helper function that updates states of component
  * uses name of input field as state name and value of
@@ -66,15 +69,15 @@ handleEnter(event) {
   processForm() {
     this.state.otherErrors=false;
     if (
-      this.state.type === '' ||
+      this.state.fieldName === '' ||
       this.state.notes === ''
       ) {
       this.setState({otherErrors: true});
     } else {
       let newField = {
-        type: this.state.type,
+        fieldName: this.state.fieldName,
         notes: this.state.notes,
-        venueid: this.state.venueid
+        venueId: this.state.venueId
       };
       this.createField(newField);
     }
@@ -88,7 +91,7 @@ handleEnter(event) {
  * to the state of the component which aspect of the post failed
  * so the reason for the failed request can be rendered to the DOM
  * inputs: params in the following structure:
- * @param {{type: string, notes: string, venueid: string}} params requested unique username
+ * @param {{fieldName: string, notes: string, venueId: string}} params requested unique username
  * @example 
  * if(success) newField created
  * if(error.response.status == ???) {
@@ -100,10 +103,11 @@ handleEnter(event) {
   createField(params) {
     axios.post( '/api/field', params, { headers: {}})
     .catch((error) => {
-      this.errorHandler(error);
+      utils.errorHandler(error);
     })
     .then((response) => {
       console.log('Successful post fired', response);
+      this.props.history.push('/venue');
     });
   }
 
@@ -119,8 +123,8 @@ handleEnter(event) {
         <h1>Create Field</h1>
         <FormError check={this.state.blankFields} message={'*Your username and password cannot be blank'} />
         <FormField className="input"
-          txtId={'Field Type'}
-          fieldName={'type'}
+          txtId={'Field Name'}
+          fieldName={'fieldName'}
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)} />
         <FormField className="input"
@@ -138,4 +142,4 @@ CreateFieldForm.protoTypes = {
   venueId: PropTypes.string.isRequired,
 }
 
-export default CreateFieldForm;
+export default withRouter(CreateFieldForm);

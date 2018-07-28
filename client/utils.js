@@ -16,3 +16,22 @@ exports.errorHandler = (errors) => {
   }
   console.error('Config:',errors.config);
 };
+
+
+exports.sportNumConv = (num) => {
+  if(num  === 1) {
+    return 'BasketBall';
+  } else if(num  === 2) {
+    return 'Soccer';
+  } else if(num  === 3) {
+    return 'Football';
+  } else {
+    return 'Quidditch';
+  } 
+}
+
+exports.blockToTime = (blockNum) => {
+  let minutes = blockNum%2 * 30;
+  let hour = Math.floor(blockNum/2)
+  return `${hour}:${minutes}`
+}

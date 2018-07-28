@@ -14,6 +14,9 @@ export class GMap extends React.Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({nearbyVenues: props.venues})
+  }
 
   onMarkerClick(props, marker, e) {
     this.setState({
@@ -33,7 +36,6 @@ export class GMap extends React.Component {
   }
 
   render() {
-    console.log(this.state.nearbyVenues);
     return (
       <Map google={this.props.google}
           onClick={this.onMapClicked.bind(this)}
@@ -56,7 +58,10 @@ export class GMap extends React.Component {
                 <Marker
                   position = { {lat: venue.lat, lng: venue.lng} }
                   onClick={this.onMarkerClick.bind(this)}
-                  name={venue.venueName}
+                  name={<a href={"https://www.google.com/maps/dir/"
+                  .concat(this.state.position.address.replace(' ', '+'))
+                  .concat('/')
+                  .concat(venue.address.replace(' ', '+'))}>{ venue.venueName }</a>}
                   key={index}
                   icon={{
                     url: 'img/pin.png',

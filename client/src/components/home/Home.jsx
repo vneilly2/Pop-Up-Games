@@ -39,7 +39,6 @@ class Home extends React.Component {
    * points plotted around it
    */
   render() {
-    console.log(this.state)
     if(this.state.position === undefined) {
       return (
       <div>
@@ -58,7 +57,11 @@ class Home extends React.Component {
           */}
           <GMap position={this.state.position} venues={this.state.nearbyVenues} />
         </div>
-        <div><div className="venuecolumn"><VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues}/></div></div>
+          <div>
+            <div className="venuecolumn">
+              <VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues}/>
+            </div>
+          </div>
       </div>
       )
     }

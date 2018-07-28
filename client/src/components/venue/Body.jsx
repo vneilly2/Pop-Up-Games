@@ -2,6 +2,7 @@ import React from 'react';
 import VenueInfo from './VenueInfo.jsx';
 import FieldList from './FieldList.jsx';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom'
 
 
 class VenueBody extends React.Component {
@@ -26,7 +27,6 @@ class VenueBody extends React.Component {
     }) 
     .then((response) => {
       this.setState({venueObj:response.data})
-      console.log(response.data)
     })
     .catch((error) => {
       console.log(error);
@@ -42,6 +42,7 @@ class VenueBody extends React.Component {
 
         <div className="venue-name">
           {this.state.venueObj.venue.venueName}
+          <button onClick={() => this.props.history.push('createfield')}>Push Me</button>
         </div>
 
         <div className="venueinfo">
@@ -59,4 +60,4 @@ class VenueBody extends React.Component {
 
 }
 
-export default VenueBody;
+export default withRouter(VenueBody);

@@ -7,7 +7,7 @@ class FieldListEntry extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      fieldData:[{fieldId: 1}] //field id, field details, fieldtodaysevents
+      fieldData: props.data //field id, field details, fieldtodaysevents
     }
     this.changeTarget = props.changeTarget
   }
@@ -15,11 +15,11 @@ class FieldListEntry extends React.Component {
   render() {
     return (
       <div className="indivfield" onClick={() => {
-        this.changeTarget({ type: 'field', id: this.state.field.id })
+        this.changeTarget({ type: 'field', id: this.state.fieldData.id })
         this.props.history.push('/field')} } 
       >
-        <FieldBasicDetails className="field-basic-details"/>
-        <FieldDayCalendar className="field-todays-events" todaysEvents={this.state.fieldData}/>
+        <FieldBasicDetails data={this.state.fieldData} className="field-basic-details"/>
+        <FieldDayCalendar events={this.state.fieldData.todaysEvents} className="field-todays-events" todaysEvents={this.state.fieldData}/>
       </div>
     )
   }

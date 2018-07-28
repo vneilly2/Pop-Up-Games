@@ -5,7 +5,7 @@ var FieldList = (props) => (
     <div>
       {
         props.fields.map((field, index) => {
-         return ( <FieldListEntry key={index} changeTarget={props.changeTarget}/> )
+         return ( <FieldListEntry data={field} key={index} changeTarget={props.changeTarget}/> )
         })
       }
     </div>

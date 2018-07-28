@@ -8,7 +8,11 @@ import CreateFieldForm from './CreateFieldForm.jsx';
  */
 var CreateField = (props) => (
   <div className="main">
-    <CreateFieldForm />
+    <CreateFieldForm 
+      toggleAuth={props.toggleAuth} 
+      changeTarget={props.changeTarget} 
+      target={props.target}
+    />
   </div>
   )
 CreateFieldForm.protoTypes = {

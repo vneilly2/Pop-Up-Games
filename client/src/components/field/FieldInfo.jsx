@@ -1,9 +1,14 @@
 import React from 'react';
 
-var FieldInfo = (props) => (
+var FieldInfo = (props) => {
+  return(
   <div>
-      <h1>Field 1 Central Park </h1>
+      <h1>{props.data.fieldName}</h1>
+      <div>{props.data.notes}</div>
+
   </div>
   )
+}
 
 export default FieldInfo;
+
