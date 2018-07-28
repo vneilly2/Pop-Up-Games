@@ -79,7 +79,7 @@ describe('Utils', () => {
     });
 
     test('should respond an error with a default code', async () => {
-      let res = makeResObj(400, 'B');
+      let res = makeResObj(400, { error: 'B' });
       await util.postRes(promiseB('B'), res);
     });
 
