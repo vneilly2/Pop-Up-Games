@@ -42,7 +42,7 @@ exports.saveEvent = event =>
         query.whereBetween('startBlock', [event.startBlock, event.endBlock])
         .orWhereBetween('endBlock', [event.startBlock, event.endBlock]);
       })
-    }).fetchAll().then(found => console.log(JSON.parse(JSON.stringify(found))) || JSON.parse(JSON.stringify(found)).length === 0 ? new User({username: event.username}).fetch().then(found => {
+    }).fetchAll().then(found => JSON.parse(JSON.stringify(found)).length === 0 ? new User({username: event.username}).fetch().then(found => {
       event.ownerId = found.id;
       return Events.create(delete event.username && event).then(resolve);
       }) : reject()
