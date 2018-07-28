@@ -3,7 +3,7 @@ import FieldDayCalendarEntry from './FieldDayCalendarEntry.jsx';
 
 var FieldDayCalendar = (props) => (
   <div>
-    <div>Today's Events:</div>
+    <div className="bold">Today's Events:</div>
     {
       props.events.map((event, index) => {
         return ( <FieldDayCalendarEntry event={event} key={index}/> )

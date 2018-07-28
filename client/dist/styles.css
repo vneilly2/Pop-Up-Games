@@ -32,8 +32,15 @@ html,body{
 html{
   overflow-x:hidden
 }
-h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
-
+h1{font-size:36px}
+h2{font-size:30px}
+h3{font-size:24px}
+h4{font-size:20px}
+h5{font-size:18px}
+h6{font-size:16px}
+.bold{
+  font-weight: 900;
+}
 
 /*Button */
 .w3-button{
@@ -143,6 +150,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
 .venuelistentry {
   padding: 5px 5px;
   margin: 5px 5px;
+  border: 1px solid #2196F3;
 }
 
 .venuelistentry:hover {
@@ -290,7 +298,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   border: 3px solid #2196F3;
   min-height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 90px 45px 1fr; 
+  grid-template-rows: 100px 45px 1fr; 
   grid-template-areas: "venue venue venue"
                        "info info info " 
                        "fieldlist fieldlist fieldlist" 
@@ -302,7 +310,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   background: #3498DB;
   color: #fff;
   text-align:center;
-  padding:12px;
+
   border: 2px solid #2196F3;
   font-weight: bold;
   font-size: 2.0em;
@@ -362,7 +370,7 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   grid-template-columns: 1fr;
   grid-template-rows: 120px 1fr; 
   grid-template-areas: "fieldinfo"
-                       "fieldcalendar"
+                       "fieldevents"
 }
 
 .fieldinfo{
@@ -374,10 +382,43 @@ h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-
   border: 2px solid #2196F3;
 }
 
-.fieldcalendar{
-  grid-area:fieldcalendar;
+
+.field-event-entry{
+  grid-area:fieldevents;
   padding: 10px;
   background: #F7F7F7
+  height:auto;
+  min-height:100%;
+  border: 1px solid #2196F3;
+}
+
+/*Create Event */
+.create-event{
+  border: 3px solid #2196F3;
+  padding:10px;
+}
+
+.create-event-form{
+  background: #F7F7F7;
+  border: 1px solid #2196F3;
+  padding:5px;
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr; 
+  grid-column-gap: 15x;
+  grid-template-areas: "creteeventdetails timepicker"
+}
+
+.createeventdetailsgrid{
+  grid-area:creteeventdetails;
+  height:auto;
+  min-height:100%;
+  padding:10px
+}
+
+.timepickergrid{
+  grid-area:timepicker;
   height:auto;
   min-height:100%;
 }

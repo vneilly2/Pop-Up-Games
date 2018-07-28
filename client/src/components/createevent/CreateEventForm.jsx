@@ -143,37 +143,44 @@ class CreateEventForm extends React.Component {
   render() {
     return (
       <div className="search-container">
-        <h4>Create Event Form</h4>
-        <FormError check={this.state.formError} message={'*All fields are required'} />
-          <FormField className="input"
-            txtId={'Event Name'}
-            fieldName={'eventName'}
-            updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)}
-          />
-          <FormField className="input"
-            txtId={'Notes'}
-            fieldName={'notes'}
-            updateState={this.updateState.bind(this)}
-            handleEnter={this.handleEnter.bind(this)}
-          />
-          {/* Check Boxes Here */}
-          <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sportId'>
-            <option >Sport</option>
-            <option value="1">Basketball</option>
-            <option value="2">Soccer</option>
-            <option value="3">Football</option>
-            <option value="4">Quidditch</option>
-          </select>
-          <div>
-            Date
-            <DatePicker
-              selected = {this.state.date}
-              onChange = {this.handleDateChange}
-            />
-          </div>
-          <div>
-            <TimeRangePicker hourmarkers hourlines timeupdate={this.pickerUpdate.bind(this)} />
+        <h2 className="w3-center">Create Event</h2>
+        <h4 className="w3-center">Please fill out below details for your event.</h4>
+        <div className="create-event-form">
+          <div className="createeventdetailsgrid">
+            <FormError check={this.state.formError} message={'*All fields are required'} />
+              <div>Event Name:</div>
+              <FormField
+                txtId={'Event Name'}
+                fieldName={'eventName'}
+                updateState={this.updateState.bind(this)}
+                handleEnter={this.handleEnter.bind(this)}
+              />
+              <div>Notes:</div>
+              <FormField
+                txtId={'Notes'}
+                fieldName={'notes'}
+                updateState={this.updateState.bind(this)}
+                handleEnter={this.handleEnter.bind(this)}
+              />
+              {/* Check Boxes Here */}
+              <div>Sport</div>
+              <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sportId'>
+                <option value="1">Basketball</option>
+                <option value="2">Soccer</option>
+                <option value="3">Football</option>
+                <option value="4">Quidditch</option>
+              </select>
+              <div>
+                Date:
+                <DatePicker
+                  selected = {this.state.date}
+                  onChange = {this.handleDateChange}
+                />
+              </div>
+            </div>
+            <div className="timepickergrid">
+              <TimeRangePicker hourmarkers hourlines timeupdate={this.pickerUpdate.bind(this)} />
+            </div>
           </div>
 
         <div className='search-button'>

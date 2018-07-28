@@ -14,7 +14,7 @@ class FieldListEntry extends React.Component {
 
   render() {
     return (
-      <div className="indivfield" onClick={() => {
+      <div className="indivfield hover-lightblue" onClick={() => {
         this.changeTarget({ type: 'field', id: this.state.fieldData.id })
         this.props.history.push('/field')} } 
       >

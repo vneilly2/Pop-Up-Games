@@ -2,22 +2,22 @@ import React from 'react';
 import { sportNumConv, blockToTime } from '../../../utils';
 var EventEntry = (props) => {
   console.log(props.data);
-  return(<div>
+  return(<div className="field-event-entry hover-lightblue">
     <div>
       <div>
-        {props.data.eventName}
+        Event Name:{props.data.eventName}
       </div>
       <div>
-        {props.data.notes}
+        Sport: {sportNumConv(props.data.sportId)} 
       </div>
       <div>
-        {sportNumConv(props.data.sportId)} 
+       Date: {props.data.date} 
       </div>
       <div>
-        {'from ' + blockToTime(props.data.startBlock) + ' to ' + blockToTime(props.data.endBlock) }
+       Time: {blockToTime(props.data.startBlock) + ' to ' + blockToTime(props.data.endBlock) }
       </div>
       <div>
-        {props.data.date} 
+        Notes: {props.data.notes}
       </div>
     </div>
   </div>)

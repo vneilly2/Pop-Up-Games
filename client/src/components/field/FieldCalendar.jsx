@@ -19,9 +19,11 @@ class FieldCalendar extends React.Component {
     console.log(this.state.data.events)
     return (
       <div>
-        <button onClick={() => this.props.history.push('/createevent')} >Create Event</button>
-        {/* <div>
-          <Calendar
+        <div className="w3-center">
+          <button onClick={() => this.props.history.push('/createevent')} >Create Event</button>
+        </div>
+        {/* <div >
+          <Calendar className="fieldcalendar"
             onChange={this.onChange}
             value={this.state.date}
           />

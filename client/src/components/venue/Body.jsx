@@ -42,7 +42,9 @@ class VenueBody extends React.Component {
 
         <div className="venue-name">
           {this.state.venueObj.venue.venueName}
-          <button onClick={() => this.props.history.push('createfield')}>Push Me</button>
+          <div>
+            <button onClick={() => this.props.history.push('createfield')}>Create New Field</button>
+          </div>
         </div>
 
         <div className="venueinfo">

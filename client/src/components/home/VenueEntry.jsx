@@ -15,12 +15,12 @@ class VenueEntry extends React.Component {
   render() { 
     return (
     <li>
-      <div className="venuelistentry toneone" onClick={() => {
+      <div className="venuelistentry toneone " onClick={() => {
           this.changeTarget({ type: 'venue', id: this.state.venue.id })
           this.props.history.push('venue')} 
       }>
-        <span>Name:</span><span>{this.state.venue.venueName}</span><br/><br/>
-        <span>Address:</span><span>{this.state.venue.address}</span><br/><br/>
+        <span className="bold">Name:</span><span>{this.state.venue.venueName}</span><br/><br/>
+        <span className="bold">Address:</span><span>{this.state.venue.address}</span><br/><br/>
       </div>
     </li>
    )

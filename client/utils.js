@@ -33,5 +33,9 @@ exports.sportNumConv = (num) => {
 exports.blockToTime = (blockNum) => {
   let minutes = blockNum%2 * 30;
   let hour = Math.floor(blockNum/2)
-  return `${hour}:${minutes}`
+  if ((`${hour}:${minutes}`).length === 3) {
+    return `${hour}:${minutes}`+ 0
+  } else {
+    return `${hour}:${minutes}`
+  }
 }
