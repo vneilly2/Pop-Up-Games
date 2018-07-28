@@ -140,7 +140,7 @@ handleEnter(event) {
           <h1>Log In</h1>
           <form>
           <FormError check={this.state.blankSubmit} message={'*Your username and password cannot be blank'} />
-          <FormError check={this.state.failedLogin} message={'*There was a problem with your login'} />
+          <FormError check={this.state.failedLogin} message={'*Username or password incorrect'} />
           <FormField className="input"
             txtId={'Username'}
             fieldName={'username'}

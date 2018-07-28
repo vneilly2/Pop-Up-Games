@@ -6,15 +6,15 @@
  */
 exports.errorHandler = (errors) => {
   if (errors.response) {
-    console.error('Data:',errors.response.data);
-    console.error('Status:',errors.response.status);
-    console.error('Header:',errors.response.headers);
+    console.error('response.data:',errors.response.data);
+    console.error('response.status:',errors.response.status);
+    console.error('response.headers:',errors.response.headers);
   } else if (error.request) {
-    console.error('Request:',errors.request);
+    console.error('errors.request:',errors.request);
   } else {
-    console.error('Error', errors.message);
+    console.error('errors.message', errors.message);
   }
-  console.error('Config:',errors.config);
+  console.error('errors.config:',errors.config);
 };
 
 

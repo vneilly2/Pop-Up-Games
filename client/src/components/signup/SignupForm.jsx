@@ -4,6 +4,7 @@ import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
+import utils from '../../../utils.js';
 
 
 /**
@@ -114,9 +115,10 @@ handleEnter(event) {
  *
  * @example
  * if(success) new account created
- * if(error.response.status == 400) {
- * _ if(error.response.message === 'improper address') address invalid
- * _ else username already taken
+ * if(error.response.status === 400) {
+ * _ if(error.serverMessage === 'improper address') address invalid
+ * _ else if (error.serverMessage === 'username in use') username taken
+ * _ else other unspecified error
  * }
  *
  * @return { undefined } undefined
@@ -128,13 +130,19 @@ handleEnter(event) {
     })
     .catch((error) => {
       if(error.response.status === 400) {
-        if(error.response.message === 'improper address') {
+        if(error.response.data === "improper address") {
+          this.setState({invalidAddress:true});
+        } else if(error.response.data.serverMessage === 'username in use') {
+          this.setState({userExists:true});
+        } else if(error.response.data.serverMessage === 'improper address') {
           this.setState({invalidAddress:true});
         } else {
-          this.setState({userExists:true});
+          console.log('Unhandled 400 error')
+          console.log(error.response);
         }
       } else {
-        this.errorHandler(error);
+        console.error('Unhandled Error')
+        utils.errorHandler(error);
       }
     });
   }

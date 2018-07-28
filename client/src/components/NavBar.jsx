@@ -29,15 +29,6 @@ var NavBar = (props) => {
             <Link to="/createvenue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Create</Link>
             <Link to="/logout" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Logout</Link>
           </div>
-          {/* <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
-            <Link to="/field" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Field</Link>
-            <Link to="/event" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Event</Link>
-            <Link to="/venue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venue</Link>
-            <Link to="/createvenue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Venue</Link>
-            <Link to="/createevent" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Event</Link>
-            <Link to="/createfield" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Create Field</Link>
-          </div> */}
-          {/* <Route path="/home" component={Home} /> */}
           <Route path="/home"
               render={props => <Home
                 toggleAuth={toggleAuth} 

@@ -31,12 +31,12 @@ class App extends React.Component {
     this.setState({ loggedIn: state });
   }
 
-  toggleSignupStep(){
-    this.setState({signupStep: !this.state.signupStep})
+  toggleSignupStep(state){
+    this.setState({signupStep: state})
   }
 
-  toggleLoginStep(){
-    this.setState({loginStep: !this.state.loginStep})
+  toggleLoginStep(state){
+    this.setState({loginStep: state})
   }
 
   changeTarget(target){
@@ -71,7 +71,8 @@ class App extends React.Component {
             {/* Top Bar */}
             <div className="top">
               <div className="w3-bar w3-blue w3-left-align w3-large">
-                <Link to="/login" style={this.state.loggedIn ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white" onClick={this.toggleLoginStep.bind(this)}>Login</Link>
+                <Link to="/login" style={ ( this.state.loggedIn || this.state.loginStep ) ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white" onClick={() => { this.toggleSignupStep(false); this.toggleLoginStep(true) }}>Login</Link>
+                <Link to="/signup" style={ ( this.state.loggedIn || this.state.signupStep ) ? {display:'none'} : {} }  className="w3-button w3-padding-large w3-white" onClick={() => { this.toggleSignupStep(true); this.toggleLoginStep(false) }}>Sign Up</Link>
               </div>
             </div>
 
@@ -79,7 +80,7 @@ class App extends React.Component {
             <header className="w3-container w3-blue w3-center w3-padding-32" id="homeheader" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
               <h1 className="w3-margin w3-jumbo">Pop-Up-Games</h1>
               <p className="w3-xlarge">Play Games! Have Fun!</p>
-              <Link to="/signup" style={this.state.loggedIn ? {display:'none'} : {} }  className="w3-button w3-white w3-padding-large w3-large w3-margin-top" onClick={this.toggleSignupStep.bind(this)}>Sign Up</Link>
+              <Link to="/signup" style={ this.state.loggedIn ? {display:'none'} : {} }  className="w3-button w3-white w3-padding-large w3-large w3-margin-top" onClick={this.toggleSignupStep.bind(this)}>Sign Up</Link>
             </header>
             <Route path="/login"
               render={props => <Login
