@@ -6,6 +6,7 @@ const user = require('./components/users');
 const event = require('./components/events');
 const field = require('./components/fields');
 const venue = require('./components/venues');
+const sport = require('./components/sports');
 
 const app = express();
 app.use(
@@ -147,6 +148,15 @@ app.get('/api/venues', util.checkLoggedIn, venue.getVenuesNearMe);
 /* === Gets user info of the currently logged in user, minus the password === */
 app.get('/api/me', util.checkLoggedIn, user.getMe);
 
+//none
+app.get('/api/sports', util.checkLoggedIn, sport.getAll);
+
+//{sportName}
+app.post('/api/sports', util.checkLoggedIn, sport.create);
+
+// {eventId, body}
+app.post('/api/message', util.checkLoggedIn, event.addMessage);
+
 //2
 app.delete('/api/event/guest');
 
@@ -165,10 +175,6 @@ app.get('/api/user');
 app.put('/api/user');
 
 app.delete('/api/user');
-
-app.get('/api/sport');
-
-app.post('/api/sport');
 
 app.put('/api/sport');
 

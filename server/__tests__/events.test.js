@@ -66,4 +66,15 @@ describe('Event Related Middleware', () => {
     let req = { session: { user: 'user' } };
     await event.getMyEvents(req, res);
   });
+
+  test('should add a message to an event', async () => {
+    db.saveMessage = message =>
+      new Promise(resolve => {
+        expect(message).toEqual({ eventId: 'id', username: 'user', body: 'message text' });
+        resolve();
+      });
+    let res = makeResObj(201);
+    let req = { body: { eventId: 'id', body: 'message text' }, session: { user: 'user' } };
+    await event.addMessage(req, res);
+  });
 });

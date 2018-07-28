@@ -18,7 +18,10 @@ const get = (req, res) =>
 
 const getMyEvents = (req, res) => util.getRes(db.getUserEvents({ username: req.session.user }), res);
 
+const addMessage = (req, res) => util.postRes(db.saveMessage((req.body.username = req.session.user) && req.body), res);
+
 exports.addMeToEvent = addMeToEvent;
 exports.create = create;
 exports.get = get;
 exports.getMyEvents = getMyEvents;
+exports.addMessage = addMessage;
