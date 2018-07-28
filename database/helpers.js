@@ -156,6 +156,7 @@ function toRad(Value) {
     return Value * Math.PI / 180;
 }
 
+
 // returns all of the user info of the currently logged in user (minus the password)
 exports.getMe = username => new Promise(resolve =>
   new User({username: username}).fetch()
