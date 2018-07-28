@@ -40,7 +40,7 @@ const login = (req, res) =>
             res.status(422).send('password doesnt match')
     )
     //if there was an issue, assume that the username was not found in the database
-    .catch(err => res.status(404).send('username not found'));
+    .catch(err => res.status(404).send({ serverMessage: 'username not found', error: err }));
 
 const logout = (req, res) => req.session.destroy(() => res.sendStatus(200));
 

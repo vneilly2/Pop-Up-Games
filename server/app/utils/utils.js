@@ -25,17 +25,17 @@ const buildRes = (types, ...promises) =>
       .catch(reject)
   );
 
-//a basic get resovle
+//a basic get resolve
 const getRes = (promise, res, errMessage, successStatus = 200, errStatus = 400) =>
   promise
     .then(data => res.status(successStatus).send(data))
-    .catch(err => res.status(errStatus).send(errMessage || err));
+    .catch(err => res.status(errStatus).send({ serverMessage: errMessage, error: err }));
 
-//a basic post resovle
+//a basic post resolve
 const postRes = (promise, res, errMessage, successStatus = 201, errStatus = 400) =>
   promise
     .then(data => data && res.sendStatus(successStatus))
-    .catch(err => res.status(errStatus).send(errMessage || err));
+    .catch(err => res.status(errStatus).send({ serverMessage: errMessage, error: err }));
 
 //serves static files upon finding no matching endpoints
 const redirectToHome = (req, res) => res.redirect('/');

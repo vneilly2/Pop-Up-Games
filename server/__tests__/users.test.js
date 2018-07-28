@@ -33,8 +33,8 @@ describe('User Related Middleware', () => {
     };
     db.saveUser = data =>
       new Promise((resolve, reject) => {
-        if (data === 'not unique') {
-          reject(data);
+        if (data.username === 'not unique') {
+          reject(data.username);
         } else {
           expect(data).toEqual(expectedData);
           resolve(data);
@@ -49,7 +49,7 @@ describe('User Related Middleware', () => {
 
     test('should respond an error if the username is taken', async () => {
       let errorMessage = 'username in use';
-      let res = makeResObj(400, errorMessage);
+      let res = makeResObj(400, { serverMessage: errorMessage, error: 'not unique' });
       let usernameTaken = { body: { username: 'not unique', password: 'monkey', address: 'good address' } };
       await user.signup(usernameTaken, res);
     });
@@ -83,7 +83,7 @@ describe('User Related Middleware', () => {
     test("should respond an error if the username doesn't exist", async () => {
       let errorMessage = 'username not found';
       let req = { body: { username: "doesn't exist", password: 'monkey' } };
-      let res = makeResObj(404, errorMessage);
+      let res = makeResObj(404, { serverMessage: errorMessage, error: "doesn't exist" });
       await user.login(req, res);
     });
 

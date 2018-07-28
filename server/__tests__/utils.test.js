@@ -54,12 +54,12 @@ describe('Utils', () => {
     });
 
     test('should respond an error with a default code', async () => {
-      let res = makeResObj(400, 'B');
+      let res = makeResObj(400, { error: 'B' });
       await util.getRes(promiseB('B'), res);
     });
 
     test('should respond an error with a custom code and message', async () => {
-      let res = makeResObj(404, 'err');
+      let res = makeResObj(404, { serverMessage: 'err', error: 'B' });
       await util.getRes(promiseB('B'), res, 'err', 204, 404);
     });
   });
@@ -84,7 +84,7 @@ describe('Utils', () => {
     });
 
     test('should respond an arror with a custom code', async () => {
-      let res = makeResObj(404, 'err');
+      let res = makeResObj(404, { serverMessage: 'err', error: 'B' });
       await util.postRes(promiseB('B'), res, 'err', 204, 404);
     });
 

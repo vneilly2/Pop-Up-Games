@@ -51,7 +51,7 @@ app.post('/api/signup', user.signup);
  *  password: String
  * }
  * ===
- * @returns Session object
+ * @returns Session object containing the active user's username and their role
  * @event Username doesn't exist: 404 'username not found'
  * @event Password doesn't match: 422 'password doesnt match'
  * ===
@@ -86,75 +86,145 @@ app.post('/api/event/guest', util.checkLoggedIn, event.addMeToEvent);
  *  sportId: Number,
  *  fieldId: Number,
  *  date: Date,
- *  minPlayer: Number, -(Optional, default 0)
- *  maxPlayer: Number -(Optional, default null)
+ *  minPlayer: Number, -(Optional, default: 0)
+ *  maxPlayer: Number -(Optional, default: null)
  * }
  * ===
  */
 app.post('/api/event', util.checkLoggedIn, event.create);
 
 /**
- *  ===
- *  Takes in queryies {id} (event id) and gets all of the info of that event,
+ * ===
+ * @description Takes an event ID and gets all of the info of that event,
  *  its messages, and the currently signed up users for that event
- *  ===
+ * @example {
+ *  id: Number -(event id)
+ * }
+ * ===
+ * @returns {
  *  data: {
- *    event: {}
- *    messages: [{}]
- *    guests: [{}]
+ *   event: {},
+ *   messages: [{}],
+ *   guests: [{}]
  *  }
+ * }
+ * ===
  */
 app.get('/api/event', util.checkLoggedIn, event.get);
 
-/* === Gets all of the events the user has made and signed up for === */
+/**
+ * ===
+ * @description Gets all of the events the user has made and signed up for
+ * ===
+ */
 app.get('/api/events', util.checkLoggedIn, event.getMyEvents);
 
 /**
- *  ===
- *  Takes in queryies {id} (field id) and gets all of the info of that field,
+ * ===
+ * @description Takes a field ID and gets all of the info of that field,
  *  its sports, and the events on that field
- *  ===
+ * @example {
+ *  id: Number -(field id)
+ * }
+ * ===
+ * @returns {
  *  data: {
- *    field: {}
- *    sports: []
- *    events: [{}]
+ *   field: {},
+ *   sports: [],
+ *   events: [{}]
  *  }
+ * }
+ * ===
  */
 app.get('/api/field', util.checkLoggedIn, field.get);
 
-/* === Takes in body {fieldName, notes, venueId, sportIds: []} === */
+/**
+ * ===
+ * @description Posts a field to a venue
+ * @example {
+ *  fieldName: String,
+ *  notes: String,
+ *  venueId: Number,
+ *  sportIds: [Number]
+ * }
+ * ===
+ */
 app.post('/api/field', util.checkLoggedIn, field.create);
 
 /**
- *  ===
- *  Takes in queries {id} (venue id) and gets all of the info of that venue,
+ * ===
+ * @description Takes a venue ID and gets all of the info of that venue,
  *  its fields, and the events on those fields for today
- *  ===
+ * @example {
+ *  id: Number -(venue id)
+ * }
+ * ===
+ * @returns {
  *  data: {
- *    venue: {}
- *    fields: [{
- *      todaysEvents: [{}]
- *    }]
+ *   venue: {},
+ *   fields: [{
+ *    todaysEvents: [{}],
+ *    *other field data*
+ *   }]
  *  }
+ * }
+ * ===
  */
 app.get('/api/venue', util.checkLoggedIn, venue.get);
 
-/* === Takes in body {venueName, address} and adds geolocation using the address === */
+/**
+ * ===
+ * @description Posts a venue after adding its geolocation to the object
+ * @example {
+ *  venueName: String,
+ *  address: String -(street address)
+ * }
+ * ===
+ */
 app.post('/api/venue', util.checkLoggedIn, venue.create);
 
-/* === Gets the info of venues within 20 miles of the user currently logged in === */
+/**
+ * ===
+ * @description Gets all venues within 20 miles of the user
+ * ===
+ */
 app.get('/api/venues', util.checkLoggedIn, venue.getVenuesNearMe);
 
-/* === Gets user info of the currently logged in user, minus the password === */
+/**
+ * ===
+ * @description Gets the user's info (minus the password)
+ * ===
+ */
 app.get('/api/me', util.checkLoggedIn, user.getMe);
 
-//none
+/**
+ * ===
+ * @description Gets an array of all of the sports
+ * ===
+ */
 app.get('/api/sports', util.checkLoggedIn, sport.getAll);
 
-//{sportName}
+/**
+ * ===
+ * @description Posts a sport, unique sport name
+ * @example {
+ *  sportName: String
+ * }
+ * ===
+ * @event Sport name already exists: 400
+ * ===
+ */
 app.post('/api/sports', util.checkLoggedIn, sport.create);
 
-// {eventId, body}
+/**
+ * ===
+ * @description Posts a message to an event in the user's name
+ * @example {
+ *  eventId: Number,
+ *  body: String -(the message text)
+ * }
+ * ===
+ */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
 //2
