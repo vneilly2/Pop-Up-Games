@@ -1,11 +1,18 @@
 import React from 'react';
+import { sportNumConv, blockToTime } from '../../../utils.js'
 
-var EventDetails = (props) => (
+var EventDetails = (props) => {
+    return(
     <div>
-      <div className="event-entry-title">Soccer at Central Park - Field 2</div>
-      <div className="event-entry-date-time">7/31/18 3:00PM to 5:00PM</div>
+      <div className="event-entry-title">{`Event Name: ${sportNumConv(props.details.sportId)}`}</div>
+      <div className="event-entry-date-time">
+        {
+        `Date: ${props.details.date} ${blockToTime(props.details.startBlock)} to ${blockToTime(props.details.endBlock)}`
+        }
+      </div>
     </div>
     )
+  }
 
 
 

@@ -42,7 +42,11 @@ var NavBar = (props) => {
               changeTarget={changeTarget} 
               target={target} {...props} />} 
           />
-          <Route path="/event" component={EventView} />
+          <Route path="/event" 
+              render={props => <EventView
+              toggleAuth={toggleAuth} 
+              changeTarget={changeTarget} 
+              target={target} {...props} />} />
           <Route path="/venue"
               render={props => <Venue
               toggleAuth={toggleAuth} 

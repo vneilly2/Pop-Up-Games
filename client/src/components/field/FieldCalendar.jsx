@@ -9,6 +9,7 @@ class FieldCalendar extends React.Component {
       date:'',
       data: props.data,
     }
+    this.changeTarget = props.changeTarget;
   }
 
   onChange(date){
@@ -16,7 +17,6 @@ class FieldCalendar extends React.Component {
   }
 
   render(){
-    console.log(this.state.data.events)
     return (
       <div>
         <div className="w3-center">
@@ -31,7 +31,7 @@ class FieldCalendar extends React.Component {
         <div>
           {
             this.state.data.events.map((event, index) => {
-              return <EventEntry data={event} key={index} />
+              return <EventEntry data={event} key={index} changeTarget={this.changeTarget} />
             })
           }
         </div>

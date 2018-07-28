@@ -15,6 +15,7 @@ class Field extends React.Component {
       fieldObj: undefined,
       fieldId: props.target.id
     };
+    this.changeTarget = props.changeTarget;
   }
 
   componentWillMount() {
@@ -43,7 +44,7 @@ class Field extends React.Component {
           <FieldInfo data={this.state.fieldObj.field} />
         </div>
         <div className="fieldcalendar">
-          <FieldCalendar data={this.state.fieldObj}/>
+          <FieldCalendar data={this.state.fieldObj} changeTarget={this.changeTarget} />
         </div>
       </div>
       )

@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 var FormField = (props) => {
   return (<div>
       <input
+        className={props.className}
         placeholder={props.txtId}
         name={props.fieldName}
         type={props.isPassword ? 'password' : 'text'}
@@ -29,8 +30,10 @@ FormField.propTypes = {
   isPassword: PropTypes.bool,
   updateState: PropTypes.func.isRequired,
   handleEnter: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 FormField.defaultProps = {
   isPassword: false,
+  className: '',
 }
 export default FormField;
