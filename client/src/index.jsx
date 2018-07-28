@@ -28,7 +28,7 @@ class App extends React.Component {
    * @return { null } nothing
    */
   toggleLogin(state) {
-    this.setState({ loggedIn: state });
+    this.setState({ loggedIn: state, loginStep: false, signupStep: false });
   }
 
   toggleSignupStep(state){
@@ -41,7 +41,6 @@ class App extends React.Component {
 
   changeTarget(target){
     this.setState({target: target})
-
   }
 
 

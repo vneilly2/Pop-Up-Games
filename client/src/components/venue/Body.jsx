@@ -29,7 +29,11 @@ class VenueBody extends React.Component {
       this.setState({venueObj:response.data})
     })
     .catch((error) => {
-      console.log(error);
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        console.log(error);
+      }
     })
   }
 

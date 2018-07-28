@@ -8,7 +8,7 @@ import CreateVenueForm from './CreateVenueForm.jsx';
  */
 var CreateVenue = (props) => (
   <div className="main">
-    <CreateVenueForm />
+    <CreateVenueForm toggleAuth={props.toggleAuth} />
   </div>
   )
 

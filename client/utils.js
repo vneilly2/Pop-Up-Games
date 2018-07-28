@@ -9,7 +9,7 @@ exports.errorHandler = (errors) => {
     console.error('response.data:',errors.response.data);
     console.error('response.status:',errors.response.status);
     console.error('response.headers:',errors.response.headers);
-  } else if (error.request) {
+  } else if (errors.request) {
     console.error('errors.request:',errors.request);
   } else {
     console.error('errors.message', errors.message);

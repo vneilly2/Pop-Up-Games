@@ -102,12 +102,15 @@ handleEnter(event) {
  */
   createField(params) {
     axios.post( '/api/field', params, { headers: {}})
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
     .then((response) => {
-      console.log('Successful post fired', response);
-      this.props.history.push('/venue');
+      this.props.history.push('venue');
+    })
+    .catch((error) => {
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        utils.errorHandler(error);
+      }
     });
   }
 

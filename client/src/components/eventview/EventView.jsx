@@ -27,7 +27,11 @@ class EventView extends React.Component {
       this.setState({event: response.data })
     })
     .catch((error)=> {
-      utils.errorHander(error);
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        utils.errorHander(error);
+      }
     })
   }
 
@@ -39,7 +43,11 @@ class EventView extends React.Component {
       this.getEventData();
     })
     .catch((error) => {
-      utils.errorHandler(error);
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        utils.errorHandler(error);
+      }
     })
   }
 /**

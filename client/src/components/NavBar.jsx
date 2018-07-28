@@ -63,7 +63,10 @@ var NavBar = (props) => {
               toggleAuth={toggleAuth} 
               changeTarget={changeTarget} 
               target={target} {...props} />}  />
-          <Route path="/createvenue" component={CreateVenue} />
+          <Route path="/createvenue" 
+              render={props => <CreateVenue
+              toggleAuth={toggleAuth} 
+              target={target} {...props} />}  />
         </div>
      );
   }

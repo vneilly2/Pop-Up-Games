@@ -21,7 +21,7 @@ class CreateEventForm extends React.Component {
       timeConflict:false,
       eventName:'',
       notes:'',
-      sportId:'',
+      sportId:undefined,
       fieldId:props.target.id,
       formError: false,
       //minPlayer
@@ -84,8 +84,8 @@ class CreateEventForm extends React.Component {
       this.state.date  === undefined ||
       this.state.startBlock  === undefined ||
       this.state.endBlock  === undefined ||
-      this.state.eventName  === undefined ||
-      this.state.notes  === undefined
+      this.state.eventName  === '' ||
+      this.state.notes  === ''
     ) {
 
       this.setState({formError : true});
@@ -122,11 +122,15 @@ class CreateEventForm extends React.Component {
       headers: {
       }
     })
-    .catch((error) => {
-      utils.errorHandler(error);
-    })
     .then((response) => {
       this.props.history.push('/field')
+    })
+    .catch((error) => {
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        utils.errorHandler(error);
+      }
     })
   }
 
@@ -136,7 +140,6 @@ class CreateEventForm extends React.Component {
 
   pickerUpdate(start_time, end_time) {
     // start and end time in 24hour time
-    console.log(`start time: ${start_time}, end time: ${end_time}`)
     this.setState({startBlock: moment(start_time, "HH:mm"), endBlock: moment(end_time, "HH:mm")})
   }
 
@@ -165,6 +168,7 @@ class CreateEventForm extends React.Component {
               {/* Check Boxes Here */}
               <div>Sport</div>
               <select className="sport-search-form" onChange={(event) => this.updateState(event)} value={this.state.value} name='sportId'>
+              <option value={undefined}>Select Sport</option>
                 <option value="1">Basketball</option>
                 <option value="2">Soccer</option>
                 <option value="3">Football</option>

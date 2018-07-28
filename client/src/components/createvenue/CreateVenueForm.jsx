@@ -18,6 +18,7 @@ class CreateVenueForm extends React.Component {
       blankFields:false,
       badAddress: false
     };
+    this.toggleAuth = props.toggleAuth;
   }
 
 /**
@@ -92,10 +93,18 @@ class CreateVenueForm extends React.Component {
   createVenue(params) {
     axios.post( '/api/venue', params, { headers: {}})
     .then((response) => {
-      console.log('Successful post fired', response);
+      this.props.history.push('home');
     })
     .catch((error) => {
-      utils.errorHandler(error);
+      if(error.response && error.response.status === 400) {
+        if(error.response.data.serverMessage === 'improper address') {
+          this.setState({badAddress: true});
+        }
+      } else if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      }else {
+        utils.errorHandler(error);
+      }
     });
   }
 
