@@ -22,11 +22,11 @@ class CreateEventForm extends React.Component {
       eventName:'',
       notes:'',
       sportId:undefined,
-      fieldId:props.target.event,
+      fieldId:props.target.field,
       formError: false,
       //minPlayer
       //maxPlayer
-
+      eventTooEarly: false,
     }
     this.toggleAuth=props.toggleAuth;
     this.handleDateChange = this.handleDateChange.bind(this)
@@ -87,8 +87,9 @@ class CreateEventForm extends React.Component {
       this.state.eventName  === '' ||
       this.state.notes  === ''
     ) {
-
       this.setState({formError : true});
+    } else if (this.state.date.diff(moment().format('MM/DD/YYYY')) < 0 )  {
+      this.setState({ eventTooEarly: true });
     } else {
 
       let params = {
@@ -174,6 +175,7 @@ class CreateEventForm extends React.Component {
                 <option value="3">Football</option>
                 <option value="4">Quidditch</option>
               </select>
+              <FormError check={this.state.eventTooEarly} message={'*Date must be in the future'} />
               <div>
                 Date:
                 <DatePicker

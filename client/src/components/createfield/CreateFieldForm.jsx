@@ -18,7 +18,7 @@ class CreateFieldForm extends React.Component {
     this.state = {
       fieldName: '',
       notes:'',
-      venueId: props.target.field,
+      venueId: props.target.venue,
       blankFields:false
     };
     this.toggleAuth = props.toggleAuth;
