@@ -39,11 +39,9 @@ class App extends React.Component {
     this.setState({loginStep: state})
   }
 
-  changeTarget(target){
-    let targetToUpdate = target.type;
+  changeTarget(target) {
     let oldTarget = this.state.target
-    oldTarget[targetToUpdate] = target.id;
-    console.log(oldTarget);
+    oldTarget[target.type] = target.id;
     this.setState({target: oldTarget})
   }
 

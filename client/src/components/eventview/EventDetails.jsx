@@ -2,7 +2,6 @@ import React from 'react';
 import { sportNumConv, blockToTime } from '../../../utils.js'
 
 var EventDetails = (props) => {
-  console.log(props.details)
     return(
     <div>
       <div className="event-entry-title">{props.details.eventName}</div>

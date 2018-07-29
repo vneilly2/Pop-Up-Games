@@ -146,8 +146,8 @@ class CreateEventForm extends React.Component {
   render() {
     return (
       <div className="search-container">
-        <h2 className="center">Create Event</h2>
-        <h4 className="center">Please fill out below details for your event.</h4>
+        <h2 className="w3-center">Create Event</h2>
+        <h4 className="w3-center">Please fill out below details for your event.</h4>
         <div className="create-event-form">
           <div className="createeventdetailsgrid">
             <FormError check={this.state.formError} message={'*All fields are required'} />
