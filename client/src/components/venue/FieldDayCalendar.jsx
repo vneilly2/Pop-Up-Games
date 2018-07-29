@@ -1,5 +1,6 @@
 import React from 'react';
 import FieldDayCalendarEntry from './FieldDayCalendarEntry.jsx';
+import PropTypes from 'prop-types';
 
 var FieldDayCalendar = (props) => (
   <div>
@@ -11,5 +12,9 @@ var FieldDayCalendar = (props) => (
     }
   </div>
   )
+
+  FieldDayCalendar.propTypes = {
+    events: PropTypes.array.isRequired,
+  }
 
 export default FieldDayCalendar;

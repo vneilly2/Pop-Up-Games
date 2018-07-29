@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
-
+import PropTypes from 'prop-types';
 
 class VenueEntry extends React.Component {
   constructor(props){
@@ -25,6 +25,11 @@ class VenueEntry extends React.Component {
     </li>
    )
   }
+}
+
+VenueEntry.propTypes = {
+  venue: PropTypes.object.isRequired,
+  changeTarget: PropTypes.func.isRequired,
 }
 
 export default withRouter(VenueEntry);

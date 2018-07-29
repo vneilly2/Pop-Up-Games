@@ -1,6 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
+/**
+ * @description component to render an individual message
+ */
 var Message = (props) => {
   return (
   <div className="message">
@@ -15,6 +19,10 @@ var Message = (props) => {
     </div>
   </div>
   )
+}
+
+Message.propTypes = {
+  message: PropTypes.object.isRequired,
 }
 
 export default Message;

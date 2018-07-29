@@ -17,6 +17,9 @@ import {
  * @description Renders all the  React Router Navigation Links
  */
 var NavBar = (props) => {
+
+  // todo: variable used to pass values to routes, not sure why it was nesseary.  Couldnt seem to access props from inside route render
+  // todo:  refactor so that these variables aren't used and the routes access them directly through props
   let userInfo = props.userInfo;
   let toggleAuth = props.toggleAuth;
   let changeTarget = props.changeTarget;
@@ -25,6 +28,7 @@ var NavBar = (props) => {
         <div className="top">
           <div className="bar blue card left-align large">
             <Link to="/home" className="bar-item button hide-small padding-large hover-white left-align ">Home</Link>
+            {/* // todo: impliment searching for venues or events */}
             {/* <Link to="/search" className="bar-item button hide-small padding-large hover-white left-align ">Search</Link> */}
             <Link to="/createvenue" className="bar-item button hide-small padding-large hover-white left-align ">Create</Link>
             <Link to="/logout" className="bar-item button hide-small padding-large hover-white left-align ">Logout</Link>
@@ -35,6 +39,7 @@ var NavBar = (props) => {
                 userInfo={userInfo} 
                 changeTarget={changeTarget} {...props} />} 
               />
+          {/* // todo: impliment searching for venues or events (related to above) */}    
           {/* <Route path="/search" component={Search} /> */} 
           <Route path="/field"
               render={props => <Field

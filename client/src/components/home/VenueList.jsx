@@ -1,6 +1,10 @@
 import React from 'react';
 import VenueEntry from './VenueEntry.jsx';
+import PropTypes from 'prop-types';
 
+/**
+ * @description A component that renders all the info for a venue
+ */
 var VenueEntryList = (props) => (
   <div className="tonetwo venuelist">
     <h3 className="center">Venues Near You</h3>
@@ -16,6 +20,8 @@ var VenueEntryList = (props) => (
   </ul>
   </div>
   )
-
+VenueEntryList.propTypes = {
+  venues: PropTypes.array.isRequired,
+}
 
 export default VenueEntryList;

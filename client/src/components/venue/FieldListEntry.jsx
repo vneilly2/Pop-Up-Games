@@ -1,8 +1,14 @@
 import React from 'react';
 import FieldBasicDetails from './FieldBasicDetails.jsx';
 import FieldDayCalendar from './FieldDayCalendar.jsx';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
 
+/**
+ * todo: I kinda think this could have been a stateless component
+ * @description Component that holds all the data about an individual field entry
+ * @param { Object } props.data object containing all the info about a single field
+ */
 class FieldListEntry extends React.Component {
   constructor(props){
     super(props)
@@ -24,6 +30,9 @@ class FieldListEntry extends React.Component {
     )
   }
   
+}
+FieldListEntry.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 export default withRouter(FieldListEntry);

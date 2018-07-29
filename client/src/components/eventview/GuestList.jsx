@@ -1,6 +1,10 @@
 import React from 'react';
 import Guest from './Guest.jsx';
+import PropTypes from 'prop-types';
 
+/**
+ * @description component to hold a list of guests to be rendered
+ */
 var GuestList = (props) => (
   <div>
   <ul>
@@ -15,5 +19,8 @@ var GuestList = (props) => (
   </div>
   )
 
+GuestList.propTypes = {
+  GuestList: PropTypes.array.isRequired,
+}
 
 export default GuestList;

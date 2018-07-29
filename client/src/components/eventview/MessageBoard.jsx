@@ -1,6 +1,10 @@
 import React from 'react';
 import Message from './Message.jsx';
+import PropTypes from 'prop-types';
 
+/**
+ * @description component that renders a list of message components
+ */
 var MessageBoard = (props) => {
   return(
   <div>
@@ -14,6 +18,10 @@ var MessageBoard = (props) => {
     </ul>
   </div>
   )
+}
+
+MessageBoard.propTypes = {
+  messages: PropTypes.array.isRequired,
 }
 
 export default MessageBoard;

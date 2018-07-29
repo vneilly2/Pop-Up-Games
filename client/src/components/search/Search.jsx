@@ -2,7 +2,8 @@ import React from 'react';
 import SearchForm from './SearchForm.jsx'
 
 /**
- * A component to hold the Search Form Component
+ * todo: this is somewhat laid out but not currently in use
+ * @description A component to hold the Search Form Component
  */
 
 const Search = (props) => (

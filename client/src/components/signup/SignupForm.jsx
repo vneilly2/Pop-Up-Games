@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
-import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
 import utils from '../../../utils.js';
 

@@ -1,7 +1,12 @@
 import React from 'react';
 import { sportNumConv, blockToTime, sportPicture } from '../../../utils';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+/**
+ * todo I think this component could be stateless but the withRouter as I understand it only works with stateful components
+ * @description Component that renders a single event entry
+ */
 class EventEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -44,6 +49,10 @@ class EventEntry extends React.Component {
       </div>
     </div>)
   }
+}
+
+EventEntry.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 export default withRouter(EventEntry);

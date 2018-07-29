@@ -4,6 +4,7 @@ import utils from '../../../utils';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * A form for creating new Venues and saving them to the database
@@ -134,6 +135,10 @@ class CreateVenueForm extends React.Component {
         <button type="button" onClick={() => this.processForm() } >Submit</button>
       </div>)
   }
+}
+
+CreateVenueForm.propTypes = {
+  toggleAuth: PropTypes.func.isRequired,
 }
 
 export default withRouter(CreateVenueForm);

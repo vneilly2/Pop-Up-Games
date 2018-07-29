@@ -6,7 +6,11 @@ import axios from 'axios';
 import utils from '../../../utils.js';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
+import PropTypes from 'prop-types';
 
+/**
+ * @description Component that holds the overall view for an event
+ */
 class EventView extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +21,17 @@ class EventView extends React.Component {
       message:'',
     };
   }
-
+  /**
+   * @description calls the function to get the event data from the database when ready
+   */
   componentWillMount() {
     this.getEventData();
   }
 
+  /**
+   * @description creates an axios get request to the event endpoint to get all the info about
+   * the endpoint for the eventId passed in by the props.target.event
+   */
   getEventData() {
     axios.get('/api/event', {params : {id: this.state.eventId} })
     .then((response) => {
@@ -36,7 +46,12 @@ class EventView extends React.Component {
     })
   }
 
+  /**
+   * @description makes an axios post with the eventId from the target.event
+   * which will tell the server to add the currently logged to the event guest list
+   */
   joinEvent() {
+    // todo this is another situation I dont understand why is wasn't letting us call this inside the object in the post
     let eventId = this.state.eventId
     axios.post('/api/event/guest', { id: eventId })
     .then((response) => {
@@ -85,7 +100,10 @@ class EventView extends React.Component {
       this.postMessage();
     }
   }
-
+  /**
+   * @description takes the message and eventId from state and tell
+   * the server to log add the message to the database with the eventId and currentUser Id
+   */
   postMessage() {
     let eventId = this.state.eventId
     let message = this.state.message
@@ -127,7 +145,9 @@ class EventView extends React.Component {
   }
 }
 
-
+EventView.propTypes = {
+  target: PropTypes.object.isRequired,
+}
 
 
 export default EventView;

@@ -1,6 +1,10 @@
 import React from 'react';
 import { sportNumConv, blockToTime } from '../../../utils.js'
+import PropTypes from 'prop-types';
 
+/**
+ * @description component that distributes the various pieces of data about the event to sub-components
+ */
 var EventDetails = (props) => {
     return(
     <div>
@@ -15,6 +19,8 @@ var EventDetails = (props) => {
     )
   }
 
-
+EventDetails.propTypes = {
+  details: PropTypes.object.isRequired,
+}
 
 export default EventDetails;

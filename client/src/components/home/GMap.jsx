@@ -13,7 +13,10 @@ export class GMap extends React.Component {
       position: this.props.position
     };
   }
-
+  /**
+   * @description This runs to make sure when you reload the map
+   * that all the markers will appear 
+   */
   componentWillReceiveProps(props) {
     this.setState({nearbyVenues: props.venues})
   }

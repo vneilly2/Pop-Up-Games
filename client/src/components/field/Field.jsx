@@ -2,12 +2,11 @@ import React from 'react';
 import FieldCalendar from './FieldCalendar.jsx';
 import FieldInfo from './FieldInfo.jsx';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 
 /**
- * A component to hold the Field Info and Field Calendar components
+ * @description A component to hold the Field Info and Field Calendar components
  */
-
 class Field extends React.Component {
   constructor(props) {
     super(props)
@@ -17,11 +16,15 @@ class Field extends React.Component {
     };
     this.changeTarget = props.changeTarget;
   }
-
+  /**
+   * @description get the field data when the componenet mounts
+   */
   componentWillMount() {
     this.getFieldData();
   }
-
+  /**
+   * @description gets the field data specified by the props.target value of field
+   */
   getFieldData() {
     axios.get('/api/field', {
       params: {
@@ -55,8 +58,10 @@ class Field extends React.Component {
     }
   }
 }
-export default Field;
 
-              // toggleAuth={toggleAuth} 
-              // changeTarget={changeTarget} 
-              // target={target}
+Field.propTypes = {
+  target: PropTypes.object.isRequired,
+  changeTarget: PropTypes.func.isRequired,
+}
+
+export default Field;

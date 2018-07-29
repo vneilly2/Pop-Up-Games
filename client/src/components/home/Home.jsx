@@ -22,7 +22,9 @@ class Home extends React.Component {
     };
     this.changeTarget = props.changeTarget;
   }
-
+  /**
+   * @description Executes a get request to the venues endpoint to get all the venues in range to display on the map
+   */
   componentWillMount() {
     axios.get('/api/venues')
     .then((response) => {

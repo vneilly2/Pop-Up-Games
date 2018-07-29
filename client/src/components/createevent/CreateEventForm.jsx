@@ -6,6 +6,7 @@ import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 /**
  * A form for creating new events and saving them to the database
  */
@@ -196,6 +197,11 @@ class CreateEventForm extends React.Component {
     )
   }
 
+}
+
+CreateEventForm.propTypes = {
+  target: PropTypes.object.isRequired,
+  toggleAuth: PropTypes.func.isRequired,
 }
 
 export default withRouter(CreateEventForm);

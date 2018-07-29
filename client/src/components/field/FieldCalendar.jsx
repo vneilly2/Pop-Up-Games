@@ -1,7 +1,11 @@
 import React from 'react';
 import EventEntry from './EventEntry.jsx';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+/**
+ * @description The calendar data for the field in question
+ */
 class FieldCalendar extends React.Component {
   constructor(props) {
     super(props)
@@ -33,6 +37,11 @@ class FieldCalendar extends React.Component {
     )
   }
 
+}
+
+FieldCalendar.propTypes = {
+  data: PropTypes.object.isRequired,
+  changeTarget: PropTypes.func.isRequired,
 }
 
 export default withRouter(FieldCalendar);
