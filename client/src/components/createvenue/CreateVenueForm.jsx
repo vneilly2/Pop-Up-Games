@@ -76,7 +76,7 @@ class CreateVenueForm extends React.Component {
   }
 
 /**
- * Takes a set of parameters as values in an object
+ * @description Takes a set of parameters as values in an object
  * and executes a post request to the /venue endpoint on the server
  * If successful it will redirect the user to the new Venues page
  * If it fails it will evaluate the error message to indicate
@@ -84,12 +84,13 @@ class CreateVenueForm extends React.Component {
  * so the reason for the failed request can be rendered to the DOM
  * inputs: params in the following structure:
  *
- * input:
+ * @example
  * {venueName:     string,
  *  address:  string,
  * };
  *
- * error.response.status indications:
+ * @event error.response.status === 401 && error.response.data === "user not logged in"
+ * will send them back to the homepage.
  *
  */
   createVenue(params) {

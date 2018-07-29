@@ -95,10 +95,10 @@ handleEnter(event) {
  * @param {{fieldName: string, notes: string, venueId: string}} params requested unique username
  * @example 
  * if(success) newField created
- * if(error.response.status == ???) {
- * _ something happens
+ * if(error.response.status == 401 && error.response.data === "user not logged in" {
+ *  send user back to homepage
  * }
- * else newUser created
+ * else newField created
  * @return { undefined } undefined 
  */
   createField(params) {

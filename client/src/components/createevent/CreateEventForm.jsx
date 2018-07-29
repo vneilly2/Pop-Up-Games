@@ -118,6 +118,8 @@ class CreateEventForm extends React.Component {
  * If successful it will redirect the user to the new Event page
  * If it fails it will evaluate the error message to indicate
  * which aspect of the post failed
+ * @event error.response.status === 401 && error.response.data === "user not logged in"
+ * will send them back to the homepage.
  */  
   createEvent(params) {
     axios.post( '/api/event', params, {

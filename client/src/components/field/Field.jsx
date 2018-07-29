@@ -24,6 +24,7 @@ class Field extends React.Component {
   }
   /**
    * @description gets the field data specified by the props.target value of field
+   * if the user is not logged in it will send them back to the homepage.
    */
   getFieldData() {
     axios.get('/api/field', {

@@ -31,6 +31,7 @@ class EventView extends React.Component {
   /**
    * @description creates an axios get request to the event endpoint to get all the info about
    * the endpoint for the eventId passed in by the props.target.event
+   * if the user is not logged in it will send them back to the homepage.
    */
   getEventData() {
     axios.get('/api/event', {params : {id: this.state.eventId} })
@@ -49,6 +50,7 @@ class EventView extends React.Component {
   /**
    * @description makes an axios post with the eventId from the target.event
    * which will tell the server to add the currently logged to the event guest list
+   * if the user is not logged in it will send them back to the homepage.
    */
   joinEvent() {
     // todo this is another situation I dont understand why is wasn't letting us call this inside the object in the post
@@ -103,6 +105,7 @@ class EventView extends React.Component {
   /**
    * @description takes the message and eventId from state and tell
    * the server to log add the message to the database with the eventId and currentUser Id
+   * if the user is not logged in it will send them back to the homepage.
    */
   postMessage() {
     let eventId = this.state.eventId
@@ -112,7 +115,11 @@ class EventView extends React.Component {
       this.getEventData();
     })
     .catch((error) => {
-      utils.errorHandler(error);
+      if (error.response.status == 401 && error.response.data === "user not logged in"){
+        this.toggleAuth(false);
+      } else {
+        utils.errorHandler(error);
+      }
     })
   }
 

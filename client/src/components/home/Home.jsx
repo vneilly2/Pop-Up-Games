@@ -24,6 +24,7 @@ class Home extends React.Component {
   }
   /**
    * @description Executes a get request to the venues endpoint to get all the venues in range to display on the map
+   * if the user is not logged in it will send them back to the homepage.
    */
   componentWillMount() {
     axios.get('/api/venues')

@@ -35,6 +35,7 @@ class VenueBody extends React.Component {
    * @description sends axios request to server
    * takes no params
    * stores the results of the query in this.state.venueObj
+   * if the user is not logged in it will send them back to the homepage.
    */
   getVenueInfo() {
     axios.get('/api/venue', {
