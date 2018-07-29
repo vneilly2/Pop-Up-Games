@@ -11,7 +11,7 @@ class EventView extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      eventId: props.target.id,
+      eventId: props.target.event,
       event: undefined,
       joined: false,
       message:'',

@@ -10,7 +10,7 @@ class VenueBody extends React.Component {
     super(props)
     this.state = {
       venueObj: undefined,
-      venueId: props.target.id
+      venueId: props.target.venue
     }
     this.changeTarget = props.changeTarget
   }

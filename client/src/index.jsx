@@ -18,7 +18,7 @@ class App extends React.Component {
       loggedIn: false,
       signupStep: false,
       loginStep: false,
-      target: false,
+      target: {},
     };
   }
   /**
@@ -40,7 +40,11 @@ class App extends React.Component {
   }
 
   changeTarget(target){
-    this.setState({target: target})
+    let targetToUpdate = target.type;
+    let oldTarget = this.state.target
+    oldTarget[targetToUpdate] = target.id;
+    console.log(oldTarget);
+    this.setState({target: oldTarget})
   }
 
 

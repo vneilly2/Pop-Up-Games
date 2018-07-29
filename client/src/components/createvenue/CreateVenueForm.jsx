@@ -104,7 +104,7 @@ class CreateVenueForm extends React.Component {
       } else if (error.response && error.response.status == 401 && error.response.data === "user not logged in"){
         this.toggleAuth(false);
       } else {
-        console.log(error)
+        utils.errorHandler(error)
       }
     });
   }

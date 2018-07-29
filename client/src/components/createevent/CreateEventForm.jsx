@@ -22,7 +22,7 @@ class CreateEventForm extends React.Component {
       eventName:'',
       notes:'',
       sportId:undefined,
-      fieldId:props.target.id,
+      fieldId:props.target.event,
       formError: false,
       //minPlayer
       //maxPlayer

@@ -13,7 +13,7 @@ class Field extends React.Component {
     super(props)
     this.state = {
       fieldObj: undefined,
-      fieldId: props.target.id
+      fieldId: props.target.field
     };
     this.changeTarget = props.changeTarget;
   }
