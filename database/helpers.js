@@ -23,27 +23,17 @@ exports.getPasswordAndRole = user =>
     new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password, found.attributes.isAdmin) : reject());
 })
 
-
-// exports.saveEvent = event =>
-//   new User({username: event.username}).fetch()
-//     .then(user => console.log(user) && Events.create((delete event.username) && (event.ownerId = user.id) && event))
-
-
 exports.saveEvent = event =>
   new Promise(function(resolve, reject) {
-    var today = new Date(event.date);
-    today.setHours(0,0,0);
-    var endOfDay = new Date(event.date);
-    endOfDay.setHours(23,59,59);
-
+    var date = moment(event.date, "MM/DD/YYYY").format("YY-MM-DD");
     Event.query(function (query) {
-      query.whereBetween('date', [today, endOfDay])
-      .andWhere(function(query) {
-        query.whereBetween('startBlock', [event.startBlock, event.endBlock])
-        .orWhereBetween('endBlock', [event.startBlock, event.endBlock]);
-      })
+      query.where('date', date)
+      .andWhere('startBlock', '<', event.endBlock)
+      .andWhere('endBlock', '>', event.startBlock)
+      .andWhere('fieldId', event.fieldId);
     }).fetchAll().then(found => JSON.parse(JSON.stringify(found)).length === 0 ? new User({username: event.username}).fetch().then(found => {
       event.ownerId = found.id;
+      event.date = date;
       return Events.create(delete event.username && event).then(resolve);
       }) : reject()
     )
@@ -70,20 +60,40 @@ exports.getEvent = event =>
 
 exports.getMessages = event =>
   new Promise(function(resolve, reject) {
-    new Event({id: event.id}).fetch({withRelated: ['messages']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("messages")))) : reject());
-})
+    new Event({id: event.id}).fetch({withRelated: ['messages']}).then(found => {
+      var messages = JSON.parse(JSON.stringify(found.related("messages")));
+      Promise.all(messages.map(
+        message => {
+          return new User({id: message.userId}).fetch().then(
+            found => {
+              message.username = found.attributes.username;
+              message.firstName = found.attributes.firstName;
+              message.lastName = found.attributes.lastName;
+              return message;
+            }
+          )
+        }
+      )).then(
+        messages => resolve(messages)
+      )
+    }).catch(reject)
+  })
 
-exports.getGuests = event => console.log(event) ||
+exports.getGuests = event => 
   new Promise(function(resolve, reject) {
-    new Event({id: event.id}).fetch({withRelated: ['guests']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("guests")))) : reject());
-})
+    new Event({id: event.id}).fetch({withRelated: ['guests']}).then(found => {
+        var guests = JSON.parse(JSON.stringify(found.related("guests")));
+        var gsts = guests.map(({firstName, lastName, email, rating}) => ({firstName, lastName, email, rating}));
+        resolve(gsts);
+      }).catch(reject);
+  })
 
 exports.getUserEvents = user =>
   new Promise(function(resolve, reject) {
     new User({username: user.username}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
 })
 
-exports.saveField = field => console.log(field) ||
+exports.saveField = field => 
   new Promise(function(resolve, reject) {
     Fields.create({fieldName: field.fieldName, notes: field.notes, venueId: field.venueId}).then(newField => Promise.all(field.sportIds.map(sportId => newField.sports().attach(new Sport({id: sportId}))))).then(resolve).catch(reject);
     })
@@ -124,11 +134,8 @@ exports.getFields = venue =>
 exports.getTodaysFieldEvents = field =>
   new Promise(function(resolve, reject) {
     var today = new Date();
-    today.setHours(0,0,0);
-    var endOfDay = new Date()
-    endOfDay.setHours(23,59,59);
     new Field(field).fetch({withRelated: ['events', {events:function (query) {
-        query.whereBetween('date', [today, endOfDay]);
+        query.where('date', moment().format('YYYY-MM-DD'));
       }
     }]}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related('events')))) : reject());
   })
@@ -165,9 +172,7 @@ function toRad(Value) {
     return Value * Math.PI / 180;
 }
 
-
 // returns all of the user info of the currently logged in user (minus the password)
 exports.getMe = username => new Promise(resolve =>
   new User({username: username}).fetch()
     .then(found => resolve((delete found.attributes.password) && found.attributes)));
-
