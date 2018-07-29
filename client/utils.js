@@ -20,7 +20,7 @@ exports.errorHandler = (errors) => {
 
 exports.sportNumConv = (num) => {
   if(num  === 1) {
-    return 'BasketBall';
+    return 'Basketball';
   } else if(num  === 2) {
     return 'Soccer';
   } else if(num  === 3) {
