@@ -8,7 +8,9 @@ import PropTypes from 'prop-types';
 var Guest = (props) => (
   <li>
     <div>
-      {props.guest.username}
+      {
+        `${props.guest.firstName} ${props.guest.lastName}`
+      }
     </div>
   </li>
   )

@@ -7,6 +7,7 @@ import FormField from '../FormField.jsx';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import utils from '../../../utils.js'; 
 /**
  * A form for creating new events and saving them to the database
  */
@@ -132,6 +133,9 @@ class CreateEventForm extends React.Component {
     .catch((error) => {
       if (error.response.status == 401 && error.response.data === "user not logged in"){
         this.toggleAuth(false);
+      } else if (error.response.status == 400) {
+        // todo this error should be refactored on server to not be a general error but an error specific to time conflicts
+        this.setState({timeConflict: true});
       } else {
         utils.errorHandler(error);
       }
@@ -179,6 +183,7 @@ class CreateEventForm extends React.Component {
                 <option value="4">Quidditch</option>
               </select>
               <FormError check={this.state.eventTooEarly} message={'*Date must be in the future'} />
+              <FormError check={this.state.timeConflict} message={'*There is already an event scheduled for this time'} />
               <div>
                 Date:
                 <DatePicker
