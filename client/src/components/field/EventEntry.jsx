@@ -1,5 +1,5 @@
 import React from 'react';
-import { sportNumConv, blockToTime } from '../../../utils';
+import { sportNumConv, blockToTime, sportPicture } from '../../../utils';
 import { withRouter } from 'react-router-dom';
 
 class EventEntry extends React.Component {
@@ -22,7 +22,10 @@ class EventEntry extends React.Component {
         this.changeTarget({type: 'event', id: this.state.id})
         this.props.history.push('/event')
       }}>
-      <div>
+      <div className="sporticon">
+        <img src={sportPicture(this.state.sportId)} width="150"></img>
+      </div>
+      <div className="fieldeventinfo">
         <div>
           Event Name:{this.state.eventName}
         </div>

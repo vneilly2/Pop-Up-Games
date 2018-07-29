@@ -6,6 +6,7 @@ import axios from 'axios';
 import utils from '../../../utils.js';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
+
 class EventView extends React.Component {
   constructor(props) {
     super(props);
@@ -50,6 +51,7 @@ class EventView extends React.Component {
       }
     })
   }
+
 /**
  * @description helper function that updates states of component
  * uses name of input field as state name and value of
@@ -77,6 +79,7 @@ class EventView extends React.Component {
  * @param { <Object> } event typical event from html onKeyPress
  * @return { undefined } undefined
  */
+
   handleEnter(event) {
     if(event.key === 'Enter') {
       this.postMessage();
@@ -108,12 +111,12 @@ class EventView extends React.Component {
           <div className=" messageboard">
             <MessageBoard messages={this.state.event.messages}/>
             <FormField
-              txtId={"Post Message"}
+              txtId={"Message"}
               fieldName={'message'}
               updateState={this.updateState.bind(this)}
               handleEnter={this.handleEnter.bind(this)}
             />
-            <button type="button" onClick={this.postMessage.bind(this)} >Post Message</button>
+            <button type="button" onClick={this.postMessage.bind(this)} >Post</button>
           </div>
           <div className="guestlist">
             <FormError check={this.state.joined} message={"You have been added to the guest list"} />

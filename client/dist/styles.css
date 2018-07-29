@@ -43,7 +43,7 @@ h6{font-size:16px}
 }
 
 /*Button */
-.w3-button{
+.button{
   border:none;
   display:inline-block;
   padding:8px 16px;
@@ -59,67 +59,61 @@ h6{font-size:16px}
 
 
 /* Nav Bar */
-.w3-bar{width:100%;overflow:hidden}
-.w3-bar .w3-button{white-space:normal}
+.bar{width:100%;overflow:hidden}
+.bar .button{white-space:normal}
 
 
 /* Columns */
-.w3-col,.w3-third,.w3-twothird{float:left;width:100%}
-.w3-third{width:33.33333%}
-.w3-twothird{width:66.66666%}
-.w3-content{max-width:980px;margin:auto}
+.col,.third,.twothird{float:left;width:100%}
+.third{width:33.33333%}
+.twothird{width:66.66666%}
+.content{max-width:980px;margin:auto}
 
 /* Font Size */
-.w3-large{font-size:18px!important}
-.w3-xlarge{font-size:24px!important}
-.w3-jumbo{font-size:64px!important}
+.large{font-size:18px!important}
+.xlarge{font-size:24px!important}
+.jumbo{font-size:64px!important}
 
 /* Align */
-.w3-left-align{text-align:left!important}
-.w3-right-align{text-align:right!important}
-.w3-right-float{text-align:right!important}
-.w3-center{text-align:center!important}
+.left-align{text-align:left!important}
+.right-align{text-align:right!important}
+.center{text-align:center!important}
 
 
 /* Margin */
-.w3-margin{margin:16px!important}
-.w3-margin-top{margin-top:16px!important}
+.margin{margin:16px!important}
+.margin-top{margin-top:16px!important}
 
 /*Float  */
-.w3-left{float:left!important}
-.w3-right{float:right!important}
+.left{float:left!important}
+.right{float:right!important}
 
 /* Padding */
-.w3-container{padding:0.01em 16px}
-.w3-padding{padding:8px 16px!important}
-.w3-padding-large{padding:12px 24px!important}
-.w3-padding-32{padding-top:32px!important;padding-bottom:32px!important}
-.w3-padding-64{padding-top:64px!important;padding-bottom:64px!important}
+.container{padding:0.01em 16px}
+.padding{padding:8px 16px!important}
+.padding-large{padding:12px 24px!important}
+.padding-32{padding-top:32px!important;padding-bottom:32px!important}
+.padding-64{padding-top:64px!important;padding-bottom:64px!important}
 
 /* Colors */
-.w3-blue,.w3-hover-blue:hover {
+.blue,.hover-blue:hover {
   color:#fff!important;
   background-color:#2196F3!important
 }
 
-.w3-white,.w3-hover-white:hover{
+.white,.hover-white:hover{
   color:#000!important;
   background-color:#fff!important
 }
 
-
-.w3-gray{
+.gray{
   color:#fff!important;
   background-color: #767a82!important
 }
 
-.w3-button:hover{
+.button:hover{
   color:#000!important;
   background-color:#ccc!important
-}
-
-.w3-opacity,.w3-hover-opacity:hover{
-  opacity:0.6
 }
 
 .hover-lightblue:hover{
@@ -237,8 +231,8 @@ h6{font-size:16px}
   display: grid;
   border: 3px solid #2196F3;
   min-height: 100%;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 120px 1fr; 
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 160px 1fr; 
   grid-template-areas: "eventinfo eventinfo"
                        "messageboard guestlist"
 
@@ -259,8 +253,8 @@ h6{font-size:16px}
 }
 
 .event-entry-date-time {
-  font-size: 1.4em;
-  margin:10px;
+  font-size: 1.2em;
+  margin:5px;
 }
 
 .messageboard{
@@ -282,6 +276,12 @@ h6{font-size:16px}
   background-color: rgb(190, 218, 241);
 }
 
+.message-date{
+  color: gray;
+  font-size: .6em;
+  text-align:right
+}
+
 .guestlist{
   grid-area:guestlist;
   padding: 10px;
@@ -297,11 +297,11 @@ h6{font-size:16px}
   display: grid;
   border: 3px solid #2196F3;
   min-height: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 100px 45px 1fr; 
-  grid-template-areas: "venue venue venue"
-                       "info info info " 
-                       "fieldlist fieldlist fieldlist" 
+  grid-template-areas: "venue"
+                       "info" 
+                       "fieldlist" 
 
 }
 
@@ -386,10 +386,29 @@ h6{font-size:16px}
 .field-event-entry{
   grid-area:fieldevents;
   padding: 10px;
-  background: #F7F7F7
+  background: #F7F7F7;
   height:auto;
   min-height:100%;
   border: 1px solid #2196F3;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 160px 1fr;
+  grid-column-gap: 30px;
+  grid-template-areas: "sporticon fieldeventinfo"
+}
+
+.sporticon{
+  grid-area:sporticon;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:white;
+}
+
+.fieldeventinfo{
+  grid-area:fieldeventinfo;
+  height:auto;
+  min-height:100%;
 }
 
 /*Create Event */

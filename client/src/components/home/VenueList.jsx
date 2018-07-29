@@ -3,7 +3,7 @@ import VenueEntry from './VenueEntry.jsx';
 
 var VenueEntryList = (props) => (
   <div className="tonetwo venuelist">
-    <h3 className="w3-center">Venues Near You</h3>
+    <h3 className="center">Venues Near You</h3>
   <ul>
     {
       props.venues.map((venue, index) => {

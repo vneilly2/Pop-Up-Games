@@ -69,17 +69,17 @@ class App extends React.Component {
               </div>
             {/* Top Bar */}
             <div className="top">
-              <div className="w3-bar w3-blue w3-left-align w3-large">
-                <Link to="/login" style={ ( this.state.loggedIn || this.state.loginStep ) ? {display:'none'} : {} } className="w3-button w3-padding-large w3-white" onClick={() => { this.toggleSignupStep(false); this.toggleLoginStep(true) }}>Login</Link>
-                <Link to="/signup" style={ ( this.state.loggedIn || this.state.signupStep ) ? {display:'none'} : {} }  className="w3-button w3-padding-large w3-white" onClick={() => { this.toggleSignupStep(true); this.toggleLoginStep(false) }}>Sign Up</Link>
+              <div className="bar blue left-align large">
+                <Link to="/login" style={ ( this.state.loggedIn || this.state.loginStep ) ? {display:'none'} : {} } className="button padding-large white" onClick={() => { this.toggleSignupStep(false); this.toggleLoginStep(true) }}>Login</Link>
+                <Link to="/signup" style={ ( this.state.loggedIn || this.state.signupStep ) ? {display:'none'} : {} }  className="button padding-large white" onClick={() => { this.toggleSignupStep(true); this.toggleLoginStep(false) }}>Sign Up</Link>
               </div>
             </div>
 
             {/* First Grid */}
-            <header className="w3-container w3-blue w3-center w3-padding-32" id="homeheader" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
-              <h1 className="w3-margin w3-jumbo">Pop-Up-Games</h1>
-              <p className="w3-xlarge">Play Games! Have Fun!</p>
-              <Link to="/signup" style={ this.state.loggedIn ? {display:'none'} : {} }  className="w3-button w3-white w3-padding-large w3-large w3-margin-top" onClick={this.toggleSignupStep.bind(this)}>Sign Up</Link>
+            <header className="container blue center padding-32" id="homeheader" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
+              <h1 className="margin jumbo">Pop-Up-Games</h1>
+              <p className="xlarge">Play Games! Have Fun!</p>
+              <Link to="/signup" style={ this.state.loggedIn ? {display:'none'} : {} }  className="button white padding-large large margin-top" onClick={this.toggleSignupStep.bind(this)}>Sign Up</Link>
             </header>
             <Route path="/login"
               render={props => <Login
@@ -89,28 +89,28 @@ class App extends React.Component {
               render={props => <Signup />} />
 
             {/* Second Grid */}
-            <div className="w3-row-padding w3-padding-64 w3-container" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
-              <div className="w3-content">
-                <div className="w3-twothird">
+            <div className="row-padding padding-64 container" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
+              <div className="content">
+                <div className="twothird">
                   <h1>What We Do</h1>
-                  <h5 className="w3-padding-32 w3-text-grey" >We here love sports and we want to make it fun and easy to find sport games in your local area. Use our site to find and join games near you. Or go on and create your own! Go out and have fun!</h5>
+                  <h5 className="padding-32 text-grey" >We here love sports and we want to make it fun and easy to find sport games in your local area. Use our site to find and join games near you. Or go on and create your own! Go out and have fun!</h5>
                 </div>
 
-                <div className="w3-third w3-center">
+                <div className="third center">
                   <img src='./img/basketballcartoon.png' height="200" />
                 </div>
               </div>
             </div>
             
             {/*Quote Section */}
-            <div className=" w3-container center-quote" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
-                <div className="w3-content w3-padding">
-                  <h1 className="w3-margin w3-large">"Just play. Have fun. Enjoy the game." -Michael Jordan</h1>
+            <div className=" container center-quote" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
+                <div className="content padding">
+                  <h1 className="margin large">"Just play. Have fun. Enjoy the game." -Michael Jordan</h1>
                 </div>
             </div>
 
             {/* Footer */}
-            <footer className="w3-container w3-padding-32 w3-center" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>  
+            <footer className="container padding-32 center" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>  
               <p>Made at <a href="https://www.hackreactor.com/" target="_blank">Hack Reactor</a></p>
             </footer>
 

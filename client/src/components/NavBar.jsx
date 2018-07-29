@@ -23,11 +23,11 @@ var NavBar = (props) => {
   let target = props.target;
     return (
         <div className="top">
-          <div className="w3-bar w3-blue w3-card w3-left-align w3-large">
-            <Link to="/home" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Home</Link>
-            <Link to="/search" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Search</Link>
-            <Link to="/createvenue" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Create</Link>
-            <Link to="/logout" className="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-left-align ">Logout</Link>
+          <div className="bar blue card left-align large">
+            <Link to="/home" className="bar-item button hide-small padding-large hover-white left-align ">Home</Link>
+            {/* <Link to="/search" className="bar-item button hide-small padding-large hover-white left-align ">Search</Link> */}
+            <Link to="/createvenue" className="bar-item button hide-small padding-large hover-white left-align ">Create</Link>
+            <Link to="/logout" className="bar-item button hide-small padding-large hover-white left-align ">Logout</Link>
           </div>
           <Route path="/home"
               render={props => <Home
@@ -35,7 +35,7 @@ var NavBar = (props) => {
                 userInfo={userInfo} 
                 changeTarget={changeTarget} {...props} />} 
               />
-          <Route path="/search" component={Search} />
+          {/* <Route path="/search" component={Search} /> */} 
           <Route path="/field"
               render={props => <Field
               toggleAuth={toggleAuth} 

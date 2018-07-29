@@ -4,7 +4,8 @@ import Guest from './Guest.jsx';
 var GuestList = (props) => (
   <div>
   <ul>
-    <h3 className="w3-center">{props.GuestList.length} Attending</h3>
+    <h3 className="center">Number Attending: {props.GuestList.length}</h3>
+    <div className="center"></div>
     {
       props.GuestList.map((guest, index) => {
         return(<Guest guest={guest} key={index} />)

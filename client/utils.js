@@ -33,9 +33,21 @@ exports.sportNumConv = (num) => {
 exports.blockToTime = (blockNum) => {
   let minutes = blockNum%2 * 30;
   let hour = Math.floor(blockNum/2)
-  if ((`${hour}:${minutes}`).length === 3) {
+  if ( (`${hour}:${minutes}`).split(':')[1].length === 1) {
     return `${hour}:${minutes}`+ 0
   } else {
     return `${hour}:${minutes}`
   }
+}
+
+exports.sportPicture = (num) => {
+  if (num === 1) {
+    return  './img/basketball.png';
+  } else if(num  === 2) {
+    return './img/soccer.png';
+  } else if(num  === 3) {
+    return './img/football.png';
+  } else {
+    return './img/quidditch.png';
+  } 
 }
