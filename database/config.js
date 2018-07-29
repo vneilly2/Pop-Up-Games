@@ -1,6 +1,17 @@
 var path = require('path');
 
-var knex = require('knex')({
+var knex = process.env.NODE_ENV === 'test' ? 
+require('knex')({
+  client: 'mysql',
+  connection: {
+    host : '127.0.0.1',
+    user: 'root',
+    password: process.env.DBPASS || require('../config/config.js').DBPASS,
+    database: 'popupgamesTest'
+  },
+  useNullAsDefault: true
+}) :
+require('knex')({
   client: 'mysql',
   connection: {
     host : '127.0.0.1',

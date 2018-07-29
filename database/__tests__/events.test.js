@@ -21,11 +21,13 @@ describe('database helpers', () => {
           found => expect(found).toEqual({username: "yuqi"})
         );
       }
+    ).catch(
+      () => expect(1).toEqual(2)
     )
   });
 
   test('should save the event', async () => {
-    db.saveEvent({eventName: "tennis", startBlock: 25, endBlock: 30, Notes: "free", date: new Date(), minPlayer: 0, maxPlayer: 4, sportId: 1, fieldId: 1}).then(
+    db.saveEvent({eventName: "tennis", startBlock: 25, endBlock: 30, Notes: "free", date: "07/30/2018", minPlayer: 0, maxPlayer: 4, sportId: 1, fieldId: 1, ownerId: 1}).then(
       () => {
         new Event({eventName: "tennis"}).fetch().then(
           found => expect(found.attributes.eventName).toEqual("tennis")
