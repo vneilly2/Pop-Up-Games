@@ -9,7 +9,7 @@ var Message = (props) => {
   return (
   <div className="message">
     <div>
-      {`Name ${props.message.username}`}
+      {`Name ${props.message.firstName} `${props.message.lastName}`}
     </div>
     <div>
       {`Message: ${props.message.body}`}
