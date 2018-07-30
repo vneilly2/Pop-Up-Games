@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Venue Entry component VenueEntry: renders correctly 1`] = `
+<li>
+  <div
+    className="venuelistentry toneone "
+    onClick={[Function]}
+  >
+    <span
+      className="bold"
+    >
+      Name:
+    </span>
+    <span />
+    <br />
+    <br />
+    <span
+      className="bold"
+    >
+      Address:
+    </span>
+    <span />
+    <br />
+    <br />
+  </div>
+</li>
+`;
