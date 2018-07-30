@@ -13,16 +13,20 @@ var Messages = require("./collections/messages");
 var Message = require("./models/message");
 var moment = require('moment');
 
+//save user to the database, input: {username, password}
 exports.saveUser = user =>
   new Promise(function(resolve, reject) {
     new User({username: user.username}).fetch().then(found => found ? reject() : Users.create(user).then(resolve))
-})
+});
 
+//get the password and ifadmin, input: {username}
 exports.getPasswordAndRole = user =>
   new Promise(function(resolve, reject) {
     new User({username: user.username}).fetch().then(found => found ? resolve(found.attributes.password, found.attributes.isAdmin) : reject());
-})
+});
 
+//save the event, input: {eventName, startBlock, endBlock, Notes, date(MM/DD/YYYY), 
+//  minPlayer, maxPlayer, sportId, fieldId, username}
 exports.saveEvent = event =>
   new Promise(function(resolve, reject) {
     var date = moment(event.date, "MM/DD/YYYY").format("YY-MM-DD");
@@ -37,27 +41,32 @@ exports.saveEvent = event =>
       return Events.create(delete event.username && event).then(resolve);
       }) : reject()
     )
-})
+});
 
+//save the sport, input: {sportName}
 exports.saveSport = sport =>
   new Promise((resolve, reject) =>
     new Sport({sportName: sport.sportName}).fetch().then(found => found ? reject() : Sports.create({sportName: sport.sportName}).then(resolve))
-  )
+  );
 
+//save the message, input: {username, eventId, body}
 exports.saveMessage = message =>
   new Promise((resolve, reject) =>
     new User({username: message.username}).fetch().then(found => Messages.create({userId: found.id, eventId: message.eventId, body: message.body})).then(resolve).catch(reject))
 
+//save the guest, input: {username, eventId}
 exports.saveGuest = event =>
   new Promise((resolve, reject) =>
     new User({username: event.username}).fetch().then(found => new User({id: found.id}).guestEvents().attach(new Event({id: event.id}))).then(resolve).catch(reject)
-  )
+  );
 
+//get the event, input: {id(id of the event)}
 exports.getEvent = event =>
   new Promise(function(resolve, reject) {
     new Event({id: event.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
   })
 
+//get the messages of an event, input: {id(id of the event)}
 exports.getMessages = event =>
   new Promise(function(resolve, reject) {
     new Event({id: event.id}).fetch({withRelated: ['messages']}).then(found => {
@@ -79,6 +88,7 @@ exports.getMessages = event =>
     }).catch(reject)
   })
 
+//get the guests of an event, input: {id(id of the event)}
 exports.getGuests = event => 
   new Promise(function(resolve, reject) {
     new Event({id: event.id}).fetch({withRelated: ['guests']}).then(found => {
@@ -88,49 +98,59 @@ exports.getGuests = event =>
       }).catch(reject);
   })
 
+//get all events of a user, input: {username}
 exports.getUserEvents = user =>
   new Promise(function(resolve, reject) {
     new User({username: user.username}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
 })
 
+//save field, input: {fieldName, notes, venueId}
 exports.saveField = field => 
   new Promise(function(resolve, reject) {
     Fields.create({fieldName: field.fieldName, notes: field.notes, venueId: field.venueId}).then(newField => Promise.all(field.sportIds.map(sportId => newField.sports().attach(new Sport({id: sportId}))))).then(resolve).catch(reject);
     })
 
+//get field, input: {id(id of the field)}
 exports.getField = field =>
   new Promise(function(resolve, reject) {
     new Field({id: field.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))): reject());
   })
 
+//get all sports in a field, input: {id(id of the field)}
 exports.getFieldSports = field =>
   new Promise(function(resolve, reject) {
     new Field({id: field.id}).fetch({withRelated: ['sports']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("sports")))) : reject());
   })
 
+//get all sports
 exports.getAllSports = () =>
     new Promise((resolve, reject) => Sport.fetchAll().then(found => resolve(JSON.parse(JSON.stringify(found))).catch(reject)));
 
+//get all events in a field, input: {id(id of a field)}
 exports.getFieldEvents = field =>
   new Promise(function(resolve, reject) {
     new Field({id: field.id}).fetch({withRelated: ['events']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related("events")))) : reject());
 })
 
+//save the venue, input: {venueName, address}
 exports.saveVenue = venue =>
   new Promise(function(resolve, reject) {
       Venues.create(delete venue.username && venue).then(resolve).catch(reject);
     })
 
+//get the venue, input: 
 exports.getVenue = venue =>
   new Promise(function(resolve, reject) {
     new Venue({id: venue.id}).fetch().then(found => found ? resolve(JSON.parse(JSON.stringify(found))) : reject());
   })
 
+//get the fields, input: {id(id of the venue)}
 exports.getFields = venue =>
   new Promise(function(resolve, reject) {
     new Venue({id: venue.id}).fetch({withRelated: ['fields']}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related('fields')))) : reject());
   })
 
+//get today's events at the field, input: {id(id of the field)}
 exports.getTodaysFieldEvents = field =>
   new Promise(function(resolve, reject) {
     var today = new Date();
@@ -140,6 +160,7 @@ exports.getTodaysFieldEvents = field =>
     }]}).then(found => found ? resolve(JSON.parse(JSON.stringify(found.related('events')))) : reject());
   })
 
+//get all venues within distance from the user, input: username, distance
 exports.getVenuesNearUser = (user, distance) =>
   new Promise(function(resolve, reject) {
     var result = [];
@@ -151,6 +172,7 @@ exports.getVenuesNearUser = (user, distance) =>
     }).catch(reject);
 })
 
+//check whether the distance between two coordinates is within the dist
 function withinDistance(lat1, lng1, lat2, lng2, dist) {
   var R = 3959;
   var x = toRad(lat1);

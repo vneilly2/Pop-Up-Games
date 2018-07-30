@@ -1,5 +1,6 @@
 var path = require('path');
 
+//Setup the connection to the database. If NODE_ENV is set, switch to a test database
 var knex = require('knex')({
   client: 'mysql',
   connection: process.env.DATABASE_URL || {
@@ -9,11 +10,13 @@ var knex = require('knex')({
     database: process.env.NODE_ENV === 'test' ? 'popupgamesTest' : 'popupgames'
   },
   useNullAsDefault: true
-})
+});
 
 var db = require('bookshelf')(knex);
+//Plugin for solving circular reference
 db.plugin('registry');
 
+//Table schemas
 db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
@@ -111,6 +114,7 @@ db.knex.schema.hasTable('venues').then(function(exists) {
   }
 });
 
+//Join tables for many-to-many relationships
 db.knex.schema.hasTable('fields_sports').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('fields_sports', function (pair) {
