@@ -1,22 +1,27 @@
 # Project Name
 
-> Pithy project description
+> Pop Up Games:
+
+```sh
+Find, create, and join pick up games in your local area
+(billion dollar idea btw)
+```
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+- **Product Owner**: Peter Gierke
+- **Scrum Master**: Max Berkowitz
+- **Development Team Members**: Sophia Lee, Yuqi Zhu
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+1.  [Usage](#Usage)
+1.  [Requirements](#requirements)
+1.  [Development](#development)
+    1.  [Installing Dependencies](#installing-dependencies)
+    1.  [Tasks](#tasks)
+1.  [Team](#team)
+1.  [Contributing](#contributing)
 
 ## Usage
 
@@ -24,11 +29,18 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 8.11.3
+- /config/config.js file containing:
+  -- exports.SECRET = <secret for session>
+  -- exports.DBPASS = <the password for the user root for mysql on your computer (blank string for no password)>
+  -- exports.GMAPS_API = <api key for googlemaps (Geocoding API and Maps JavaScript API enabled on the key)>
+- for heroku:
+  -- NODE_ENV = production
+  -- NPM_CONFIG_PRODUCTION = true
+  -- whatever msql database you want to use (we used ClearDB MySQL :: Database)
+  -- DATABASE_URL = <the url given to you via CLEARDB_DATABASE_URL upon setting up ClearDB or whatever else you use>
+  -- GMAPS_API = <your api key>
+  -- SECRET = <secret for session>
 
 ## Development
 
@@ -37,16 +49,13 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
+View the project roadmap [here](https://github.com/BlastOffInc/Pop-Up-Games/pulls)
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+[Upstream](https://github.com/BlastOffInc/Pop-Up-Games)
