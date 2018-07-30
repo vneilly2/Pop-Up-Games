@@ -84,8 +84,8 @@ class App extends React.Component {
           <Router>
             <div>
               <div style={this.state.loggedIn ? {} : {display:'none'} } >
-                <NavBar 
-                  userInfo={this.state.loggedIn} 
+                <NavBar
+                  userInfo={this.state.loggedIn}
                   toggleAuth={this.toggleLogin.bind(this) }
                   changeTarget={this.changeTarget.bind(this)}
                   target={this.state.target}
@@ -119,7 +119,7 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
-            
+
             {/*Quote Section */}
             <div className=" container center-quote" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
                 <div className="content padding">
@@ -128,8 +128,8 @@ class App extends React.Component {
             </div>
 
             {/* Footer */}
-            <footer className="container padding-32 center" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>  
-              <p>Made at <a href="https://www.hackreactor.com/" target="_blank">Hack Reactor</a></p>
+            <footer className="container padding-32 center" style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? {display:'none'} : {} }>
+              <p>Made at <a href="https://www.hackreactor.com/" rel="noopener noreferrer" target="_blank">Hack Reactor</a></p>
             </footer>
 
               <Route path="/login"

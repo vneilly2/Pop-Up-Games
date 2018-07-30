@@ -15,7 +15,7 @@ export class GMap extends React.Component {
   }
   /**
    * @description This runs to make sure when you reload the map
-   * that all the markers will appear 
+   * that all the markers will appear
    */
   componentWillReceiveProps(props) {
     this.setState({nearbyVenues: props.venues})
@@ -61,7 +61,7 @@ export class GMap extends React.Component {
                 <Marker
                   position = { {lat: venue.lat, lng: venue.lng} }
                   onClick={this.onMarkerClick.bind(this)}
-                  name={<a target="_blank" href={"https://www.google.com/maps/dir/"
+                  name={<a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir/"
                   .concat(this.state.position.address.replace(' ', '+'))
                   .concat('/')
                   .concat(venue.address.replace(' ', '+'))}>{ venue.venueName }</a>}

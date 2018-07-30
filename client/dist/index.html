@@ -17,6 +17,8 @@
   <script>
       var a = document.createElement("a");
       a.setAttribute('href','http://hackreactor.com')
+      a.setAttribute('target', '_blank')
+      a.setAttribute('rel', 'noopener noreferrer')
       a.innerHTML = '<img style="position: fixed; top: 0; right: 0; border: 0;"src="http://i.imgur.com/x86kKmF.png"alt="Built at Hack Reactor">';
       document.getElementsByTagName('body')[0].append(a);</script>
 </body>
