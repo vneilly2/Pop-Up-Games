@@ -25,22 +25,22 @@ Find, create, and join pick up games in your local area
 
 ## Usage
 
-> Some usage instructions
+> Have fun with the best project this side of the sun
 
 ## Requirements
 
-* Node 8.11.3
-* /config/config.js file containing:
- * exports.SECRET = <secret for session>
- * exports.DBPASS = <the password for the user root for mysql on your computer (blank string for no password)>
- * exports.GMAPS_API = <api key for googlemaps (Geocoding API and Maps JavaScript API enabled on the key)>
-* for heroku:
- * NODE_ENV = production
- * NPM_CONFIG_PRODUCTION = true
- * whatever msql database you want to use (we used ClearDB MySQL :: Database):
-  * DATABASE_URL = <the url given to you via CLEARDB_DATABASE_URL upon setting up ClearDB or whatever else you use>
- * GMAPS_API = <your api key>
- * SECRET = <secret for session>
+- Node 8.11.3
+- /config/config.js file containing:
+  - exports.SECRET = secret for session
+  - exports.DBPASS = the password for the user root for mysql on your computer (blank string for no password)
+  - exports.GMAPS_API = api key for googlemaps (Geocoding API and Maps JavaScript API enabled on the key)
+- for heroku:
+  - NODE_ENV = 'production'
+  - NPM_CONFIG_PRODUCTION = true
+  - whatever msql database you want to use (we used ClearDB MySQL :: Database):
+    - DATABASE_URL = the url given to you via CLEARDB_DATABASE_URL upon setting up ClearDB or whatever else you use
+  - GMAPS_API = your api key
+  - SECRET = secret for session
 
 ## Development
 
