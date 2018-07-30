@@ -10,7 +10,7 @@ var FieldInfo = (props) => {
   return(
   <div>
       <h1>Upcoming Events at {props.data.fieldName}</h1>
-      <div>Notes: {props.data.notes}</div>
+      <h6>Notes: {props.data.notes}</h6>
   </div>
   )
 }
