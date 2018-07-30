@@ -87,5 +87,5 @@ export class GMap extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: (process.env.GMAPS_API || require('../../../../config/config.js').GMAPS_API)
+  apiKey: (process.env.NODE_ENV === 'production' ? process.env.GMAPS_API : require('../../../../config/config.js').GMAPS_API)
 })(GMap)
