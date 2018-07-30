@@ -8,17 +8,17 @@ import PropTypes from 'prop-types';
  * @param { Function } props.changeTarget function that can alter the target of the parent app, must be bound to app
  */
 
-var Venue = (props) => (
+var Venue = props => (
   <div className="main">
     <div>
-      <VenueBody target={props.target} changeTarget={props.changeTarget}/>
+      <VenueBody target={props.target} changeTarget={props.changeTarget} />
     </div>
   </div>
-  )
+);
 
 Venue.propTypes = {
   target: PropTypes.object.isRequired,
   changeTarget: PropTypes.func.isRequired,
-}
+};
 
 export default Venue;

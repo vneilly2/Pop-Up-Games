@@ -13,8 +13,7 @@ var Field = db.Model.extend({
   },
   events: function() {
     return this.hasMany('Event', 'fieldId');
-  }
-
+  },
 });
 
 module.exports = db.model('Field', Field);

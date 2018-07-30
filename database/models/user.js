@@ -14,7 +14,7 @@ var User = db.Model.extend({
   },
   guestEvents: function() {
     return this.belongsToMany('Event', 'events_users', 'userId', 'eventId');
-  }
+  },
 });
 
 module.exports = db.model('User', User);

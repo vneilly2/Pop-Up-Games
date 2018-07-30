@@ -10,7 +10,7 @@ var Message = db.Model.extend({
   },
   event: function() {
     return this.belongsTo('Event', 'eventId');
-  }
+  },
 });
 
 module.exports = Message;

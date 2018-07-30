@@ -11,8 +11,9 @@ import PropTypes from 'prop-types';
  * @param updateState function triggered by onChange
  * @param handleEnter function triggered by onKeyPress
  */
-var FormField = (props) => {
-  return (<div>
+var FormField = props => {
+  return (
+    <div>
       <input
         className={props.className}
         placeholder={props.txtId}
@@ -21,8 +22,9 @@ var FormField = (props) => {
         onChange={props.updateState}
         onKeyPress={props.handleEnter}
       />
-    <br/>
-  </div>)
+      <br />
+    </div>
+  );
 };
 FormField.propTypes = {
   txtId: PropTypes.string.isRequired,
@@ -35,5 +37,5 @@ FormField.propTypes = {
 FormField.defaultProps = {
   isPassword: false,
   className: '',
-}
+};
 export default FormField;

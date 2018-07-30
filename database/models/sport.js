@@ -9,8 +9,7 @@ var Sport = db.Model.extend({
   },
   fields: function() {
     return this.belongsToMany(field, 'fields_sports', 'sportId', 'fieldId');
-  }
+  },
 });
-
 
 module.exports = db.model('Sport', Sport);

@@ -21,7 +21,7 @@ var Event = db.Model.extend({
   },
   sport: function() {
     return this.belongsTo(Sport, 'sportId');
-  }
+  },
 });
 
 module.exports = db.model('Event', Event);

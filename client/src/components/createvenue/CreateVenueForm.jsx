@@ -15,57 +15,54 @@ class CreateVenueForm extends React.Component {
     super(props);
     this.state = {
       name: '',
-      address:'',
-      phone:'',
-      blankFields:false,
-      badAddress: false
+      address: '',
+      phone: '',
+      blankFields: false,
+      badAddress: false,
     };
     this.toggleAuth = props.toggleAuth;
   }
 
-/**
- * helper function that updates states of component
- * uses name of input field as state name and value of
- * input field as desired state
- *
- * example :
- * <input type={text} name={name} onChange={this.updateState}
- * would update the state `name` to value of text in input an any changes
- * to the field
- */
+  /**
+   * helper function that updates states of component
+   * uses name of input field as state name and value of
+   * input field as desired state
+   *
+   * example :
+   * <input type={text} name={name} onChange={this.updateState}
+   * would update the state `name` to value of text in input an any changes
+   * to the field
+   */
   updateState(event) {
-    this.setState({[event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
-/**
- * helper function that updates states of component
- * uses name of input field as state name and value of
- * input field as desired state
- */
+  /**
+   * helper function that updates states of component
+   * uses name of input field as state name and value of
+   * input field as desired state
+   */
   handleEnter(event) {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       this.processForm();
     }
-  };
+  }
 
-/**
- * function that evalutes all the current input states
- * to see whether or not all fields needed for axios
- * call are filled.  If they are, it calls createVenue.
- * If they are not all supplied it turn booleans for
- * first failed requirement to true so the DOM can
- * render messages to user accordingly
- *
- * input: none
- * output: none
- */
+  /**
+   * function that evalutes all the current input states
+   * to see whether or not all fields needed for axios
+   * call are filled.  If they are, it calls createVenue.
+   * If they are not all supplied it turn booleans for
+   * first failed requirement to true so the DOM can
+   * render messages to user accordingly
+   *
+   * input: none
+   * output: none
+   */
   processForm() {
     this.state.blankFields = false;
-    if (
-      this.state.name === '' ||
-      this.state.address === ''
-      ) {
-      this.setState({blankFields: true});
+    if (this.state.name === '' || this.state.address === '') {
+      this.setState({ blankFields: true });
     } else {
       let newVenue = {
         venueName: this.state.name,
@@ -75,71 +72,79 @@ class CreateVenueForm extends React.Component {
     }
   }
 
-/**
- * @description Takes a set of parameters as values in an object
- * and executes a post request to the /venue endpoint on the server
- * If successful it will redirect the user to the new Venues page
- * If it fails it will evaluate the error message to indicate
- * to the state of the component which aspect of the post failed
- * so the reason for the failed request can be rendered to the DOM
- * inputs: params in the following structure:
- *
- * @example
- * {venueName:     string,
- *  address:  string,
- * };
- *
- * @event error.response.status === 401 && error.response.data === "user not logged in"
- * will send them back to the homepage.
- *
- */
+  /**
+   * @description Takes a set of parameters as values in an object
+   * and executes a post request to the /venue endpoint on the server
+   * If successful it will redirect the user to the new Venues page
+   * If it fails it will evaluate the error message to indicate
+   * to the state of the component which aspect of the post failed
+   * so the reason for the failed request can be rendered to the DOM
+   * inputs: params in the following structure:
+   *
+   * @example
+   * {venueName:     string,
+   *  address:  string,
+   * };
+   *
+   * @event error.response.status === 401 && error.response.data === "user not logged in"
+   * will send them back to the homepage.
+   *
+   */
   createVenue(params) {
-    axios.post( '/api/venue', params, { headers: {}})
-    .then((response) => {
-      this.props.history.push('home');
-    })
-    .catch((error) => {
-      if(error.response && error.response.status === 400) {
-        if(error.response.data.serverMessage === 'improper address') {
-          this.setState({badAddress: true});
+    axios
+      .post('/api/venue', params, { headers: {} })
+      .then(response => {
+        this.props.history.push('home');
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 400) {
+          if (error.response.data.serverMessage === 'improper address') {
+            this.setState({ badAddress: true });
+          }
+        } else if (error.response && error.response.status == 401 && error.response.data === 'user not logged in') {
+          this.toggleAuth(false);
+        } else {
+          utils.errorHandler(error);
         }
-      } else if (error.response && error.response.status == 401 && error.response.data === "user not logged in"){
-        this.toggleAuth(false);
-      } else {
-        utils.errorHandler(error)
-      }
-    });
+      });
   }
 
-/**
- * Renders a form to the DOM to gather the required inputs used
- * to create a new venue.  All inputs update Component state on change.
- * Pressing the form submit button or the enter key in any input will
- * trigger the process form function
- */
+  /**
+   * Renders a form to the DOM to gather the required inputs used
+   * to create a new venue.  All inputs update Component state on change.
+   * Pressing the form submit button or the enter key in any input will
+   * trigger the process form function
+   */
   render() {
     return (
-      <div className='form-style'>
+      <div className="form-style">
         <h1>Create Venue</h1>
         <FormError check={this.state.blankFields} message={'*Fields with a * are required'} />
-        <FormField className="input"
+        <FormField
+          className="input"
           txtId={'*Venue Name'}
           fieldName={'name'}
           updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
+          handleEnter={this.handleEnter.bind(this)}
+        />
         <FormError check={this.state.badAddress} message={'*Address was invalid'} />
-        <FormField className="input"
+        <FormField
+          className="input"
           txtId={'*Address'}
           fieldName={'address'}
           updateState={this.updateState.bind(this)}
-          handleEnter={this.handleEnter.bind(this)} />
-        <button type="button" onClick={() => this.processForm() } >Submit</button>
-      </div>)
+          handleEnter={this.handleEnter.bind(this)}
+        />
+        <button type="button" onClick={() => this.processForm()}>
+          Submit
+        </button>
+      </div>
+    );
   }
 }
 
 CreateVenueForm.propTypes = {
   toggleAuth: PropTypes.func.isRequired,
-}
+};
 
 export default withRouter(CreateVenueForm);
