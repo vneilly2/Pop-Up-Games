@@ -1,26 +1,15 @@
 var path = require('path');
 
-var knex = process.env.NODE_ENV === 'test' ? 
-require('knex')({
+var knex = require('knex')({
   client: 'mysql',
-  connection: {
+  connection: process.env.DATABASE_URL || {
     host : '127.0.0.1',
     user: 'root',
     password: process.env.DBPASS || require('../config/config.js').DBPASS,
-    database: 'popupgamesTest'
+    database: process.env.NODE_ENV === 'test' ? 'popupgamesTest' : 'popupgames'
   },
   useNullAsDefault: true
-}) :
-require('knex')({
-  client: 'mysql',
-  connection: {
-    host : '127.0.0.1',
-    user: 'root',
-    password: process.env.DBPASS || require('../config/config.js').DBPASS,
-    database: 'popupgames'
-  },
-  useNullAsDefault: true
-});
+})
 
 var db = require('bookshelf')(knex);
 db.plugin('registry');
