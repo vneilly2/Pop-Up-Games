@@ -6,7 +6,9 @@ var FieldDayCalendar = (props) => (
   <div>
     <div className="bold">Today's Events:</div>
     {
-      props.events.map((event, index) => {
+      props.events.sort((a, b) => {
+        return b.startBlock - a.startBlock
+      }).map((event, index) => {
         return ( <FieldDayCalendarEntry event={event} key={index}/> )
       })
     }

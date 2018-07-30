@@ -61,7 +61,7 @@ export class GMap extends React.Component {
                 <Marker
                   position = { {lat: venue.lat, lng: venue.lng} }
                   onClick={this.onMarkerClick.bind(this)}
-                  name={<a href={"https://www.google.com/maps/dir/"
+                  name={<a target="_blank" href={"https://www.google.com/maps/dir/"
                   .concat(this.state.position.address.replace(' ', '+'))
                   .concat('/')
                   .concat(venue.address.replace(' ', '+'))}>{ venue.venueName }</a>}
