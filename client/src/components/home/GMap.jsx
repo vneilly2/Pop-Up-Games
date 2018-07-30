@@ -1,6 +1,5 @@
 import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import { GMAPS_API } from '../../../../config/config.js';
 
 export class GMap extends React.Component {
   constructor (props) {
@@ -88,5 +87,5 @@ export class GMap extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: (process.env.GMAPS_API || GMAPS_API)
+  apiKey: (process.env.GMAPS_API || require('../../../../config/config.js').GMAPS_API)
 })(GMap)
