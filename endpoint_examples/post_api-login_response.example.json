@@ -1,0 +1,10 @@
+{
+  "cookie": {
+    "originalMaxAge": "object",
+    "expires": "object",
+    "httpOnly": "boolean",
+    "path": "string"
+  },
+  "user": "string",
+  "role": "string"
+}

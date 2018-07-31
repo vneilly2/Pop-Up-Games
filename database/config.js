@@ -67,7 +67,7 @@ db.knex.schema.hasTable('events').then(function(exists) {
         event.string('notes');
         event.date('date');
         event.float('minPlayer').defaultTo(0);
-        event.float('maxPlayer').defaultTo(null);
+        event.float('maxPlayer').defaultTo(0);
         event.integer('ownerId');
         event.integer('sportId');
         event.integer('fieldId');

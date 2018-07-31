@@ -1,0 +1,38 @@
+{
+  "event": {
+    "id": "number",
+    "eventName": "string",
+    "startBlock": "number",
+    "endBlock": "number",
+    "notes": "string",
+    "date": "string",
+    "minPlayer": "number",
+    "maxPlayer": "number",
+    "ownerId": "number",
+    "sportId": "number",
+    "fieldId": "number",
+    "created_at": "string",
+    "updated_at": "string"
+  },
+  "messages": [
+    {
+      "id": "number",
+      "body": "string",
+      "userId": "number",
+      "eventId": "number",
+      "created_at": "string",
+      "updated_at": "string",
+      "username": "string",
+      "firstName": "string",
+      "lastName": "string"
+    }
+  ],
+  "guests": [
+    {
+      "firstName": "string",
+      "lastName": "string",
+      "email": "string",
+      "rating": "number"
+    }
+  ]
+}

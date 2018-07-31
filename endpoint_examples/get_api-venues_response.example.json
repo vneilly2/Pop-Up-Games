@@ -1,0 +1,10 @@
+[
+  {
+    "id": "number",
+    "venueName": "string",
+    "address": "string",
+    "isVerified": "number",
+    "lat": "number",
+    "lng": "number"
+  }
+]

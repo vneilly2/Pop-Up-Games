@@ -1,0 +1,14 @@
+{
+  "username": "string",
+  "id": "number",
+  "firstName": "string",
+  "lastName": "string",
+  "rating": "number",
+  "isAdmin": "number",
+  "email": "string",
+  "address": "string",
+  "lat": "number",
+  "lng": "number",
+  "created_at": "string",
+  "updated_at": "string"
+}

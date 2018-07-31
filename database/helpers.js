@@ -156,7 +156,9 @@ exports.getFieldSports = field =>
 //get all sports
 exports.getAllSports = () =>
   new Promise((resolve, reject) =>
-    Sport.fetchAll().then(found => resolve(JSON.parse(JSON.stringify(found))).catch(reject))
+    Sport.fetchAll()
+      .then(found => resolve(JSON.parse(JSON.stringify(found))))
+      .catch(reject)
   );
 
 //get all events in a field, input: {id(id of a field)}

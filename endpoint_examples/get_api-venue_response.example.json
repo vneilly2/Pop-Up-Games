@@ -1,0 +1,36 @@
+{
+  "venue": {
+    "id": "number",
+    "venueName": "string",
+    "address": "string",
+    "isVerified": "number",
+    "lat": "number",
+    "lng": "number"
+  },
+  "fields": [
+    {
+      "id": "number",
+      "fieldName": "string",
+      "notes": "string",
+      "isVerified": "number",
+      "venueId": "number",
+      "todaysEvents": [
+        {
+          "id": "number",
+          "eventName": "string",
+          "startBlock": "number",
+          "endBlock": "number",
+          "notes": "string",
+          "date": "string",
+          "minPlayer": "number",
+          "maxPlayer": "number",
+          "ownerId": "number",
+          "sportId": "number",
+          "fieldId": "number",
+          "created_at": "string",
+          "updated_at": "string"
+        }
+      ]
+    }
+  ]
+}

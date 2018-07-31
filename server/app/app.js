@@ -51,7 +51,6 @@ app.post('/api/signup', user.signup);
  *  password: String
  * }
  * ===
- * @returns Session object containing the active user's username and their role
  * @event Username doesn't exist: 404 / data.serverMessage = 'username not found'
  * @event Password doesn't match: 422 / data.serverMessage = 'password doesnt match'
  * ===
@@ -101,14 +100,6 @@ app.post('/api/event', util.checkLoggedIn, event.create);
  *  id: Number -(event id)
  * }
  * ===
- * @returns {
- *  data: {
- *   event: {},
- *   messages: [{}],
- *   guests: [{}]
- *  }
- * }
- * ===
  */
 app.get('/api/event', util.checkLoggedIn, event.get);
 
@@ -125,14 +116,6 @@ app.get('/api/events', util.checkLoggedIn, event.getMyEvents);
  *  its sports, and the events on that field
  * @example {
  *  id: Number -(field id)
- * }
- * ===
- * @returns {
- *  data: {
- *   field: {},
- *   sports: [],
- *   events: [{}]
- *  }
  * }
  * ===
  */
@@ -157,16 +140,6 @@ app.post('/api/field', util.checkLoggedIn, field.create);
  *  its fields, and the events on those fields for today
  * @example {
  *  id: Number -(venue id)
- * }
- * ===
- * @returns {
- *  data: {
- *   venue: {},
- *   fields: [{
- *    todaysEvents: [{}],
- *    *other field data*
- *   }]
- *  }
  * }
  * ===
  */
