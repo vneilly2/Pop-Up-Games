@@ -15,13 +15,13 @@ var moment = require('moment');
 
 //save user to the database, input: {username, password}
 exports.saveUser = user =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new User({ username: user.username }).fetch().then(found => (found ? reject() : Users.create(user).then(resolve)));
   });
 
 //get the password and ifadmin, input: {username}
 exports.getPasswordAndRole = user =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new User({ username: user.username })
       .fetch()
       .then(found => (found ? resolve(found.attributes.password, found.attributes.isAdmin) : reject()));
@@ -30,9 +30,9 @@ exports.getPasswordAndRole = user =>
 //save the event, input: {eventName, startBlock, endBlock, Notes, date(MM/DD/YYYY),
 //  minPlayer, maxPlayer, sportId, fieldId, username}
 exports.saveEvent = event =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     var date = moment(event.date, 'MM/DD/YYYY').format('YY-MM-DD');
-    Event.query(function(query) {
+    Event.query(function (query) {
       query
         .where('date', date)
         .andWhere('startBlock', '<', event.endBlock)
@@ -44,10 +44,10 @@ exports.saveEvent = event =>
         found =>
           JSON.parse(JSON.stringify(found)).length === 0
             ? new User({ username: event.username }).fetch().then(found => {
-                event.ownerId = found.id;
-                event.date = date;
-                return Events.create(delete event.username && event).then(resolve);
-              })
+              event.ownerId = found.id;
+              event.date = date;
+              return Events.create(delete event.username && event).then(resolve);
+            })
             : reject()
       );
   });
@@ -82,13 +82,13 @@ exports.saveGuest = event =>
 
 //get the event, input: {id(id of the event)}
 exports.getEvent = event =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Event({ id: event.id }).fetch().then(found => (found ? resolve(JSON.parse(JSON.stringify(found))) : reject()));
   });
 
 //get the messages of an event, input: {id(id of the event)}
 exports.getMessages = event =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Event({ id: event.id })
       .fetch({ withRelated: ['messages'] })
       .then(found => {
@@ -109,7 +109,7 @@ exports.getMessages = event =>
 
 //get the guests of an event, input: {id(id of the event)}
 exports.getGuests = event =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Event({ id: event.id })
       .fetch({ withRelated: ['guests'] })
       .then(found => {
@@ -122,7 +122,7 @@ exports.getGuests = event =>
 
 //get all events of a user, input: {username}
 exports.getUserEvents = user =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new User({ username: user.username })
       .fetch({ withRelated: ['events'] })
       .then(found => (found ? resolve(JSON.parse(JSON.stringify(found.related('events')))) : reject()));
@@ -130,7 +130,7 @@ exports.getUserEvents = user =>
 
 //save field, input: {fieldName, notes, venueId}
 exports.saveField = field =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     Fields.create({ fieldName: field.fieldName, notes: field.notes, venueId: field.venueId })
       .then(newField =>
         Promise.all(field.sportIds.map(sportId => newField.sports().attach(new Sport({ id: sportId }))))
@@ -141,13 +141,13 @@ exports.saveField = field =>
 
 //get field, input: {id(id of the field)}
 exports.getField = field =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Field({ id: field.id }).fetch().then(found => (found ? resolve(JSON.parse(JSON.stringify(found))) : reject()));
   });
 
 //get all sports in a field, input: {id(id of the field)}
 exports.getFieldSports = field =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Field({ id: field.id })
       .fetch({ withRelated: ['sports'] })
       .then(found => (found ? resolve(JSON.parse(JSON.stringify(found.related('sports')))) : reject()));
@@ -163,7 +163,7 @@ exports.getAllSports = () =>
 
 //get all events in a field, input: {id(id of a field)}
 exports.getFieldEvents = field =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Field({ id: field.id })
       .fetch({ withRelated: ['events'] })
       .then(found => (found ? resolve(JSON.parse(JSON.stringify(found.related('events')))) : reject()));
@@ -171,7 +171,7 @@ exports.getFieldEvents = field =>
 
 //save the venue, input: {venueName, address}
 exports.saveVenue = venue =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     Venues.create(delete venue.username && venue)
       .then(resolve)
       .catch(reject);
@@ -179,13 +179,13 @@ exports.saveVenue = venue =>
 
 //get the venue, input:
 exports.getVenue = venue =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Venue({ id: venue.id }).fetch().then(found => (found ? resolve(JSON.parse(JSON.stringify(found))) : reject()));
   });
 
 //get the fields, input: {id(id of the venue)}
 exports.getFields = venue =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     new Venue({ id: venue.id })
       .fetch({ withRelated: ['fields'] })
       .then(found => (found ? resolve(JSON.parse(JSON.stringify(found.related('fields')))) : reject()));
@@ -193,14 +193,14 @@ exports.getFields = venue =>
 
 //get today's events at the field, input: {id(id of the field)}
 exports.getTodaysFieldEvents = field =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     var today = new Date();
     new Field(field)
       .fetch({
         withRelated: [
           'events',
           {
-            events: function(query) {
+            events: function (query) {
               query.where('date', moment().format('YYYY-MM-DD'));
             },
           },
@@ -211,7 +211,7 @@ exports.getTodaysFieldEvents = field =>
 
 //get all venues within distance from the user, input: username, distance
 exports.getVenuesNearUser = (user, distance) =>
-  new Promise(function(resolve, reject) {
+  new Promise(function (resolve, reject) {
     var result = [];
     Promise.all([new User({ username: user }).fetch(), Venue.fetchAll()])
       .then(found => {

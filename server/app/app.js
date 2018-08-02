@@ -11,7 +11,7 @@ const sport = require('./components/sports');
 const app = express();
 app.use(
   require('express-session')({
-    secret: process.env.SECRET || require('../../config/config').SECRET,
+    secret: process.env.SECRET || require('../../config/config').SECRET.key,
     resave: false,
     saveUninitialized: false,
   })
