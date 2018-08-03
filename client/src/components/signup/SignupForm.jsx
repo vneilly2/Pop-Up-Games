@@ -26,6 +26,7 @@ class SignupForm extends React.Component {
       createdNewUser: false,
       userExists: false,
       invalidAddress: false,
+      invalidEmail: false,
     };
   }
   /**
@@ -76,6 +77,11 @@ class SignupForm extends React.Component {
     this.state.blankInputs = false;
     this.state.userExists = false;
     this.state.invalidAddress = false;
+
+    if(utils.validateEmail(this.state.email) === false){
+      this.setState({invalidEmail: true});
+    }
+
     if (this.state.password !== this.state.passwordRetype) {
       this.setState({ attemptedPw: true });
     } else if (
@@ -187,6 +193,7 @@ class SignupForm extends React.Component {
           updateState={this.updateState.bind(this)}
           handleEnter={this.handleEnter.bind(this)}
         />
+        <FormError check={this.state.invalidEmail} message={'*Use a correct email format'} />
         <FormField
           className="input"
           txtId={'Email'}
