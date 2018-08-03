@@ -6,7 +6,7 @@ const getGeoLocation = ({ address }) =>
     params: {
       address: address,
       // key: process.env.GMAPS_API || require('../../../config/config.js').API_KEYS.gmaps,
-      key: require('../../../config/config.js').API_KEYS.gmaps,
+      key: require('../../../config/config.js').GMAPS.GMAPS_API,
     },
   });
 

@@ -40,6 +40,13 @@ class EventEntry extends React.Component {
           <div>Time: {blockToTime(this.state.startBlock) + ' to ' + blockToTime(this.state.endBlock)}</div>
           <div>Notes: {this.state.notes}</div>
         </div>
+        <div className='triggerEventEdits'>
+          <span className=''>
+            <a href='' >
+              <button className=''>Edit</button>
+            </a>
+          </span>
+        </div>
       </div>
     );
   }
