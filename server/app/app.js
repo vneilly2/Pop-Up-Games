@@ -9,6 +9,7 @@ const venue = require('./components/venues');
 const sport = require('./components/sports');
 
 const app = express();
+// console.log('this is the GmapAPI key: ', require('../../config/config.js').API_KEYS.gmaps)
 app.use(
   require('express-session')({
     secret: process.env.SECRET || require('../../config/config').SECRET.key,
