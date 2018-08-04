@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import SlideDeck from './components/home/carousel.jsx';
+import 'bootstrap/dist/css/bootstrap.css';
 import Logout from './components/logout/Logout.jsx';
 import Login from './components/login/Login.jsx';
 import Signup from './components/signup/Signup.jsx';
@@ -88,51 +91,45 @@ class App extends React.Component {
             </div>
             {/* Top Bar
             Contains links conditionally displayed based on what page you are on for login and signup */}
-            <div className="top">
-              <div className="bar blue left-align large">
-                <Link
-                  to="/login"
-                  style={this.state.loggedIn || this.state.loginStep ? { display: 'none' } : {}}
-                  className="button padding-large white"
-                  onClick={() => {
-                    this.toggleSignupStep(false);
-                    this.toggleLoginStep(true);
-                  }}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/signup"
-                  style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}
-                  className="button padding-large white"
-                  onClick={() => {
-                    this.toggleSignupStep(true);
-                    this.toggleLoginStep(false);
-                  }}
-                >
-                  Sign Up
-                </Link>
-              </div>
-            </div>
-
-            {/* First Grid */}
-            <header
-              className="container blue center padding-32"
-              id="homeheader"
-              style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? { display: 'none' } : {}}
-            >
-              <h1 className="margin jumbo">Pop-Up-Games</h1>
-              <p className="xlarge">Play Games! Have Fun!</p>
-              <Link
-                to="/signup"
-                style={this.state.loggedIn ? { display: 'none' } : {}}
-                className="button white padding-large large margin-top"
-                onClick={() => this.toggleSignupStep(true)}
+            <div>
+              <Navbar
+                color="primary"
+                dark
+                light
+                expand="md"
+                style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}
               >
-                Sign Up
-              </Link>
-            </header>
-            {/* Second Grid */}
+                <NavbarBrand href="/">Popup Games</NavbarBrand>
+                <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <NavLink
+                      tag={Link}
+                      to="/login"
+                      style={this.state.loggedIn || this.state.loginStep ? { display: 'none' } : {}}
+                      onClick={() => {
+                        this.toggleSignupStep(false);
+                        this.toggleLoginStep(true);
+                      }}
+                    >
+                      Log In
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      tag={Link}
+                      to="/signup"
+                      style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}
+                      onClick={() => {
+                        this.toggleSignupStep(true);
+                        this.toggleLoginStep(false);
+                      }}
+                    >
+                      Sign Up
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+              </Navbar>
+            </div>
             <div
               className="row-padding padding-64 container"
               style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? { display: 'none' } : {}}

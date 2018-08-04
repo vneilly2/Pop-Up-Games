@@ -1,4 +1,5 @@
 import React from 'react';
+import { geolocated } from 'react-geolocated';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 export class GMap extends React.Component {
@@ -42,7 +43,7 @@ export class GMap extends React.Component {
       <Map
         google={this.props.google}
         onClick={this.onMapClicked.bind(this)}
-        style={{ width: '100%', height: '100%' }}
+        style={{ position: 'relative', float: 'left', width: '100%', height: '100%' }}
         zoom={12}
         initialCenter={{
           lat: this.state.position.lat,

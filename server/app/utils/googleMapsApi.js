@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('../../../config/config.js');
 
 //use googlemaps api (limited to 2500 uses per day so you dont get charged) to get the lat and lng for the address
 const getGeoLocation = ({ address }) =>
