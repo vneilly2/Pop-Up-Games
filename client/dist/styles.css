@@ -59,8 +59,8 @@ h6{font-size:16px}
 
 
 /* Nav Bar */
-.bar{width:100%;overflow:hidden}
-.bar .button{white-space:normal}
+/* .bar{width:100%;overflow:hidden}
+.bar .button{white-space:normal} */
 
 
 /* Columns */
@@ -122,6 +122,10 @@ h6{font-size:16px}
 
 
 /* Venue Map Page */
+.row {
+  display: grid !important;
+}
+
 .row:after {
     display: flex;
 }
@@ -132,11 +136,13 @@ h6{font-size:16px}
 }
 
 .venuecolumn {
-    float: right;
-    width: 25%;
+  position: relative;
+  float: right;
+  width: 25%;
 }
 
 .venuelist {
+  /* left: 500px; */
   padding: 5px 5px;
   margin: 5px 5px;
 }

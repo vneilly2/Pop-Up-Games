@@ -1,4 +1,17 @@
 import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import CreateEvent from './createevent/CreateEvent.jsx';
 import CreateField from './createfield/CreateField.jsx';
 import CreateVenue from './createvenue/CreateVenue.jsx';
@@ -20,26 +33,31 @@ var NavBar = props => {
   let changeTarget = props.changeTarget;
   let target = props.target;
   return (
-    <div className="top">
-      <div className="bar blue card left-align large">
-        <Link to="/home" className="bar-item button hide-small padding-large hover-white left-align ">
-          Home
-        </Link>
-        {/* // todo: impliment searching for venues or events */}
-        {/* <Link to="/search" className="bar-item button hide-small padding-large hover-white left-align ">Search</Link> */}
-        <Link to="/createvenue" className="bar-item button hide-small padding-large hover-white left-align ">
-          Create
-        </Link>
-        <Link to="/logout" className="bar-item button hide-small padding-large hover-white left-align ">
-          Logout
-        </Link>
-      </div>
+    <div>
+      <Navbar color="primary" dark expand="md">
+        <NavbarBrand href="/">Popup Games</NavbarBrand>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink tag={Link} to="/home">
+              Home
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to="/createvenue">
+              Create Venue
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to="/logout">
+              Logout
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
       <Route
         path="/home"
         render={props => <Home toggleAuth={toggleAuth} userInfo={userInfo} changeTarget={changeTarget} {...props} />}
       />
-      {/* // todo: impliment searching for venues or events (related to above) */}
-      {/* <Route path="/search" component={Search} /> */}
       <Route
         path="/field"
         render={props => <Field toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
