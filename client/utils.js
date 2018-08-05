@@ -28,6 +28,12 @@ exports.sportNumConv = num => {
   }
 };
 
+//check for valide email input
+exports.validateEmail = (email) => {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 exports.blockToTime = blockNum => {
   let minutes = (blockNum % 2) * 30;
   let hour = Math.floor(blockNum / 2);
