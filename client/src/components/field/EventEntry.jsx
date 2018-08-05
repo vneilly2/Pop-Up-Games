@@ -38,8 +38,9 @@ class EventEntry extends React.Component {
     this.handleSubmitAction = event => {
       event.preventDefault();
       event.stopPropagation();
+      console.log('inside handleSubmitAction: ', this.state);
       axios
-        .post(`/api/events/${this.state.id}`, this.state, {
+        .put(`/api/event/`, this.state, {
           headers: {},
         })
         .then(response => {

@@ -206,9 +206,8 @@ app.delete('/api/event/guest');
 
 app.get('/api/event/guest');
 
-app.put('/api/event');
-
-app.put('/api/event/:eventId', util.checkLoggedIn, event.update);
+// app.put('/api/event', util.checkLoggedIn, event.updateEvent);
+app.put('/api/event', event.updateEvent);
 
 app.put('/api/field');
 

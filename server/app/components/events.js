@@ -21,9 +21,14 @@ const getMyEvents = (req, res) => util.getRes(db.getUserEvents({ username: req.s
 const addMessage = (req, res) => util.postRes(db.saveMessage((req.body.username = req.session.user) && req.body), res);
 
 // Adding update method
+const updateEvent = (req, res) => {
+  console.log('inside updateEvent: ', res);
+  util.putRes(db.updateEvent(req.body), res);
+}
 
 exports.addMeToEvent = addMeToEvent;
 exports.create = create;
 exports.get = get;
 exports.getMyEvents = getMyEvents;
 exports.addMessage = addMessage;
+exports.updateEvent = updateEvent;

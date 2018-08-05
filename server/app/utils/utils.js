@@ -37,6 +37,15 @@ const postRes = (promise, res, errMessage, successStatus = 201, errStatus = 400)
     .then(data => data && res.sendStatus(successStatus))
     .catch(err => res.status(errStatus).send({ serverMessage: errMessage, error: err }));
 
+// a basic put resolve
+const putRes = (promise, res, errMessage, successStatus = 200, errStatus = 400) => {
+  promise.then((data) => {
+    data && res.sendStatus(successStatus)
+  }).catch((err) => {
+    res.status(errStatus)
+      .send({ serverMessage: errMessage, error: err });
+  });
+}
 //serves static files upon finding no matching endpoints
 const redirectToHome = (req, res) => res.redirect('/');
 
@@ -47,4 +56,5 @@ exports.checkPass = checkPass;
 exports.buildRes = buildRes;
 exports.getRes = getRes;
 exports.postRes = postRes;
+exports.putRes = putRes;
 exports.redirectToHome = redirectToHome;
