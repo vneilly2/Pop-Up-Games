@@ -89,11 +89,11 @@ h6{font-size:16px}
 .right{float:right!important}
 
 /* Padding */
-.container{padding:0.01em 16px}
+/* .container{padding:0.01em 16px} */
 .padding{padding:8px 16px!important}
 .padding-large{padding:12px 24px!important}
 .padding-32{padding-top:32px!important;padding-bottom:32px!important}
-.padding-64{padding-top:64px!important;padding-bottom:64px!important}
+/* .padding-64{padding-top:64px!important;padding-bottom:64px!important} */
 
 /* Colors */
 .blue,.hover-blue:hover {
@@ -120,6 +120,25 @@ h6{font-size:16px}
   background-color: rgb(190, 218, 241)
 }
 
+.carousel-item > img { 
+  width: 100%; 
+}
+
+.carousel-control-prev,.carousel-control-next {
+  cursor:pointer;
+}
+
+
+footer {
+  margin-top: 0.5em!important;
+  text-align: center;
+  color: white;
+  background-color: #535353;
+}
+
+footer  p {
+  margin-top: 0.8em!important;
+}
 
 /* Venue Map Page */
 .row {
@@ -267,7 +286,7 @@ h6{font-size:16px}
   grid-area:messageboard;
   padding: 10px;
   border: 2px solid #2196F3;
-  background: #F7F7F7
+  background: #F7F7F7;
   height:auto;
   min-height:100%;
 }
@@ -293,8 +312,8 @@ h6{font-size:16px}
   padding: 10px;
   border: 2px solid #2196F3;
   background: #F7F7F7  
-  height:auto;
-  min-height:100%
+  height: auto;
+  min-height: 100%;
 }
 
 
@@ -446,4 +465,38 @@ h6{font-size:16px}
   grid-area:timepicker;
   height:auto;
   min-height:100%;
+}
+
+.container {
+  width: 100% !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+@media(min-width: 768px) .container {
+  max-width: 1000px;
+}
+
+.navbar-dark .navbar-brand {
+  font-family: 'Permanent Marker', cursive !important;
+  font-size: 26px;
+  position: sticky !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  font-size: 21px !important;
+  position: sticky !important;
+}
+
+.carousel-caption {
+  bottom: 164px !important;
+  font-family: 'Permanent Marker', cursive !important;
+  font-size: 60px !important;
+}
+
+footer {
+  position:relative !important;
+  top: 257px !important;
+
 }

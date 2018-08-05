@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardTitle,
+  CardText,
+  CardGroup,
+  CardSubtitle,
+  CardBody,
+  Jumbotron,
+  Container,
+  Button,
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
 import SlideDeck from './components/home/carousel.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
 import Logout from './components/logout/Logout.jsx';
@@ -95,6 +113,7 @@ class App extends React.Component {
               <Navbar
                 color="primary"
                 dark
+                style={'font-family: Permanent Marker, cursive !important;'}
                 light
                 expand="md"
                 style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}
@@ -134,6 +153,20 @@ class App extends React.Component {
               className="row-padding padding-64 container"
               style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? { display: 'none' } : {}}
             >
+              <div id="slidedeck">
+                <SlideDeck fluid />
+              </div>
+              <div>
+                <Jumbotron fluid style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}>
+                  <Container fluid>
+                    <h1 className="display-3">Welcome to </h1>
+                    <p className="lead">
+                      This is a modified jumbotron that occupies the entire horizontal space of its parent.
+                    </p>
+                  </Container>
+                </Jumbotron>
+              </div>
+
               <div className="content">
                 <div className="twothird">
                   <h1>What We Do</h1>
@@ -160,17 +193,52 @@ class App extends React.Component {
             </div>
 
             {/* Footer */}
-            <footer
-              className="container padding-32 center"
+            <div>
+              <CardGroup
+                style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? { display: 'none' } : {}}
+              >
+                <Card>
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardText>
+                      This is a wider card with supporting text below as a natural lead-in to additional content. This
+                      content is a little bit longer.
+                    </CardText>
+                  </CardBody>
+                </Card>
+                <Card>
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardText>This card has supporting text below as a natural lead-in to additional content.</CardText>
+                  </CardBody>
+                </Card>
+                <Card>
+                  <CardBody>
+                    <CardTitle>Card title</CardTitle>
+                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardText>
+                      This is a wider card with supporting text below as a natural lead-in to additional content. This
+                      card has even longer content than the first to show that equal height action.
+                    </CardText>
+                  </CardBody>
+                </Card>
+              </CardGroup>
+            </div>
+            <div
               style={this.state.loggedIn || this.state.loginStep || this.state.signupStep ? { display: 'none' } : {}}
             >
-              <p>
-                Made at{' '}
-                <a href="https://www.hackreactor.com/" rel="noopener noreferrer" target="_blank">
-                  Hack Reactor
-                </a>
-              </p>
-            </footer>
+              <footer>
+                <Row>
+                  <Col sm="12" md="12" lg="12">
+                    <p className="align-self-center">
+                      &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
+                    </p>
+                  </Col>
+                </Row>
+              </footer>
+            </div>
 
             <Route
               path="/login"
