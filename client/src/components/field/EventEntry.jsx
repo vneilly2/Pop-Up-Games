@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
 import FormError from '../FormError.jsx';
+import { errorHandler } from '../../../utils';
 /**
  * todo I think this component could be stateless but the withRouter as I understand it only works with stateful components
  * @description Component that renders a single event entry
@@ -54,7 +55,7 @@ class EventEntry extends React.Component {
             // todo this error should be refactored on server to not be a general error but an error specific to time conflicts
             this.setState({ timeConflict: true });
           } else {
-            utils.errorHandler(error);
+            errorHandler(error);
           }
         });
     }

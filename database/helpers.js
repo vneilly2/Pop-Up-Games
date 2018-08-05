@@ -21,11 +21,12 @@ exports.saveUser = user =>
 
 //update the event, eventObj : {id, eventName, sportId, date, startBlock, endBlock, notes}
 
-exports.updateEvent = (event) => {
+exports.saveEventUpdates = (event) => {
   new Promise((resolve, reject) => {
     Event.query('where', 'id', '=', event.id)
       .fetch()
       .then((foundEvent) => {
+        console.log(foundEvent);
         if (foundEvent) {
           foundEvent.set({ eventName: 'PassedNewName' }).then(resolve);
         } else {
