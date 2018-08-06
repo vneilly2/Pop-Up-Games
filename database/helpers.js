@@ -22,40 +22,21 @@ exports.saveUser = user =>
 //update the event, eventObj : {id, eventName, sportId, date, startBlock, endBlock, notes}
 
 exports.saveEventUpdates = (event, cb) => {
-  // new Promise((resolve, reject) => {
-  //   Event.query('where', 'id', '=', event.id)
-  //     .fetch()
-  //     .then((foundEvent) => {
-  //       console.log(foundEvent);
-  //       if (foundEvent) {
-  //         foundEvent.set({ eventName: 'PassedNewName' }).then(resolve);
-  //       } else {
-  //         reject();
-  //       }
-  //     })
-  // });
 
-  // new Event({id: event.id})
-  // .save({eventName: 'NewName'}, {patch: true})
-  // .then(function(model) {
-  //   cb(model);
-  // })
-  console.log(event);
-  cb(event);
-  // new Event({id :21}).fetch().then(function (model) {
-  //   if (model) {
-  //     model.set({eventName: 'Update'});
-  //     return model.save({}, {
-  //       method: 'update',
-  //       patch: true
-  //     })
-  //   }
-  // })
-  // .then(function (model) {
-  //   cb(model);
-  // }).catch(function (err) {
-  //   console.log("ERROR", err);
-  // });
+  new Event({id :event.id}).fetch().then(function (model) {
+    if (model) {
+      model.set(event);
+      return model.save({}, {
+        method: 'update',
+        patch: true
+      })
+    }
+  })
+  .then(function (model) {
+    cb(model);
+  }).catch(function (err) {
+    console.log("ERROR", err);
+  });
 }
 
 //get the password and ifadmin, input: {username}
