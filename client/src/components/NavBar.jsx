@@ -34,7 +34,7 @@ var NavBar = props => {
   let target = props.target;
   return (
     <div>
-      <Navbar color="primary" dark expand="md">
+      <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">Popup Games</NavbarBrand>
         <Nav className="ml-auto" navbar>
           <NavItem>

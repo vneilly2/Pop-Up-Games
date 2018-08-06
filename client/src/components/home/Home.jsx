@@ -70,15 +70,17 @@ class Home extends React.Component {
               <VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues} />
             </div>
           </div>
-          <footer id="home-footer">
-            <Row>
-              <Col sm="12" md="12" lg="12">
-                <p className="align-self-center">
-                  &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
-                </p>
-              </Col>
-            </Row>
-          </footer>
+          <div class="homefooter">
+            <footer id="home-footer">
+              <Row>
+                <Col sm="12" md="12" lg="12">
+                  <p className="align-self-center">
+                    &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
+                  </p>
+                </Col>
+              </Row>
+            </footer>
+          </div>
         </div>
       );
     }

@@ -111,7 +111,7 @@ class App extends React.Component {
             Contains links conditionally displayed based on what page you are on for login and signup */}
             <div>
               <Navbar
-                color="primary"
+                color="dark"
                 dark
                 style={'font-family: Permanent Marker, cursive !important;'}
                 light
@@ -159,10 +159,8 @@ class App extends React.Component {
               <div>
                 <Jumbotron fluid style={this.state.loggedIn || this.state.signupStep ? { display: 'none' } : {}}>
                   <Container fluid>
-                    <h1 className="display-3">Welcome to </h1>
-                    <p className="lead">
-                      This is a modified jumbotron that occupies the entire horizontal space of its parent.
-                    </p>
+                    <h1 className="display-3">Welcome to Popup Games</h1>
+                    <p className="lead">An app that allows its users to easily plan games around the world.</p>
                   </Container>
                 </Jumbotron>
               </div>
@@ -199,28 +197,29 @@ class App extends React.Component {
               >
                 <Card>
                   <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardTitle>Plan Ahead</CardTitle>
                     <CardText>
-                      This is a wider card with supporting text below as a natural lead-in to additional content. This
-                      content is a little bit longer.
+                      Plan events in the future with ease of mind with our easy to use planning system, Planning has
+                      never been easier.
                     </CardText>
                   </CardBody>
                 </Card>
                 <Card>
                   <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
-                    <CardText>This card has supporting text below as a natural lead-in to additional content.</CardText>
+                    <CardTitle>Choose a location</CardTitle>
+                    <CardSubtitle>Powered by google maps</CardSubtitle>
+                    <CardText>
+                      Choose the location of the event with google maps, our system allows users to easily access
+                      directions right from the app, no need to open another tab for directions!
+                    </CardText>
                   </CardBody>
                 </Card>
                 <Card>
                   <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardTitle>Invite Others!</CardTitle>
                     <CardText>
-                      This is a wider card with supporting text below as a natural lead-in to additional content. This
-                      card has even longer content than the first to show that equal height action.
+                      Our Application allows users to invite their friends to the venue as well as chat about the event,
+                      easy communication all from within one app.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -232,6 +231,12 @@ class App extends React.Component {
               <footer>
                 <Row>
                   <Col sm="12" md="12" lg="12">
+                    <p className="align-self-center">
+                      &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
+                    </p>
+                    <p className="align-self-center">
+                      &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
+                    </p>
                     <p className="align-self-center">
                       &copy; 2017. Отдел разработки и администрирования ООО "Сбербанк-Сервис"
                     </p>
