@@ -24,7 +24,7 @@ class EventEntry extends React.Component {
       isEditable: false,
       timeConflict: true,
     };
-    console.log(props.data.sportId);
+    console.log(this.state.id);
 
     this.handleEditAction = event => {
       event.preventDefault();
@@ -41,7 +41,7 @@ class EventEntry extends React.Component {
       event.stopPropagation();
       console.log('inside handleSubmitAction: ', this.state);
       axios
-        .put(`/api/event/`, this.state, {
+        .put(`/api/event`, this.state, {
           headers: {},
         })
         .then(response => {

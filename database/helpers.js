@@ -21,18 +21,21 @@ exports.saveUser = user =>
 
 //update the event, eventObj : {id, eventName, sportId, date, startBlock, endBlock, notes}
 
-exports.saveEventUpdates = (event) => {
-  new Promise((resolve, reject) => {
-    Event.query('where', 'id', '=', event.id)
-      .fetch()
-      .then((foundEvent) => {
-        console.log(foundEvent);
-        if (foundEvent) {
-          foundEvent.set({ eventName: 'PassedNewName' }).then(resolve);
-        } else {
-          reject();
-        }
+exports.saveEventUpdates = (event, cb) => {
+
+  new Event({id :event.id}).fetch().then(function (model) {
+    if (model) {
+      model.set(event);
+      return model.save({}, {
+        method: 'update',
+        patch: true
       })
+    }
+  })
+  .then(function (model) {
+    cb(model);
+  }).catch(function (err) {
+    console.log("ERROR", err);
   });
 }
 
