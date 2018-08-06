@@ -22,8 +22,8 @@ const addMessage = (req, res) => util.postRes(db.saveMessage((req.body.username 
 
 // Adding update method
 const updateEvent = (req, res) => {
-  db.saveEventUpdates(req.body, function(model){
-    if(model){
+  db.saveEventUpdates(req.body, function (model) {
+    if (model) {
       res.send(model);
     }
     else {

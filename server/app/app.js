@@ -182,7 +182,7 @@ app.get('/api/sports', util.checkLoggedIn, sport.getAll);
  * ===
  * @description Posts a sport, unique sport name
  * @example {
- *  sportName: String
+ *  sportName: String 
  * }
  * ===
  * @event Sport name already exists: 400
@@ -208,6 +208,8 @@ app.get('/api/event/guest');
 
 // app.put('/api/event', util.checkLoggedIn, event.updateEvent);
 app.put('/api/event', event.updateEvent);
+
+app.put('/api/event/:eventId', util.checkLoggedIn, event.update);
 
 app.put('/api/field');
 
