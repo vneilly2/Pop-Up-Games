@@ -206,7 +206,8 @@ app.delete('/api/event/guest');
 
 app.get('/api/event/guest');
 
-app.put('/api/event');
+// app.put('/api/event', util.checkLoggedIn, event.updateEvent);
+app.put('/api/event', event.updateEvent);
 
 app.put('/api/field');
 
@@ -230,6 +231,8 @@ app.put('/api/sportsmerge');
 app.put('/api/venuemerge');
 
 app.put('/api/fieldmerge');
+
+
 
 //serve static files if no endpoint is found (for refreshing)
 app.get('/*', util.redirectToHome);

@@ -19,6 +19,26 @@ exports.saveUser = user =>
     new User({ username: user.username }).fetch().then(found => (found ? reject() : Users.create(user).then(resolve)));
   });
 
+//update the event, eventObj : {id, eventName, sportId, date, startBlock, endBlock, notes}
+
+exports.saveEventUpdates = (event, cb) => {
+
+  new Event({id :event.id}).fetch().then(function (model) {
+    if (model) {
+      model.set(event);
+      return model.save({}, {
+        method: 'update',
+        patch: true
+      })
+    }
+  })
+  .then(function (model) {
+    cb(model);
+  }).catch(function (err) {
+    console.log("ERROR", err);
+  });
+}
+
 //get the password and ifadmin, input: {username}
 exports.getPasswordAndRole = user =>
   new Promise(function (resolve, reject) {
@@ -85,6 +105,8 @@ exports.getEvent = event =>
   new Promise(function (resolve, reject) {
     new Event({ id: event.id }).fetch().then(found => (found ? resolve(JSON.parse(JSON.stringify(found))) : reject()));
   });
+
+
 
 //get the messages of an event, input: {id(id of the event)}
 exports.getMessages = event =>

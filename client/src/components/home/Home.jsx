@@ -66,9 +66,14 @@ class Home extends React.Component {
             <GMap position={this.state.position} venues={this.state.nearbyVenues} />
           </div>
           <div>
-            <div className="venuecolumn">
-              <VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues} />
+            <div className='userAddressForm'>
+
             </div>
+            {this.state.position !== undefined &&
+              <div className="venuecolumn">
+                <VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues} />
+              </div>
+            }
           </div>
           <div class="homefooter">
             <footer id="home-footer">
