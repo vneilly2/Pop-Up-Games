@@ -22,8 +22,16 @@ const addMessage = (req, res) => util.postRes(db.saveMessage((req.body.username 
 
 // Adding update method
 const updateEvent = (req, res) => {
-  //console.log('inside updateEvent: ', res);
-  util.putRes(db.updateEvent(req.body), res);
+  console.log('inside updateEvent: ', res);
+  db.saveEventUpdates(req.query.id, function(model){
+    if(model){
+      res.send(model);
+    }
+    else {
+      res.send("update failed");
+    }
+  })
+
 }
 
 exports.addMeToEvent = addMeToEvent;

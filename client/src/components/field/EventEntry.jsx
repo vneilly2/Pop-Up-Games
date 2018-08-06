@@ -24,7 +24,7 @@ class EventEntry extends React.Component {
       isEditable: false,
       timeConflict: true,
     };
-    console.log(props.data.sportId);
+    console.log(this.state.id);
 
     this.handleEditAction = event => {
       event.preventDefault();

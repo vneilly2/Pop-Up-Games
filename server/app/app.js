@@ -182,7 +182,7 @@ app.get('/api/sports', util.checkLoggedIn, sport.getAll);
  * ===
  * @description Posts a sport, unique sport name
  * @example {
- *  sportName: String 
+ *  sportName: String
  * }
  * ===
  * @event Sport name already exists: 400
